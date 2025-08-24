@@ -17,10 +17,18 @@ export default function Assessment() {
           <p className="text-xl md:text-2xl text-blue-100 mb-4">
             Get Personalized Recommendations for Your Business
           </p>
-          <p className="text-lg text-blue-200 max-w-2xl mx-auto">
+          <p className="text-lg text-blue-200 max-w-2xl mx-auto mb-6">
             This comprehensive questionnaire helps us understand your current sales process, 
             technology stack, and challenges so we can provide tailored solutions.
           </p>
+          <div className="bg-blue-700/50 p-4 rounded-lg max-w-2xl mx-auto">
+            <p className="text-blue-100 text-sm mb-2">
+              <strong>Free 15-minute consultation available</strong>
+            </p>
+            <p className="text-blue-200 text-sm">
+              Full assessments typically range from $1,500-$3,000 depending on company size, revenue, and complexity.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -70,6 +78,68 @@ export default function Assessment() {
                   </li>
                 </ul>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Offering Flow Section */}
+      <section className="py-12">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Our Two-Stage Approach
+            </h2>
+            <p className="text-gray-600">
+              We&apos;ve designed a comprehensive process to transform your sales operations:
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-white p-6 rounded-lg shadow-lg border border-blue-100">
+              <div className="bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+                1
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3 text-center">
+                AI Sales Readiness Audit
+              </h3>
+              <ul className="space-y-2 text-gray-600">
+                <li className="flex items-start">
+                  <span className="text-blue-600 mr-2">•</span>
+                  Audit sales/marketing processes for AI opportunities
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-600 mr-2">•</span>
+                  Identify bottlenecks where AI or light tech upgrades could drive more leads, higher conversions, or better retention
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-600 mr-2">•</span>
+                  Prioritize the top 3–5 actions with projected ROI
+                </li>
+              </ul>
+            </div>
+            
+            <div className="bg-white p-6 rounded-lg shadow-lg border border-blue-100">
+              <div className="bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+                2
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3 text-center">
+                AI-as-a-Service Retainer
+              </h3>
+              <ul className="space-y-2 text-gray-600">
+                <li className="flex items-start">
+                  <span className="text-blue-600 mr-2">•</span>
+                  Implement and manage AI tools (CRM automation, AI lead scoring, AI content generation, AI proposal templates)
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-600 mr-2">•</span>
+                  Apply light tech improvements as needed (CRM cleanup, workflow automation, dashboard/reporting fixes)
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-600 mr-2">•</span>
+                  Monthly monitoring + optimization
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -194,16 +264,16 @@ export default function Assessment() {
       <section className="bg-blue-600 text-white py-16">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold mb-4">
-            Prefer to Talk First?
+            Start with a Free 15-Minute Consultation
           </h2>
           <p className="text-xl mb-8 text-blue-100">
-            Skip the form and schedule a discovery call directly with our team.
+            Not ready for the full assessment? Schedule a free consultation to discuss your needs and see if we&apos;re a good fit.
           </p>
           <a
             href="/contact"
             className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-50 transition-colors duration-200 inline-block"
           >
-            Schedule Discovery Call
+            Schedule Free Consultation
           </a>
         </div>
       </section>
