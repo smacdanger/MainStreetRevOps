@@ -104,19 +104,19 @@ export default function Home() {
       {/* Section Divider */}
       <div className="w-full">
         <svg 
-          viewBox="0 0 1440 320" 
+          viewBox="0 0 1440 80" 
           className="w-full h-auto"
           preserveAspectRatio="none"
         >
           <path 
             fill="#f8fafc" 
-            d="M0,32L48,48C96,64,192,96,288,96C384,96,480,64,576,37.3C672,11,768,53,864,69.3C960,85,1056,75,1152,85.3C1248,96,1344,128,1392,144L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+            d="M0,8L48,12C96,16,192,24,288,24C384,24,480,16,576,9.3C672,3,768,13,864,17.3C960,21,1056,19,1152,21.3C1248,24,1344,32,1392,36L1440,40L1440,80L1392,80C1344,80,1248,80,1152,80C1056,80,960,80,864,80C768,80,672,80,576,80C480,80,384,80,288,80C192,80,96,80,48,80L0,80Z"
           />
         </svg>
       </div>
 
       {/* Value Pillars */}
-      <section className="py-24 bg-slate-50 relative">
+      <section className="py-16 bg-slate-50 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
             <div className="mb-4">
@@ -158,13 +158,13 @@ export default function Home() {
       {/* Section Divider */}
       <div className="w-full">
         <svg 
-          viewBox="0 0 1440 320" 
+          viewBox="0 0 1440 80" 
           className="w-full h-auto"
           preserveAspectRatio="none"
         >
           <path 
             fill="#ffffff" 
-            d="M0,160Q720,80,1440,160L1440,0L0,0Z"
+            d="M0,40Q720,20,1440,40L1440,0L0,0Z"
           />
         </svg>
       </div>
@@ -218,13 +218,13 @@ export default function Home() {
       {/* Section Divider */}
       <div className="w-full">
         <svg 
-          viewBox="0 0 1440 320" 
+          viewBox="0 0 1440 80" 
           className="w-full h-auto"
           preserveAspectRatio="none"
         >
           <path 
             fill="#0f172a" 
-            d="M0,160L1440,0L1440,160Z"
+            d="M0,40L1440,0L1440,40Z"
           />
         </svg>
       </div>
