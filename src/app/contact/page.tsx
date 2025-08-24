@@ -3,40 +3,67 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Contact - MainStreet RevOps",
   description: "Get in touch with MainStreet RevOps to discuss how we can help transform your sales process with AI-powered solutions.",
+  openGraph: {
+    title: "Contact - MainStreet RevOps",
+    description: "Get in touch with MainStreet RevOps to discuss how we can help transform your sales process with AI-powered solutions.",
+    type: "website",
+  },
 };
 
 export default function Contact() {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
+        {/* Background elements */}
+        <div className="absolute inset-0 bg-gradient-to-r from-teal-600/20 to-blue-600/20"></div>
+        <div className="absolute inset-0 opacity-40">
+          <div className="h-full w-full bg-gradient-to-r from-transparent via-teal-500/10 to-transparent"></div>
+        </div>
+        <div className="absolute top-10 -right-20 w-72 h-72 bg-teal-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 -left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+        
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             Get In Touch
           </h1>
-          <p className="text-xl md:text-2xl text-blue-100 mb-4">
+          <p className="text-xl md:text-2xl text-slate-200 mb-4">
             Ready to Transform Your Sales Process?
           </p>
-          <p className="text-lg text-blue-200 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
             Send us a message to discuss how we can help grow your business.
           </p>
         </div>
       </section>
 
+      {/* Section Divider */}
+      <div className="w-full">
+        <svg 
+          viewBox="0 0 1440 320" 
+          className="w-full h-auto"
+          preserveAspectRatio="none"
+        >
+          <path 
+            fill="#ffffff" 
+            d="M0,32L48,48C96,64,192,96,288,96C384,96,480,64,576,37.3C672,11,768,53,864,69.3C960,85,1056,75,1152,85.3C1248,96,1344,128,1392,144L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+          />
+        </svg>
+      </div>
+
       {/* Contact Form Section */}
-      <section className="py-16">
+      <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">
               Send Us a Message
             </h2>
-            <p className="text-gray-600 mb-8">
+            <p className="text-slate-600 mb-8">
               Fill out the form below and we&apos;ll get back to you within 24 hours.
             </p>
           </div>
 
           {/* Google Forms Embed */}
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
+          <div className="bg-white rounded-2xl shadow-lg overflow-hidden mb-12 border border-slate-200">
             <iframe 
               src="https://docs.google.com/forms/d/e/1FAIpQLSfrXpGdqj8XG38lRpfSmXmR7TL01cVQ5ljXy2ILSnUXCV0CNw/viewform?embedded=true" 
               width="100%" 
@@ -52,42 +79,42 @@ export default function Contact() {
           </div>
 
           {/* Direct Contact Info */}
-          <div className="bg-blue-50 p-8 rounded-lg">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-6 text-center">
+          <div className="bg-gradient-to-br from-slate-50 to-teal-50 p-8 rounded-2xl border border-slate-200">
+            <h3 className="text-2xl font-semibold text-slate-900 mb-6 text-center">
               Other Ways to Reach Us
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="text-center">
-                <div className="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="text-center group">
+                <div className="bg-white w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm group-hover:shadow-md transition-shadow duration-200 border border-slate-200">
                   <span className="text-2xl">📧</span>
                 </div>
-                <p className="font-medium text-gray-900 mb-2">Email</p>
-                <a href="mailto:sean@mainstrevops.com" className="text-blue-600 hover:text-blue-800 font-medium">
+                <p className="font-medium text-slate-900 mb-2">Email</p>
+                <a href="mailto:sean@mainstrevops.com" className="text-teal-600 hover:text-teal-800 font-medium transition-colors duration-200">
                   sean@mainstrevops.com
                 </a>
               </div>
               
-              <div className="text-center">
-                <div className="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="text-center group">
+                <div className="bg-white w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm group-hover:shadow-md transition-shadow duration-200 border border-slate-200">
                   <span className="text-2xl">💼</span>
                 </div>
-                <p className="font-medium text-gray-900 mb-2">LinkedIn</p>
+                <p className="font-medium text-slate-900 mb-2">LinkedIn</p>
                 <a 
                   href="https://www.linkedin.com/in/seanmacd/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-blue-600 hover:text-blue-800 font-medium"
+                  className="text-teal-600 hover:text-teal-800 font-medium transition-colors duration-200"
                 >
                   Connect with Sean
                 </a>
               </div>
               
-              <div className="text-center">
-                <div className="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="text-center group">
+                <div className="bg-white w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm group-hover:shadow-md transition-shadow duration-200 border border-slate-200">
                   <span className="text-2xl">⏰</span>
                 </div>
-                <p className="font-medium text-gray-900 mb-2">Response Time</p>
-                <p className="text-gray-600 font-medium">Within 24 hours</p>
+                <p className="font-medium text-slate-900 mb-2">Response Time</p>
+                <p className="text-slate-600 font-medium">Within 24 hours</p>
               </div>
             </div>
           </div>
