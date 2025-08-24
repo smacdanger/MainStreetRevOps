@@ -14,57 +14,58 @@ export const metadata: Metadata = {
 export default function Services() {
   const services = [
     {
-      title: "AI Sales Readiness Audit",
-      price: "Fixed Price",
-      description: "Comprehensive analysis of your current sales process, technology stack, and opportunities for AI-powered improvements.",
+      title: "AI Sales Readiness & Roadmap Assessment",
+      price: "$1,500–$3,000",
+      description: "60–90 minute discovery call plus comprehensive analysis to identify your top 3–5 AI opportunities with a prioritized 6-month roadmap.",
       features: [
-        "Current state analysis of sales process",
-        "Technology stack assessment",
-        "Lead response time analysis", 
-        "Sales team performance review",
-        "Custom AI implementation roadmap",
-        "ROI projections for recommended changes",
-        "30-day quick win recommendations"
+        "Current sales process and technology assessment",
+        "Lead response time and conversion rate analysis", 
+        "Sales team performance and accountability review",
+        "Custom AI maturity scorecard",
+        "3–5 immediate, high-impact use cases identified",
+        "Prioritized 6-month implementation roadmap",
+        "ROI projections for each recommended improvement"
       ],
-      ideal: "Perfect for businesses ready to understand their current state and get a clear path forward.",
-      cta: "Get Your Audit",
-      ctaLink: "/contact?service=audit",
-      featured: false
-    },
-    {
-      title: "AI-as-a-Service Retainer",
-      price: "Monthly Advisor",
-      description: "Ongoing strategic support to implement, optimize, and scale your AI-powered sales processes.",
-      features: [
-        "Monthly strategy sessions",
-        "AI tool implementation support",
-        "Performance monitoring & optimization",
-        "Sales team training & support",
-        "Technology integration assistance",
-        "Quarterly business reviews",
-        "Priority email & phone support"
-      ],
-      ideal: "Best for businesses wanting ongoing support and continuous optimization of their sales operations.",
-      cta: "Learn More",
-      ctaLink: "/contact?service=retainer",
+      deliverables: "Complete analysis delivered 1–2 weeks after discovery call",
+      ideal: "Perfect for businesses ready to understand exactly where AI can drive the biggest revenue impact.",
+      cta: "Complete Initial Assessment",
+      ctaLink: "/assessment",
       featured: true
     },
     {
-      title: "Process & Tech Tune-Up",
+      title: "Implementation Sprint (Add-On)",
       price: "Project-Based",
-      description: "Targeted improvements to specific pain points in your sales operations, CRM, or system integrations.",
+      description: "Short 2–4 week focused project to implement your top priorities: lead routing, CRM automation, instant follow-up, or invoicing automation.",
       features: [
-        "CRM optimization & cleanup",
-        "QuickBooks integration setup",
-        "Lead routing automation",
-        "Email & SMS automation",
-        "Reporting dashboard creation",
-        "Team accountability systems",
-        "Process documentation"
+        "Lead routing and distribution automation",
+        "CRM workflow setup and optimization",
+        "Instant lead follow-up sequences",
+        "Invoicing and payment automation",
+        "Sales pipeline tracking and reporting",
+        "Team training and process documentation"
       ],
-      ideal: "Great for businesses with specific challenges or those wanting to optimize particular areas.",
-      cta: "Discuss Your Needs",
-      ctaLink: "/contact?service=tuneup",
+      deliverables: "Fully implemented and tested systems with team training",
+      ideal: "Best for businesses ready to implement specific solutions immediately after assessment.",
+      cta: "Contact Us",
+      ctaLink: "/contact",
+      featured: false
+    },
+    {
+      title: "Ongoing AI-as-a-Service Retainer",
+      price: "$1,000–$3,000/month",
+      description: "Monthly strategic support to monitor, optimize, and continuously improve your AI-powered sales systems as your business grows.",
+      features: [
+        "Monthly tool monitoring and optimization",
+        "Quarterly ROI reviews and performance analysis",
+        "New integration recommendations as needs evolve",
+        "Priority support for system issues or questions",
+        "Sales team coaching and training updates",
+        "Technology stack recommendations and updates"
+      ],
+      deliverables: "Monthly optimization reports with continuous system improvements",
+      ideal: "Great for businesses wanting ongoing support and continuous optimization as they scale.",
+      cta: "Contact Us",
+      ctaLink: "/contact",
       featured: false
     }
   ];
@@ -110,11 +111,11 @@ export default function Services() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-slate-900 mb-4">
-              Choose Your Path to Growth
+              Your Path to AI-Powered Growth
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-              Whether you&apos;re just starting your AI journey or looking to optimize existing processes, 
-              we have the right solution for your business.
+              Start with an assessment to identify your biggest opportunities, then implement and optimize 
+              with our proven, step-by-step approach.
             </p>
           </div>
 
@@ -165,6 +166,14 @@ export default function Services() {
                       ))}
                     </ul>
                   </div>
+
+                  {service.deliverables && (
+                    <div className={`p-4 rounded-lg mb-4 ${service.featured ? 'bg-blue-50 border border-blue-200' : 'bg-slate-50 border border-slate-200'}`}>
+                      <p className="text-sm text-slate-700">
+                        <strong>Deliverables:</strong> {service.deliverables}
+                      </p>
+                    </div>
+                  )}
                   
                   <div className={`p-4 rounded-lg mb-6 ${service.featured ? 'bg-teal-50' : 'bg-slate-50'}`}>
                     <p className="text-sm text-slate-700">

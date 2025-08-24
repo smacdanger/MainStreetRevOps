@@ -212,9 +212,18 @@ export default function Assessment() {
             <h2 className="text-3xl font-bold text-slate-900 mb-4">
               Discovery Questionnaire
             </h2>
-            <p className="text-slate-600">
-              Please answer as completely as possible to get the most accurate recommendations.
-            </p>
+            <div className="max-w-3xl mx-auto mb-6">
+              <p className="text-slate-600 mb-4">
+                This form prepares us for your 60–90 minute discovery and assessment call. Within 1–2 weeks 
+                after that call, you&apos;ll receive your step-by-step AI Sales Roadmap with specific recommendations.
+              </p>
+              <div className="bg-teal-50 border border-teal-200 p-4 rounded-xl">
+                <p className="text-teal-800 text-sm">
+                  <strong>Please note:</strong> The full assessment is a paid engagement ($1,500–$3,000) that includes 
+                  your discovery call, detailed analysis, and custom roadmap with ROI projections.
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Google Form Embed */}
