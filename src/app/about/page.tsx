@@ -34,20 +34,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Section Divider */}
-      <div className="w-full">
-        <svg 
-          viewBox="0 0 1440 80" 
-          className="w-full h-auto"
-          preserveAspectRatio="none"
-        >
-          <path 
-            fill="#ffffff" 
-            d="M0,8L48,12C96,16,192,24,288,24C384,24,480,16,576,9.3C672,3,768,13,864,17.3C960,21,1056,19,1152,21.3C1248,24,1344,32,1392,36L1440,40L1440,80L1392,80C1344,80,1248,80,1152,80C1056,80,960,80,864,80C768,80,672,80,576,80C480,80,384,80,288,80C192,80,96,80,48,80L0,80Z"
-          />
-        </svg>
-      </div>
-
       {/* Story Section */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

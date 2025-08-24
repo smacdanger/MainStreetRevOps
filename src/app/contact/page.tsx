@@ -36,20 +36,6 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Section Divider */}
-      <div className="w-full">
-        <svg 
-          viewBox="0 0 1440 320" 
-          className="w-full h-auto"
-          preserveAspectRatio="none"
-        >
-          <path 
-            fill="#ffffff" 
-            d="M0,32L48,48C96,64,192,96,288,96C384,96,480,64,576,37.3C672,11,768,53,864,69.3C960,85,1056,75,1152,85.3C1248,96,1344,128,1392,144L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-          />
-        </svg>
-      </div>
-
       {/* Contact Form Section */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

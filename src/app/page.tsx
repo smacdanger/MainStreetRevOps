@@ -1,3 +1,6 @@
+'use client';
+
+import Hero from '@/components/ui/Hero';
 import Link from 'next/link';
 
 export default function Home() {
@@ -53,67 +56,22 @@ export default function Home() {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
-        {/* Background elements */}
-        <div className="absolute inset-0 bg-gradient-to-r from-teal-600/20 to-blue-600/20"></div>
-        <div className="absolute inset-0 opacity-40">
-          <div className="h-full w-full bg-gradient-to-r from-transparent via-teal-500/10 to-transparent"></div>
-        </div>
-        {/* Decorative shapes */}
-        <div className="absolute top-20 -right-20 w-72 h-72 bg-teal-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 -left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
-          <div className="text-center">
-            <div className="mb-6">
-              <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-teal-500/20 text-teal-200 border border-teal-400/30">
-                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
-                </svg>
-                AI-Powered Revenue Growth
-              </span>
-            </div>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              <span className="bg-gradient-to-r from-white to-slate-200 bg-clip-text text-transparent">
-                Stop Losing Leads.
-              </span>
-              <span className="block text-white">Start Closing More Deals.</span>
-            </h1>
-            <p className="text-xl md:text-2xl mb-10 max-w-4xl mx-auto text-slate-200 leading-relaxed">
-              AI-powered sales growth backed by enterprise expertise and small business know-how. 
-              <span className="text-teal-300 font-semibold"> Get results within 90 days.</span>
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/assessment"
-                className="bg-teal-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-teal-700 transition-all duration-200 inline-block shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-              >
-                Complete Initial Assessment
-              </Link>
-              <Link
-                href="/contact"
-                className="border-2 border-white/30 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/10 hover:border-white/50 transition-all duration-200 inline-block backdrop-blur-sm"
-              >
-                Contact Us
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Section Divider */}
-      <div className="w-full">
-        <svg 
-          viewBox="0 0 1440 80" 
-          className="w-full h-auto"
-          preserveAspectRatio="none"
-        >
-          <path 
-            fill="#f8fafc" 
-            d="M0,8L48,12C96,16,192,24,288,24C384,24,480,16,576,9.3C672,3,768,13,864,17.3C960,21,1056,19,1152,21.3C1248,24,1344,32,1392,36L1440,40L1440,80L1392,80C1344,80,1248,80,1152,80C1056,80,960,80,864,80C768,80,672,80,576,80C480,80,384,80,288,80C192,80,96,80,48,80L0,80Z"
-          />
-        </svg>
-      </div>
+      <Hero
+        eyebrow="AI-Powered Revenue Growth"
+        title={
+          <>
+            <span className="bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
+              Transform Your
+            </span>
+            <span className="block text-white">Sales Process</span>
+          </>
+        }
+        subtitle="Intelligent automation and strategic consulting that helps small to mid-sized businesses increase revenue by 30% within 90 days."
+        ctas={[
+          { label: "Book Your Discovery Call", href: "/contact" },
+          { label: "Free Assessment", href: "/assessment", variant: "outline" }
+        ]}
+      />
 
       {/* Value Pillars */}
       <section className="py-16 bg-slate-50 relative">
