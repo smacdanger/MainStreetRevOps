@@ -58,20 +58,23 @@ export default function About() {
               </h2>
               <div className="space-y-4 text-slate-600 leading-relaxed">
                 <p>
-                  After 15 years as a sales executive in the technology sector, I&apos;ve seen firsthand 
-                  how the right processes and tools can transform a business. I&apos;ve worked with Fortune 500 
-                  companies that had entire teams dedicated to sales operations, data analysis, and 
-                  process optimization.
+                  I&apos;ve spent over 15 years in enterprise sales at companies like Red Hat, GitHub, and Microsoft, 
+                  where I learned how successful businesses really make money and scale. I&apos;ve seen firsthand 
+                  the power of data-driven sales processes, sophisticated automation, and the teams dedicated 
+                  to sales operations that make it all work.
                 </p>
                 <p>
-                  But I also noticed a gap. Small to mid-sized businesses—the backbone of our economy—often 
-                  lack access to these same strategic advantages. They&apos;re competing with larger companies 
-                  while operating with outdated systems, manual processes, and limited visibility into 
-                  their sales performance.
+                  But here&apos;s what makes my approach different: I&apos;ve also worked inside blue-collar 
+                  businesses—contractors, mechanic shops, and service providers. I&apos;ve even owned and operated 
+                  my own business in that space. I understand the real-world challenges these companies face: 
+                  tight margins, manual processes, and the constant juggle between working in the business 
+                  and working on the business.
                 </p>
                 <p>
-                  That&apos;s why I founded MainStreet RevOps. To democratize access to enterprise-level 
-                  sales intelligence and bring AI-powered solutions to businesses that need them most.
+                  That&apos;s why I founded MainStreet RevOps. I bring enterprise-level expertise and real small 
+                  business experience together to help SMBs adopt simple, effective AI and systems that grow 
+                  revenue without unnecessary complexity. No jargon, no over-engineering—just proven strategies 
+                  that work for businesses like yours.
                 </p>
               </div>
             </div>
@@ -79,11 +82,12 @@ export default function About() {
               <h3 className="text-xl font-semibold text-slate-900 mb-4">Experience Highlights</h3>
               <ul className="space-y-3 text-slate-600">
                 {[
-                  "15+ years in B2B sales leadership roles",
+                  "Enterprise sales experience at Red Hat, GitHub, and Microsoft",
+                  "Hands-on experience in blue-collar businesses (contractors, mechanics)", 
+                  "Owned and operated my own service-based business",
                   "Implemented CRM systems for 50+ person sales teams",
-                  "Managed $10M+ annual revenue pipelines", 
-                  "Expert in sales process optimization and automation",
-                  "Specialized in integrating sales, marketing, and finance systems"
+                  "Managed $10M+ annual revenue pipelines",
+                  "Expert in bridging enterprise strategy with small business reality"
                 ].map((item, index) => (
                   <li key={index} className="flex items-start">
                     <span className="text-teal-600 mr-3 mt-1">
@@ -123,7 +127,8 @@ export default function About() {
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
               To help small and mid-sized businesses achieve measurable ROI through intelligent 
-              sales processes, AI-powered automation, and strategic technology integration.
+              sales processes and AI-powered automation—without the complexity and overhead 
+              that big companies require.
             </p>
           </div>
 

@@ -25,13 +25,13 @@ export default function Contact() {
         
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Get In Touch
+            Let&apos;s Talk About Your Goals
           </h1>
           <p className="text-xl md:text-2xl text-slate-200 mb-4">
-            Ready to Transform Your Sales Process?
+            Not Ready for the Full Assessment?
           </p>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-            Send us a message to discuss how we can help grow your business.
+            Let&apos;s talk about your goals and see if we&apos;re a fit. No pressure, just a conversation.
           </p>
         </div>
       </section>

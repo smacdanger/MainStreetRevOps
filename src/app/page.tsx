@@ -75,26 +75,26 @@ export default function Home() {
             </div>
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
               <span className="bg-gradient-to-r from-white to-slate-200 bg-clip-text text-transparent">
-                Transform Your
+                Stop Losing Leads.
               </span>
-              <span className="block text-white">Sales Process</span>
+              <span className="block text-white">Start Closing More Deals.</span>
             </h1>
             <p className="text-xl md:text-2xl mb-10 max-w-4xl mx-auto text-slate-200 leading-relaxed">
-              Intelligent automation and strategic consulting that helps small to mid-sized businesses 
-              <span className="text-teal-300 font-semibold"> increase revenue by 30%</span> within 90 days.
+              AI-powered sales growth backed by enterprise expertise and small business know-how. 
+              <span className="text-teal-300 font-semibold"> Get results within 90 days.</span>
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/contact"
-                className="bg-slate-900 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-slate-800 transition-all duration-200 inline-block shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                href="/assessment"
+                className="bg-teal-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-teal-700 transition-all duration-200 inline-block shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
               >
-                Book Your Discovery Call
+                Complete Initial Assessment
               </Link>
               <Link
-                href="/assessment"
+                href="/contact"
                 className="border-2 border-white/30 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/10 hover:border-white/50 transition-all duration-200 inline-block backdrop-blur-sm"
               >
-                Free Assessment
+                Contact Us
               </Link>
             </div>
           </div>
@@ -246,7 +246,7 @@ export default function Home() {
             </span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Transform Your Sales Process
+            Ready to Stop Losing Leads?
           </h2>
           <p className="text-xl mb-8 text-slate-200 max-w-3xl mx-auto leading-relaxed">
             Start with our comprehensive discovery questionnaire to get personalized recommendations 
@@ -256,7 +256,7 @@ export default function Home() {
             href="/assessment"
             className="bg-teal-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-teal-700 transition-all duration-200 inline-block shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
           >
-            Complete Discovery Questionnaire
+            Complete the Discovery Questionnaire
           </Link>
         </div>
       </section>
