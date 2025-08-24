@@ -157,67 +157,23 @@ export default function Assessment() {
             </p>
           </div>
 
-          {/* Google Form Embed - Placeholder */}
+          {/* Google Form Embed */}
           <div className="bg-white rounded-lg shadow-lg p-4">
-            <div className="bg-gray-100 p-8 rounded-lg text-center min-h-[600px] flex flex-col justify-center items-center">
-              <div className="mb-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Google Form Integration
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  The Google Form will be embedded here. To integrate your actual form:
-                </p>
-                <div className="bg-white p-4 rounded border text-left text-sm text-gray-700">
-                  <p className="font-semibold mb-2">Integration Steps:</p>
-                  <ol className="list-decimal list-inside space-y-1">
-                    <li>Create your Google Form with the questions below</li>
-                    <li>Get the embed code from Google Forms</li>
-                    <li>Replace this placeholder with the iframe</li>
-                  </ol>
-                </div>
-              </div>
-              
-              {/* Sample form structure */}
-              <div className="bg-white p-6 rounded border w-full max-w-2xl text-left">
-                <h4 className="font-semibold text-gray-900 mb-3">Sample Question Structure:</h4>
-                <div className="space-y-4 text-sm text-gray-600">
-                  <div className="border-b pb-2">
-                    <strong>Section 1: Lead Generation & Capture</strong>
-                    <p>• Current lead sources</p>
-                    <p>• Lead volume per month</p>
-                    <p>• Best converting sources</p>
-                  </div>
-                  <div className="border-b pb-2">
-                    <strong>Section 2: Sales Process</strong>
-                    <p>• Lead routing and follow-up</p>
-                    <p>• Sales team structure</p>
-                    <p>• Performance tracking</p>
-                  </div>
-                  <div className="border-b pb-2">
-                    <strong>Section 3: Technology & Integration</strong>
-                    <p>• Current tools and systems</p>
-                    <p>• Integration challenges</p>
-                    <p>• Priority improvements</p>
-                  </div>
-                </div>
-              </div>
+            <div className="w-full overflow-hidden rounded-lg">
+              <iframe
+                src="https://docs.google.com/forms/d/e/1FAIpQLSenpHeoEpyRX8m4Yl_IH4H5b0IDkU8UkmNPmx93u6t8UV0Eyw/viewform?embedded=true"
+                width="100%"
+                height="4800"
+                frameBorder="0"
+                marginHeight={0}
+                marginWidth={0}
+                title="Business Discovery Questionnaire"
+                className="rounded-lg w-full min-h-screen"
+                style={{ minHeight: '4800px' }}
+              >
+                Loading…
+              </iframe>
             </div>
-
-            {/* Actual Google Form would go here */}
-            {/*
-            <iframe
-              src="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true"
-              width="100%"
-              height="800"
-              frameBorder="0"
-              marginHeight={0}
-              marginWidth={0}
-              title="Business Discovery Questionnaire"
-              className="rounded-lg"
-            >
-              Loading…
-            </iframe>
-            */}
           </div>
         </div>
       </section>
