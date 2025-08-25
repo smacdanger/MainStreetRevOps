@@ -44,8 +44,8 @@ export default function About() {
               </h2>
               <div className="space-y-4 text-slate-600 leading-relaxed">
                 <p>
-                  I&apos;ve spent over 15 years in enterprise sales at companies like Red Hat, GitHub, and Microsoft, 
-                  where I learned how successful businesses really make money and scale. I&apos;ve seen firsthand 
+                  I&apos;ve spent almost 10 years in enterprise sales at companies like Red Hat, GitHub/Microsoft, and more. 
+                  During this time I learned how successful businesses really make money and scale. I&apos;ve seen firsthand 
                   the power of data-driven sales processes, sophisticated automation, and the teams dedicated 
                   to sales operations that make it all work.
                 </p>
@@ -58,8 +58,8 @@ export default function About() {
                 </p>
                 <p>
                   That&apos;s why I founded MainStreet RevOps. I bring enterprise-level expertise and real small 
-                  business experience together to help SMBs adopt simple, effective AI and systems that grow 
-                  revenue without unnecessary complexity. No jargon, no over-engineering—just proven strategies 
+                  business experience together to help SMBs adopt simple, effective systems that grow 
+                  revenue without unnecessary complexity, while maximizing capabilities now available with AI. No jargon, no over-engineering—just proven strategies 
                   that work for businesses like yours.
                 </p>
               </div>
@@ -68,11 +68,11 @@ export default function About() {
               <h3 className="text-xl font-semibold text-slate-900 mb-4">Experience Highlights</h3>
               <ul className="space-y-3 text-slate-600">
                 {[
-                  "Enterprise sales experience at Red Hat, GitHub, and Microsoft",
+                  "15 years of first-hand experience driving sales growth",
                   "Hands-on experience in blue-collar businesses (contractors, mechanics)", 
                   "Owned and operated my own service-based business",
-                  "Implemented CRM systems for 50+ person sales teams",
-                  "Managed $10M+ annual revenue pipelines",
+                  "Managed $20M+ annual revenue pipelines",
+                  "Successfully scaled new product lines from $0 to millions in annual revenue",
                   "Expert in bridging enterprise strategy with small business reality"
                 ].map((item, index) => (
                   <li key={index} className="flex items-start">
