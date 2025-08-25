@@ -58,10 +58,10 @@ const Footer = () => {
                   </svg>
                 </div>
                 <a 
-                  href="mailto:info@mainstreetrevops.com" 
+                  href="mailto:Sean@mainstrevops.com" 
                   className="text-slate-300 hover:text-teal-400 transition-colors duration-200 font-medium"
                 >
-                  info@mainstreetrevops.com
+                  Sean@mainstrevops.com
                 </a>
               </div>
               
@@ -72,7 +72,7 @@ const Footer = () => {
                   </svg>
                 </div>
                 <a 
-                  href="https://linkedin.com/in/yourprofile" 
+                  href="https://www.linkedin.com/in/seanmacd/" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="text-slate-300 hover:text-blue-400 transition-colors duration-200 font-medium"
