@@ -57,20 +57,19 @@ export default function Home() {
     <div className="bg-white">
       {/* Hero Section */}
       <Hero
-        eyebrow="AI-Powered Revenue Growth"
-        title={
-          <>
-            <span className="bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
-              Transform Your
-            </span>
-            <span className="block text-white">Sales Process</span>
-          </>
-        }
-        subtitle="Intelligent automation and strategic consulting that helps small to mid-sized businesses increase revenue by 30% within 90 days."
-        ctas={[
-          { label: "Book Your Discovery Call", href: "/contact" },
-          { label: "Free Assessment", href: "/assessment", variant: "outline" }
-        ]}
+        badge="AI-Powered Revenue Growth"
+        title="Transform Your Sales Process"
+        subtitle="AI-Powered Revenue Growth"
+        description="Intelligent automation and strategic consulting that helps small to mid-sized businesses increase revenue by 30% within 90 days."
+        primaryCTA={{
+          text: "Book Your Discovery Call",
+          href: "/contact"
+        }}
+        secondaryCTA={{
+          text: "Free Assessment", 
+          href: "/assessment"
+        }}
+        variant="gradient"
       />
 
       {/* Value Pillars */}

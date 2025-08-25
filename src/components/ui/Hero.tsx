@@ -4,7 +4,7 @@ import CTAButton from './CTAButton';
 
 interface HeroProps {
   badge?: string;
-  title: string;
+  title: React.ReactNode;
   subtitle?: string;
   description: string;
   primaryCTA?: {
