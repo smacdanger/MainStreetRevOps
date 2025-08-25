@@ -8,48 +8,32 @@ export default function Home() {
     {
       title: "Faster Lead Response",
       description: "AI-powered automation ensures every lead is contacted within minutes, not hours or days.",
+      outcome: "Capture leads instantly for 300% faster contact speed.",
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
       ),
     },
     {
       title: "Sales Team Accountability",
       description: "Real-time tracking and reporting systems keep your team focused on high-value activities.",
+      outcome: "Ensure every lead is followed up, every time.",
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
       ),
     },
     {
-      title: "Smarter Cost & System Integration",
+      title: "Seamless Integration",
       description: "Streamline operations with intelligent integrations between CRM, accounting, and communication tools.",
+      outcome: "Reduce wasted time by syncing tools automatically.",
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
         </svg>
       ),
-    },
-  ];
-
-  const testimonials = [
-    {
-      name: "Sarah Johnson",
-      company: "Premier Roofing Solutions",
-      quote: "Our lead response time went from 4 hours to 15 minutes. We're closing 30% more deals.",
-    },
-    {
-      name: "Mike Chen",
-      company: "Midwest HVAC Services", 
-      quote: "The AI automation has freed up 10 hours per week that I can focus on growing the business.",
-    },
-    {
-      name: "Lisa Martinez",
-      company: "Elite Home Improvements",
-      quote: "Finally, I have real visibility into my sales process. Game-changer for accountability.",
     },
   ];
 
@@ -61,12 +45,13 @@ export default function Home() {
         title="Transform Your Sales Process"
         subtitle="AI-Powered Revenue Growth"
         description="Intelligent automation and strategic consulting that helps small to mid-sized businesses increase revenue by 30% within 90 days."
+        subtext="Based on client results across SMB sales processes."
         primaryCTA={{
-          text: "Book Your Discovery Call",
+          text: "Schedule Free Intro Call",
           href: "/contact"
         }}
         secondaryCTA={{
-          text: "Free Assessment", 
+          text: "Complete Discovery Questionnaire", 
           href: "/assessment"
         }}
         variant="gradient"
@@ -99,9 +84,12 @@ export default function Home() {
                       {pillar.icon}
                     </div>
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:text-slate-800 transition-colors duration-300">
+                  <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-slate-800 transition-colors duration-300">
                     {pillar.title}
                   </h3>
+                  <div className="text-teal-600 font-medium mb-4 text-sm">
+                    • {pillar.outcome}
+                  </div>
                   <p className="text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
                     {pillar.description}
                   </p>
@@ -126,48 +114,52 @@ export default function Home() {
         </svg>
       </div>
 
-      {/* Testimonials */}
+      {/* Case Studies Coming Soon */}
       <section className="py-24 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
             <div className="mb-4">
-              <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-green-100 text-green-800">
-                Client Success Stories
+              <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                Case Studies
               </span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-              What Our Clients Say
+              Case Studies Coming Soon
             </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-              Real results from real businesses that have transformed their sales operations.
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed mb-8">
+              We&apos;re already working with local service businesses to improve lead response, streamline sales, and increase revenue. Case studies will be published soon — ask us about current projects.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="group relative bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                <div className="absolute inset-0 bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="relative z-10">
-                  <div className="mb-6">
-                    <svg className="w-8 h-8 text-teal-500 mb-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
-                    </svg>
-                  </div>
-                  <blockquote className="text-slate-700 mb-6 text-lg leading-relaxed italic">
-                    &ldquo;{testimonial.quote}&rdquo;
-                  </blockquote>
-                  <div className="flex items-center">
-                    <div className="w-12 h-12 bg-gradient-to-br from-teal-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
-                      {testimonial.name.split(' ').map(n => n[0]).join('')}
-                    </div>
-                    <div>
-                      <p className="font-semibold text-slate-900">{testimonial.name}</p>
-                      <p className="text-teal-600 font-medium">{testimonial.company}</p>
-                    </div>
-                  </div>
-                </div>
+          {/* Tech Logos */}
+          <div className="text-center">
+            <h3 className="text-lg font-semibold text-slate-900 mb-8">Powered by industry-leading tools</h3>
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-8 items-center justify-center max-w-4xl mx-auto">
+              {/* QuickBooks */}
+              <div className="flex items-center justify-center p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors">
+                <div className="text-slate-600 font-bold text-lg">QuickBooks</div>
               </div>
-            ))}
+              
+              {/* Zapier */}
+              <div className="flex items-center justify-center p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors">
+                <div className="text-slate-600 font-bold text-lg">Zapier</div>
+              </div>
+              
+              {/* Microsoft 365 */}
+              <div className="flex items-center justify-center p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors">
+                <div className="text-slate-600 font-bold text-lg">Microsoft 365</div>
+              </div>
+              
+              {/* HubSpot */}
+              <div className="flex items-center justify-center p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors">
+                <div className="text-slate-600 font-bold text-lg">HubSpot</div>
+              </div>
+              
+              {/* Netlify */}
+              <div className="flex items-center justify-center p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors">
+                <div className="text-slate-600 font-bold text-lg">Netlify</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -199,11 +191,11 @@ export default function Home() {
               <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
-              Ready to Get Started?
+              Money-Back Guarantee
             </span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Ready to Stop Losing Leads?
+            Increase your win rate and revenue in 90 days — or your money back, guaranteed.
           </h2>
           <p className="text-xl mb-8 text-slate-200 max-w-3xl mx-auto leading-relaxed">
             Start with our comprehensive discovery questionnaire to get personalized recommendations 
@@ -211,9 +203,9 @@ export default function Home() {
           </p>
           <Link
             href="/assessment"
-            className="bg-teal-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-teal-700 transition-all duration-200 inline-block shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+            className="bg-gradient-to-r from-teal-500 to-teal-600 text-white px-10 py-5 rounded-xl font-bold text-xl hover:from-teal-600 hover:to-teal-700 transition-all duration-300 inline-block shadow-lg hover:shadow-2xl transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-teal-500/50 border-2 border-teal-400 hover:border-teal-300"
           >
-            Complete the Discovery Questionnaire
+            Complete Discovery Questionnaire
           </Link>
         </div>
       </section>
