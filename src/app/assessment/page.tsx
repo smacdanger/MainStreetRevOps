@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Business Assessment - MainStreet RevOps",
@@ -184,21 +185,21 @@ export default function Assessment() {
             </div>
           </div>
 
-          {/* Google Form Embed */}
+          {/* Tally Form Embed */}
           <div className="bg-white rounded-2xl shadow-lg p-4 border border-slate-200">
             <div className="w-full overflow-hidden rounded-xl">
               <iframe
-                src="https://docs.google.com/forms/d/e/1FAIpQLSenpHeoEpyRX8m4Yl_IH4H5b0IDkU8UkmNPmx93u6t8UV0Eyw/viewform?embedded=true"
+                data-tally-src="https://tally.so/embed/3q9Z8g?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+                loading="lazy"
                 width="100%"
-                height="4800"
+                height="6086"
                 frameBorder="0"
                 marginHeight={0}
                 marginWidth={0}
-                title="Business Discovery Questionnaire"
-                className="rounded-lg w-full min-h-screen"
-                style={{ minHeight: '4800px' }}
+                title="RevOps Discovery Questionnaire"
+                className="rounded-lg w-full"
+                style={{ minHeight: '6086px' }}
               >
-                Loading…
               </iframe>
             </div>
           </div>
@@ -260,6 +261,13 @@ export default function Assessment() {
           </a>
         </div>
       </section>
+
+      {/* Tally Embed Script */}
+      <Script id="tally-embed-script" strategy="afterInteractive">
+        {`
+          var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
+        `}
+      </Script>
     </div>
   );
 }
