@@ -7,6 +7,7 @@ interface HeroProps {
   title: React.ReactNode;
   subtitle?: string;
   description: string;
+  subtext?: string;
   primaryCTA?: {
     text: string;
     href: string;
@@ -24,6 +25,7 @@ const Hero: React.FC<HeroProps> = ({
   title,
   subtitle,
   description,
+  subtext,
   primaryCTA,
   secondaryCTA,
   variant = 'gradient',
@@ -96,10 +98,22 @@ const Hero: React.FC<HeroProps> = ({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className={`text-xl md:text-2xl mb-10 max-w-4xl mx-auto leading-relaxed ${descriptionColor}`}
+            className={`text-xl md:text-2xl ${subtext ? 'mb-4' : 'mb-10'} max-w-4xl mx-auto leading-relaxed ${descriptionColor}`}
           >
             {description}
           </motion.p>
+          
+          {/* Subtext */}
+          {subtext && (
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.25 }}
+              className={`text-sm md:text-base mb-10 max-w-2xl mx-auto ${variant === 'minimal' ? 'text-slate-500' : 'text-slate-300'} italic`}
+            >
+              {subtext}
+            </motion.p>
+          )}
           
           {/* CTAs */}
           {(primaryCTA || secondaryCTA) && (

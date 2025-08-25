@@ -52,6 +52,12 @@ const Navigation = () => {
                 {item.name}
               </Link>
             ))}
+            <Link
+              href="/contact"
+              className="ml-4 bg-teal-600 text-white px-4 py-2 text-sm font-medium rounded-lg hover:bg-teal-700 transition-all duration-200 shadow-sm hover:shadow-md transform hover:-translate-y-0.5"
+            >
+              Schedule Free Intro Call
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -102,6 +108,13 @@ const Navigation = () => {
                   {item.name}
                 </Link>
               ))}
+              <Link
+                href="/contact"
+                className="block mt-4 bg-teal-600 text-white px-3 py-2 text-base font-medium rounded-lg hover:bg-teal-700 transition-colors duration-200 text-center"
+                onClick={() => setIsOpen(false)}
+              >
+                Schedule Free Intro Call
+              </Link>
             </div>
           </div>
         )}
