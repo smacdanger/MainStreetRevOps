@@ -45,20 +45,6 @@ export default function Assessment() {
         </div>
       </section>
 
-      {/* Section Divider */}
-      <div className="w-full">
-        <svg 
-          viewBox="0 0 1440 320" 
-          className="w-full h-auto"
-          preserveAspectRatio="none"
-        >
-          <path 
-            fill="#f8fafc" 
-            d="M0,32L48,48C96,64,192,96,288,96C384,96,480,64,576,37.3C672,11,768,53,864,69.3C960,85,1056,75,1152,85.3C1248,96,1344,128,1392,144L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-          />
-        </svg>
-      </div>
-
       {/* Instructions Section */}
       <section className="py-12 bg-slate-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -110,20 +96,6 @@ export default function Assessment() {
           </div>
         </div>
       </section>
-
-      {/* Section Divider */}
-      <div className="w-full">
-        <svg 
-          viewBox="0 0 1440 320" 
-          className="w-full h-auto"
-          preserveAspectRatio="none"
-        >
-          <path 
-            fill="#ffffff" 
-            d="M0,160Q720,80,1440,160L1440,0L0,0Z"
-          />
-        </svg>
-      </div>
 
       {/* Offering Flow Section */}
       <section className="py-12 bg-white">
@@ -191,20 +163,6 @@ export default function Assessment() {
         </div>
       </section>
 
-      {/* Section Divider */}
-      <div className="w-full">
-        <svg 
-          viewBox="0 0 1440 320" 
-          className="w-full h-auto"
-          preserveAspectRatio="none"
-        >
-          <path 
-            fill="#f8fafc" 
-            d="M0,160L1440,0L1440,160Z"
-          />
-        </svg>
-      </div>
-
       {/* Form Section */}
       <section className="py-12 bg-slate-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -247,20 +205,6 @@ export default function Assessment() {
         </div>
       </section>
 
-      {/* Section Divider */}
-      <div className="w-full">
-        <svg 
-          viewBox="0 0 1440 320" 
-          className="w-full h-auto"
-          preserveAspectRatio="none"
-        >
-          <path 
-            fill="#ffffff" 
-            d="M0,0Q720,80,1440,0L1440,160L0,160Z"
-          />
-        </svg>
-      </div>
-
       {/* Next Steps Section */}
       <section className="bg-white py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -298,20 +242,6 @@ export default function Assessment() {
           </div>
         </div>
       </section>
-
-      {/* Section Divider */}
-      <div className="w-full">
-        <svg 
-          viewBox="0 0 1440 320" 
-          className="w-full h-auto"
-          preserveAspectRatio="none"
-        >
-          <path 
-            fill="#0f172a" 
-            d="M0,0Q720,80,1440,0L1440,160L0,160Z"
-          />
-        </svg>
-      </div>
 
       {/* CTA Section */}
       <section className="bg-slate-900 text-white py-16">
