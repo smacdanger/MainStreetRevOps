@@ -53,7 +53,7 @@ export default function Contact() {
           <div className="bg-white rounded-2xl shadow-lg overflow-hidden mb-12 border border-slate-200">
             <iframe
               data-tally-src="https://tally.so/embed/n98GLY?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-              loading="lazy"
+              loading="eager"
               width="100%"
               height="755"
               frameBorder="0"
@@ -61,6 +61,7 @@ export default function Contact() {
               marginWidth={0}
               title="Contact Us"
               className="w-full"
+              id="tally-contact-form"
             >
             </iframe>
           </div>
@@ -108,10 +109,47 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Tally Embed Script */}
-      <Script id="tally-contact-script" strategy="afterInteractive">
+      {/* Tally Embed Script - Load early with retry mechanism */}
+      <Script 
+        src="https://tally.so/widgets/embed.js" 
+        strategy="beforeInteractive"
+        id="tally-script"
+      />
+      
+      <Script id="tally-contact-init" strategy="afterInteractive">
         {`
-          var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
+          function initTallyForm() {
+            if (typeof Tally !== 'undefined') {
+              Tally.loadEmbeds();
+              return true;
+            }
+            
+            // Fallback: manually load iframes
+            const iframes = document.querySelectorAll('iframe[data-tally-src]:not([src])');
+            iframes.forEach(function(iframe) {
+              iframe.src = iframe.dataset.tallySrc;
+            });
+            
+            return iframes.length > 0;
+          }
+          
+          // Try to initialize immediately
+          if (!initTallyForm()) {
+            // If that fails, retry after a short delay
+            setTimeout(function() {
+              if (!initTallyForm()) {
+                // Final retry after 2 seconds
+                setTimeout(initTallyForm, 2000);
+              }
+            }, 500);
+          }
+          
+          // Also retry when the page becomes visible (helps with tab switching)
+          document.addEventListener('visibilitychange', function() {
+            if (!document.hidden) {
+              setTimeout(initTallyForm, 100);
+            }
+          });
         `}
       </Script>
     </div>
