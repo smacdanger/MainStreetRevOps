@@ -307,7 +307,7 @@ export default function Home() {
             </span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Increase your win rate and revenue in 90 days — or your money back, guaranteed.
+            Increase your win rate and revenue in 90 days or your money back, guaranteed.
           </h2>
           <p className="text-xl mb-8 text-slate-200 max-w-3xl mx-auto leading-relaxed">
             Start with our comprehensive discovery questionnaire to get personalized recommendations 
