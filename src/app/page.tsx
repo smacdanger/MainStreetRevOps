@@ -44,8 +44,8 @@ export default function Home() {
         badge="AI-Powered Revenue Growth"
         title="Transform Your Sales Process"
         subtitle="AI-Powered Revenue Growth"
-        description="Intelligent automation and strategic consulting that helps small to mid-sized businesses increase revenue by 30% within 90 days."
-        subtext="Based on client results across SMB sales processes."
+        description="Increase your win rate and revenue in 90 days or your money back, guaranteed."
+        subtext=""
         primaryCTA={{
           text: "Schedule Free Intro Call",
           href: "/contact"
