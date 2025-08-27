@@ -198,7 +198,7 @@ export default function Assessment() {
               
               {/* Tally iframe */}
               <iframe
-                data-tally-src="https://tally.so/embed/3q9Z8g?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+                data-tally-src="https://tally.so/embed/waR2VE?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
                 loading="eager"
                 width="100%"
                 height="0"
