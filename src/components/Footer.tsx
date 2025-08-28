@@ -36,7 +36,6 @@ const Footer = () => {
                 { name: 'Beyond Leads', href: '#beyond-leads' },
                 { name: 'Assessment', href: '/assessment' },
                 { name: 'Contact', href: '/contact' },
-                { name: 'About', href: '/about' },
                 { name: 'Privacy Policy', href: '/privacy' }
               ].map((link) => (
                 <div key={link.name}>

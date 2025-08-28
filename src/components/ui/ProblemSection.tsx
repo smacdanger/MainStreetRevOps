@@ -7,10 +7,10 @@ const ProblemSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
-            You&apos;re Not Alone — This Problem is Everywhere
+            You're Not Alone — This Problem is Everywhere
           </h2>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Most contractors lose 60-80% of their leads to poor follow-up. Here&apos;s what&apos;s really happening:
+            Most contractors lose 60-80% of their leads to poor follow-up. Here's what's really happening:
           </p>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -25,15 +25,15 @@ const ProblemSection: React.FC = () => {
               Getting 27+ Leads a Day, But Most Are Wasted
             </h2>
             <p className="text-xl text-slate-600 mb-8 leading-relaxed">
-              You&apos;re doing the hard work to generate leads, but without the right systems, 
+              You're doing the hard work to generate leads, but without the right systems, 
               most of them slip through the cracks. Sound familiar?
             </p>
             
             <div className="space-y-4">
               {[
                 "Hours between lead contact attempts",
-                "No follow-up system when someone doesn&apos;t answer",
-                "Lost leads because the phone rings while you&apos;re on a job",
+                "No follow-up system when someone doesn't answer",
+                "Lost leads because the phone rings while you're on a job",
                 "Manual data entry eating up valuable time",
                 "No way to track which marketing actually works"
               ].map((problem, index) => (
@@ -122,7 +122,10 @@ const ProblemSection: React.FC = () => {
                 
                 <div className="mt-8 p-4 bg-slate-100 rounded-lg">
                   <p className="text-slate-700 font-medium text-sm">
-                    Your marketing is working. Your follow-up isn&apos;t.
+                    Your marketing is working. Your follow-up isn't.
+                  </p>
+                  <p className="text-slate-600 text-sm mt-2">
+                    Leads lost because the phone rings while you’re on a job.
                   </p>
                 </div>
               </div>

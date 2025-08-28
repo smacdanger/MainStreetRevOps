@@ -37,7 +37,7 @@ export default function Contact() {
           </p>
           <div className="bg-teal-600/20 border border-teal-400/30 p-4 rounded-xl max-w-2xl mx-auto backdrop-blur-sm">
             <p className="text-teal-200 text-sm">
-              <strong>Ready for a deeper dive?</strong> Consider our professional assessment ($1K–$3K) for a complete analysis and custom roadmap.
+              <strong>Ready for a deeper dive?</strong> Consider our professional assessment ($500–$2,000) for a complete analysis and custom roadmap.
             </p>
           </div>
         </div>

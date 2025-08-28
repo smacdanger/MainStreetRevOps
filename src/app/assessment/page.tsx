@@ -37,7 +37,7 @@ export default function Assessment() {
           </p>
           <div className="bg-teal-600/20 border border-teal-400/30 p-4 rounded-xl max-w-2xl mx-auto backdrop-blur-sm">
             <p className="text-teal-200 text-sm mb-2">
-              <strong>Professional Assessment: $1K–$3K</strong>
+              <strong>Professional Assessment: $500–$2,000</strong>
             </p>
             <p className="text-slate-300 text-sm">
               Investment varies based on business complexity and revenue size. Free consultation available for those not ready for full assessment.
@@ -182,7 +182,7 @@ export default function Assessment() {
               </p>
               <div className="bg-teal-50 border border-teal-200 p-4 rounded-xl">
                 <p className="text-teal-800 text-sm">
-                  <strong>Please note:</strong> The full assessment is a paid engagement ($1K–$3K) that includes 
+                  <strong>Please note:</strong> The full assessment is a paid engagement ($500–$2,000) that includes 
                   your discovery call, detailed analysis, and custom roadmap with ROI projections.
                 </p>
               </div>

@@ -79,7 +79,7 @@ export default function Home() {
               },
               {
                 question: "What's the real cost after the initial setup?",
-                answer: "The ongoing optimization is completely optional. Many clients run their systems independently after setup. If you want monthly tuning and new features, that's $1K-3K/month."
+                answer: "The ongoing optimization is completely optional. Many clients run their systems independently after setup. If you want monthly tuning and new features, that's $500–$1,500/month."
               }
             ].map((faq, index) => (
               <div key={index} className="bg-white p-6 rounded-2xl border border-slate-200 hover:border-teal-300 transition-colors duration-200 shadow-sm hover:shadow-md">
@@ -124,7 +124,7 @@ export default function Home() {
               href="/assessment"
               className="bg-gradient-to-r from-teal-500 to-teal-600 text-white px-10 py-5 rounded-xl font-bold text-xl hover:from-teal-600 hover:to-teal-700 transition-all duration-300 inline-block shadow-lg hover:shadow-2xl transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-teal-500/50 border-2 border-teal-400 hover:border-teal-300"
             >
-              Get Your Assessment ($1K-$3K)
+              Get Your Assessment ($500–$2,000)
             </Link>
             <Link
               href="/contact"

@@ -12,7 +12,7 @@ const CaseStudiesSection: React.FC = () => {
             Real Results from Real Contractors
           </h2>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            We&apos;re building our case study library with early clients. Here&apos;s what we&apos;re tracking and the results we&apos;re seeing:
+            We're building our case study library with early clients. Here's what we're tracking and the results we're seeing:
           </p>
         </div>
 
@@ -40,7 +40,7 @@ const CaseStudiesSection: React.FC = () => {
             
             <div className="bg-orange-50 p-6 rounded-xl border border-orange-200">
               <p className="text-orange-800 font-medium mb-4">
-                Early Results We&apos;re Seeing:
+                Early Results We're Seeing:
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                 <div className="text-orange-700">

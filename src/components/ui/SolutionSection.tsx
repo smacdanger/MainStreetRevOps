@@ -48,6 +48,7 @@ const SolutionSection: React.FC = () => {
                   "Complete lead flow audit and analysis",
                   "CRM setup and automation workflows", 
                   "Instant lead response systems",
+                  "No more missed calls — AI + routing ensures every call gets answered",
                   "Team training and documentation",
                   "Full system handover — it's yours"
                 ].map((feature, index) => (
@@ -64,7 +65,7 @@ const SolutionSection: React.FC = () => {
               
               <div className="bg-teal-50 p-4 rounded-xl mb-6">
                 <p className="text-teal-800 font-medium text-sm">
-                  <strong>Assessment:</strong> $1K–$3K • Implementation pricing discussed after audit
+                  <strong>Assessment:</strong> $500–$2K • Implementation pricing discussed after audit
                 </p>
               </div>
               
@@ -124,7 +125,7 @@ const SolutionSection: React.FC = () => {
               
               <div className="bg-blue-50 p-4 rounded-xl mb-6">
                 <p className="text-blue-800 font-medium text-sm">
-                  <strong>Investment:</strong> $1,000–$3,000/month (optional)
+                  <strong>Investment:</strong> $500–$1,500/month (optional)
                 </p>
               </div>
               
@@ -152,7 +153,7 @@ const SolutionSection: React.FC = () => {
             </h3>
             <p className="text-slate-600 mb-6 leading-relaxed">
               Get a detailed analysis of your current revenue operations and a custom roadmap to capture more revenue. 
-              Investment: $1K–$3K for complete assessment and recommendations.
+              Investment: $500–$2K for complete assessment and recommendations.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
