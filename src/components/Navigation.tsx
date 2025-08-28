@@ -97,6 +97,7 @@ const Navigation = () => {
                 stroke="currentColor"
                 fill="none"
                 viewBox="0 0 24 24"
+                aria-hidden="true"
               >
                 {isOpen ? (
                   <path

@@ -30,8 +30,8 @@ const InputWizard: React.FC<InputWizardProps> = ({ initialInputs, onComplete, on
       title: "Lead & Conversion Data",
       subtitle: "How's your lead flow performing?",
       fields: [
-        { key: 'leads' as keyof TCOInputs, label: 'Leads per Month', type: 'number', suffix: 'leads', placeholder: '50' },
-        { key: 'job_value' as keyof TCOInputs, label: 'Average Job Value', type: 'number', prefix: '$', placeholder: '8500' },
+        { key: 'leads' as keyof TCOInputs, label: 'Leads per Month', type: 'number', suffix: 'leads', placeholder: '25' },
+        { key: 'job_value' as keyof TCOInputs, label: 'Average Job Value', type: 'number', prefix: '$', placeholder: '5000' },
         { key: 'close_rate' as keyof TCOInputs, label: 'Current Close Rate', type: 'number', suffix: '%', placeholder: '25' }
       ]
     },
@@ -40,9 +40,9 @@ const InputWizard: React.FC<InputWizardProps> = ({ initialInputs, onComplete, on
       subtitle: "Where are you losing time?",
       fields: [
         { key: 'rep_hours' as keyof TCOInputs, label: 'Manual Hours per Rep (Weekly)', type: 'number', suffix: 'hrs/week', placeholder: '8' },
-        { key: 'owner_hours' as keyof TCOInputs, label: 'Owner Chase Hours (Weekly)', type: 'number', suffix: 'hrs/week', placeholder: '12' },
-        { key: 'rep_rate' as keyof TCOInputs, label: 'Rep Hourly Rate', type: 'number', prefix: '$', placeholder: '30' },
-        { key: 'owner_rate' as keyof TCOInputs, label: 'Owner Hourly Rate', type: 'number', prefix: '$', placeholder: '75' }
+        { key: 'owner_hours' as keyof TCOInputs, label: 'Owner Chase Hours (Weekly)', type: 'number', suffix: 'hrs/week', placeholder: '6' },
+        { key: 'rep_rate' as keyof TCOInputs, label: 'Rep Hourly Rate', type: 'number', prefix: '$', placeholder: '25' },
+        { key: 'owner_rate' as keyof TCOInputs, label: 'Owner Hourly Rate', type: 'number', prefix: '$', placeholder: '65' }
       ]
     },
     {
