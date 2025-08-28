@@ -11,7 +11,6 @@ const Navigation = () => {
     { name: 'How It Works', href: '#solution' },
     { name: 'Case Studies', href: '#case-studies' },
     { name: 'Beyond Leads', href: '#beyond-leads' },
-    { name: 'Assessment', href: '/assessment' },
     { name: 'Contact', href: '#contact' },
   ];
 
