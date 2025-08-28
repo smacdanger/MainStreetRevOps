@@ -4,7 +4,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "MainStreet RevOps - AI-Powered Sales Growth for SMBs",
+  title: "MainStreet RevOps - Transform Your Sales Process with AI",
   description: "Transform your small to mid-sized business with AI-powered sales processes, lead management automation, and technology consulting. Book your discovery call today.",
   keywords: "AI sales, lead management, SMB consulting, revenue operations, sales automation",
   openGraph: {
