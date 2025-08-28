@@ -4,19 +4,15 @@ import Link from 'next/link';
 
 const BeyondLeadsSection: React.FC = () => {
   return (
-    <section className="py-16 bg-white relative">
+    <section className="py-16 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="mb-6">
-            <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-purple-100 text-purple-800">
-              Full RevOps
-            </span>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-            Leads Are Just the Start
+        {/* Section Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
+            Beyond Lead Capture: Complete Business Operations
           </h2>
-          <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
-            Contractors don&apos;t just lose money from missed leads — they also lose it from broken systems, 
+          <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            Lead capture is just the beginning. Most contractors also struggle with pricing accuracy, 
             billing headaches, and hidden cost overruns. We help close those gaps too.
           </p>
         </div>
@@ -46,7 +42,7 @@ const BeyondLeadsSection: React.FC = () => {
                 {
                   icon: (
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 0 01-2-2z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 0 012 2v14a2 2 0 01-2 2h-2a2 0 01-2-2z" />
                     </svg>
                   ),
                   title: "Automated supplier price tracking to protect margins",

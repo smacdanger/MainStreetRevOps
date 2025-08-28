@@ -55,7 +55,7 @@ const Hero: React.FC<HeroProps> = ({
         </>
       )}
       
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
         <div className="text-center">
           {/* Badge */}
           {badge && (
@@ -63,9 +63,9 @@ const Hero: React.FC<HeroProps> = ({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="mb-6"
+              className="mb-4"
             >
-              <span className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-medium ${
+              <span className={`inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium ${
                 variant === 'minimal' 
                   ? 'bg-teal-100 text-teal-800 border border-teal-200'
                   : 'bg-teal-500/20 text-teal-200 border border-teal-400/30'
@@ -83,7 +83,7 @@ const Hero: React.FC<HeroProps> = ({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className={`text-5xl md:text-7xl font-bold mb-6 leading-tight ${textColor}`}
+            className={`text-3xl md:text-5xl font-bold mb-4 leading-tight ${textColor}`}
           >
             {subtitle && (
               <span className={`block ${variant === 'minimal' ? 'bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent' : 'bg-gradient-to-r from-white to-slate-200 bg-clip-text text-transparent'}`}>
@@ -98,7 +98,7 @@ const Hero: React.FC<HeroProps> = ({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className={`text-xl md:text-2xl ${subtext ? 'mb-4' : 'mb-10'} max-w-4xl mx-auto leading-relaxed ${descriptionColor}`}
+            className={`text-lg md:text-xl ${subtext ? 'mb-3' : 'mb-8'} max-w-3xl mx-auto leading-relaxed ${descriptionColor}`}
           >
             {description}
           </motion.p>
@@ -109,7 +109,7 @@ const Hero: React.FC<HeroProps> = ({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.25 }}
-              className={`text-sm md:text-base mb-10 max-w-2xl mx-auto ${variant === 'minimal' ? 'text-slate-500' : 'text-slate-300'} italic`}
+              className={`text-sm md:text-base mb-8 max-w-2xl mx-auto ${variant === 'minimal' ? 'text-slate-500' : 'text-slate-300'} italic`}
             >
               {subtext}
             </motion.p>

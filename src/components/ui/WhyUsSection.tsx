@@ -7,21 +7,16 @@ interface WhyUsProps {
 
 const WhyUsSection: React.FC<WhyUsProps> = ({ className = '' }) => {
   return (
-    <section className={`py-16 bg-white relative ${className}`}>
+    <section className={`py-16 bg-white relative overflow-hidden ${className}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="mb-6">
-            <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
-              Results First
-            </span>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-            Real-World Growth Experience
+        {/* Section Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
+            Why Sean MacDonald?
           </h2>
-          <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
-            I&apos;ve grown businesses in home improvement from 0 to millions in revenue, done the same in real estate, 
-            and gathered enterprise technology sales experience. Now I&apos;m making it easier for everyday contractors 
-            to access the same growth systems that big companies use.
+          <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            Enterprise systems experience, contractor-focused solutions. I've helped companies manage millions 
+            in revenue — now I bring that expertise to contractors who need it most.
           </p>
         </div>
 

@@ -4,20 +4,15 @@ import Link from 'next/link';
 
 const SolutionSection: React.FC = () => {
   return (
-    <section className="py-16 bg-slate-50 relative">
+    <section className="py-16 bg-slate-50 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="mb-6">
-            <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-teal-100 text-teal-800">
-              The Solution
-            </span>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-            Two Paths to Transform Your Lead Flow
+        {/* Section Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
+            How We Fix Your Lead Flow
           </h2>
-          <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
-            We design and automate sales systems that capture, convert, and grow. You keep the system forever — 
-            bring us back only if you want continuous tuning.
+          <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            Stop losing leads to poor follow-up. We design, build, and hand over systems that work for contractors.
           </p>
         </div>
 
