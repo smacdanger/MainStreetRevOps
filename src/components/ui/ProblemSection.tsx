@@ -7,10 +7,10 @@ const ProblemSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
-            You're Not Alone — This Problem is Everywhere
+            You&apos;re Not Alone — This Problem is Everywhere
           </h2>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Most contractors lose 60-80% of their leads to poor follow-up. Here's what's really happening:
+            Most contractors lose 60-80% of their leads to poor follow-up. Here&apos;s what&apos;s really happening:
           </p>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -32,8 +32,8 @@ const ProblemSection: React.FC = () => {
             <div className="space-y-4">
               {[
                 "Hours between lead contact attempts",
-                "No follow-up system when someone doesn't answer",
-                "Lost leads because the phone rings while you're on a job",
+                "No follow-up system when someone doesn&apos;t answer",
+                "Lost leads because the phone rings while you&apos;re on a job",
                 "Manual data entry eating up valuable time",
                 "No way to track which marketing actually works"
               ].map((problem, index) => (

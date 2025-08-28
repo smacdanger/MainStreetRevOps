@@ -12,7 +12,7 @@ const CaseStudiesSection: React.FC = () => {
             Real Results from Real Contractors
           </h2>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            We're building our case study library with early clients. Here's what we're tracking and the results we're seeing:
+            We&apos;re building our case study library with early clients. Here&apos;s what we&apos;re tracking and the results we&apos;re seeing:
           </p>
         </div>
 

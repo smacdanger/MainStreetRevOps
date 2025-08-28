@@ -15,7 +15,7 @@ const WhyUsSection: React.FC<WhyUsProps> = ({ className = '' }) => {
             Why Sean MacDonald?
           </h2>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Enterprise systems experience, contractor-focused solutions. I've helped companies manage millions 
+            Enterprise systems experience, contractor-focused solutions. I&apos;ve helped companies manage millions 
             in revenue — now I bring that expertise to contractors who need it most.
           </p>
         </div>
