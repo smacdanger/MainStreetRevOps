@@ -116,10 +116,10 @@ const InputWizard: React.FC<InputWizardProps> = ({ initialInputs, onComplete, on
           )}
           <input
             type="number"
-            value={value as number}
+            value={(value as number) === 0 ? '' : (value as number)}
             onChange={(e) => updateInput(field.key, parseFloat(e.target.value) || 0)}
             placeholder={field.placeholder}
-            className={`w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all ${
+            className={`w-full px-4 py-3 border border-slate-300 rounded-lg bg-white text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all ${
               field.prefix ? 'pl-8' : ''
             } ${field.suffix ? 'pr-16' : ''}`}
           />
