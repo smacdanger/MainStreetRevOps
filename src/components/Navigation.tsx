@@ -82,7 +82,7 @@ const Navigation = () => {
             ))}
             <Link
               href="/assessment"
-              className="ml-4 bg-teal-600 text-white px-4 py-2 text-sm font-medium rounded-lg hover:bg-teal-700 transition-all duration-200 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+              className="ml-4 bg-teal-700 text-white px-4 py-2 text-sm font-medium rounded-lg hover:bg-teal-800 transition-all duration-200 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
               aria-label="Get your lead flow assessment"
             >
               Get Assessment
