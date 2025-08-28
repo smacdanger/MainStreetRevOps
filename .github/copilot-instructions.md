@@ -67,11 +67,11 @@ npm run build && npm start  # Production server on http://localhost:3000
 ## Validation Requirements
 
 ### ALWAYS Test These Scenarios After Changes
-1. **Navigation Flow**: Test all page transitions (Home → About → Services → Assessment → Contact)
-2. **Contact Form Submission**: 
-   - Fill out name, email, and message fields
-   - Submit form and verify success message appears: "Thank you for your message! We'll get back to you within 24 hours."
-   - Check browser console for form data logging
+1. **Navigation Flow**: Test all page transitions (Home → Assessment → Contact → Privacy)
+2. **Tally Form Integration**: 
+   - Test both contact and assessment forms load properly
+   - Verify form submission works and shows success states
+   - Check browser console for form loading errors
 3. **Responsive Design**: Test navigation menu on mobile/desktop
 4. **Static Page Generation**: Verify all pages build successfully in production
 5. **🎯 CONVERSION PATH TESTING**: 
@@ -88,7 +88,7 @@ npm run build  # Must complete successfully
 npm start  # Must start without errors after build
 
 # Test in browser at http://localhost:3000
-# Navigate through all pages: /, /about, /services, /assessment, /contact
+# Navigate through all pages: /, /assessment, /contact, /privacy
 # Submit contact form with test data
 ```
 
@@ -98,19 +98,33 @@ npm start  # Must start without errors after build
 ```
 src/
 ├── app/
-│   ├── page.tsx              # Home page with hero, value pillars, testimonials + PRIMARY CTAs
-│   ├── about/page.tsx        # Founder story, mission, values + trust building
-│   ├── services/page.tsx     # Three service offerings with pricing + conversion CTAs
-│   ├── assessment/page.tsx   # PRIMARY LEAD MAGNET - Google Forms integration
-│   ├── contact/page.tsx      # SECONDARY CONVERSION - Contact form with validation
-│   └── layout.tsx           # Root layout with Navigation and Footer
+│   ├── page.tsx              # Home page with hero, sections, and CTAs
+│   ├── assessment/page.tsx   # PRIMARY LEAD MAGNET - Tally form integration
+│   ├── contact/
+│   │   ├── layout.tsx        # Contact page metadata
+│   │   └── page.tsx          # SECONDARY CONVERSION - Tally contact form
+│   ├── privacy/page.tsx      # Privacy policy page
+│   ├── layout.tsx           # Root layout with Navigation and Footer
+│   ├── globals.css          # Global styles with Inter font and custom animations
+│   └── favicon.ico          # Site favicon
 ├── components/
-│   ├── Navigation.tsx        # Responsive nav with CTA prominence
-│   └── Footer.tsx           # Site footer with contact info and trust signals
+│   ├── Navigation.tsx        # Responsive nav with anchor links and CTA prominence
+│   ├── Footer.tsx           # Site footer with contact info and trust signals
+│   └── ui/                  # Reusable UI components
+│       ├── Hero.tsx         # Hero section component with multiple variants
+│       ├── CTAButton.tsx    # Reusable CTA button with variants
+│       ├── FeatureCard.tsx  # Feature cards with hover animations
+│       ├── TestimonialCard.tsx  # Testimonial components
+│       ├── SectionDivider.tsx   # Decorative section dividers
+│       ├── ProblemSection.tsx   # Problem identification section
+│       ├── SolutionSection.tsx  # Solution overview section
+│       ├── WhyUsSection.tsx     # Results and differentiators
+│       ├── CaseStudiesSection.tsx  # Case studies and results
+│       └── BeyondLeadsSection.tsx  # Extended services section
 ```
 
 ### Configuration Files
-- `package.json` - Dependencies and scripts (Next.js 15, React 19, TypeScript)
+- `package.json` - Dependencies and scripts (Next.js 15, React 19, TypeScript, Framer Motion)
 - `next.config.ts` - Next.js configuration (minimal setup)
 - `tsconfig.json` - TypeScript configuration with strict mode
 - `eslint.config.mjs` - ESLint configuration for Next.js with TypeScript
@@ -121,18 +135,25 @@ src/
 
 ### Contact Form (src/app/contact/page.tsx)
 - **Business Purpose**: Secondary conversion path for prospects ready to engage directly
-- **Status**: Client-side placeholder implementation
-- **Current behavior**: Logs to console, shows success message
-- **Integration needed**: Update form handler to connect with Formspree, Netlify Forms, or custom API
-- **Test data accepted**: All form fields functional, validation works
+- **Status**: ✅ LIVE - Tally form integration implemented
+- **Current behavior**: Uses Tally embedded form (https://tally.so/embed/n98GLY)
+- **Integration**: Complete with retry mechanisms and fallback loading
+- **Test data accepted**: All form fields functional through Tally
 - **🎯 Conversion Priority**: CRITICAL - this is a direct sales lead capture
 
 ### Assessment Page (src/app/assessment/page.tsx)  
 - **Business Purpose**: PRIMARY LEAD MAGNET - captures prospect information while providing value
-- **Status**: Placeholder for Google Forms integration
-- **Integration needed**: Replace placeholder with actual Google Forms embed code
-- **Current content**: Sample question structure for discovery questionnaire
+- **Status**: ✅ LIVE - Tally form integration implemented
+- **Integration**: Complete with Tally embedded form (https://tally.so/embed/waR2VE)
+- **Current content**: Professional assessment with pricing transparency ($500-$2,000)
+- **Features**: Loading states, retry mechanisms, dynamic height adjustment
 - **🎯 Conversion Priority**: HIGHEST - this is the main lead generation tool
+
+### Privacy Policy (src/app/privacy/page.tsx)
+- **Business Purpose**: Legal compliance and trust building
+- **Status**: ✅ LIVE - Complete privacy policy implemented
+- **Contact**: Uses real email (Sean@mainstrevops.com)
+- **Integration**: Linked in footer and forms
 
 ### Deployment Ready
 - **Vercel**: Connect GitHub repo for automatic deployment
@@ -144,25 +165,30 @@ src/
 ### Adding New Pages
 1. Create new page.tsx file in src/app/[page-name]/
 2. Export default React component with proper TypeScript typing
-3. Add navigation link in src/components/Navigation.tsx
+3. Add navigation link in src/components/Navigation.tsx (if needed)
 4. **🎯 ALWAYS include conversion elements**: CTAs, contact forms, or assessment links
 5. Test navigation and build process
 
 ### Modifying Styles
-- Uses TailwindCSS v4 utility classes
-- No custom CSS files needed
+- Uses TailwindCSS v4 utility classes with Inter font
+- Custom CSS animations defined in globals.css
 - Responsive design with mobile-first approach
-- Blue/white/gray color scheme (`bg-blue-600`, `text-gray-900`, etc.)
-- **🎯 CTA Button Styling**: Use `bg-blue-600 hover:bg-blue-700` for primary actions
+- Color scheme: slate/teal/blue (`bg-slate-900`, `text-teal-600`, etc.)
+- **🎯 CTA Button Styling**: Use CTAButton component with variants (primary, secondary, accent)
+
+### Working with UI Components
+- All UI components in `src/components/ui/` use Framer Motion for animations
+- Components are fully typed with TypeScript interfaces
+- Reusable and composable design pattern
+- Consistent spacing and color schemes
 
 ### Integration Updates
 When integrating external services:
-1. **Contact Form**: Update form submission handler in contact/page.tsx
-2. **Calendly**: Replace placeholder link in contact page  
-3. **Google Forms**: Update assessment page with embed code
-4. **Email Links**: Update mailto links with actual business email
-5. **🎯 Analytics Integration**: Add Google Analytics, Facebook Pixel, or conversion tracking
-6. **🎯 CRM Integration**: Connect forms to HubSpot, Salesforce, or lead management system
+1. **Tally Forms**: Forms are already integrated - update form IDs if needed
+2. **Email Links**: Update email addresses from Sean@mainstrevops.com if needed
+3. **LinkedIn**: Update LinkedIn profile links from seanmacd profile
+4. **🎯 Analytics Integration**: Add Google Analytics, Facebook Pixel, or conversion tracking
+5. **🎯 CRM Integration**: Connect Tally forms to HubSpot, Salesforce, or lead management system
 
 ## Troubleshooting
 
@@ -182,6 +208,13 @@ If builds are slow or inconsistent:
 rm -rf .next
 npm run build
 ```
+
+### Tally Form Issues
+If Tally forms don't load:
+1. Check browser console for script loading errors
+2. Verify Tally embed URLs are correct
+3. Test retry mechanisms are working
+4. Fallback: Forms will show iframe directly if Tally.js fails
 
 ### Linting Errors
 All code must pass ESLint before committing:
