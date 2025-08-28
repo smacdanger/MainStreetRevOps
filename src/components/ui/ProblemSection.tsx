@@ -5,6 +5,14 @@ const ProblemSection: React.FC = () => {
   return (
     <section className="py-16 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
+            You're Not Alone — This Problem is Everywhere
+          </h2>
+          <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            Most contractors lose 60-80% of their leads to poor follow-up. Here's what's really happening:
+          </p>
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Problem Content */}
           <div>

@@ -4,20 +4,15 @@ import Link from 'next/link';
 
 const CaseStudiesSection: React.FC = () => {
   return (
-    <section className="py-16 bg-slate-50 relative">
+    <section className="py-16 bg-slate-50 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="mb-6">
-            <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-orange-100 text-orange-800">
-              Coming Soon
-            </span>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-            Proof in Progress
+        {/* Section Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
+            Real Results from Real Contractors
           </h2>
-          <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
-            We&apos;re actively working with early contractor clients — case studies and testimonials coming soon. 
-            Stay tuned to see how we help turn lead chaos into predictable revenue.
+          <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            We're building our case study library with early clients. Here's what we're tracking and the results we're seeing:
           </p>
         </div>
 
