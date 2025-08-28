@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: "Transform your small to mid-sized business with AI-powered sales processes, lead management automation, and technology consulting. Book your discovery call today.",
   keywords: "AI sales, lead management, SMB consulting, revenue operations, sales automation",
   openGraph: {
-    title: "MainStreet RevOps - AI-Powered Sales Growth for SMBs",
+    title: "Transform Your Sales Process with AI",
     description: "Transform your small to mid-sized business with AI-powered sales processes, lead management automation, and technology consulting.",
     type: "website",
   },
