@@ -64,12 +64,17 @@ export default function TCOCalculator() {
     const Labor_Savings_Percent = 0.70;
     const Optimized_Lost_Leads_Percent = 0.10;
     const OpenAI_cost = Math.max(25, inputs.leads * 0.02);
+    const WEEKS_PER_MONTH = 4.33; // More accurate monthly conversion
 
     // Current TCO Calculation
     const Current_Fixed = inputs.CRM_user_cost + inputs.Phone_cost + inputs.Accounting_cost + inputs.Other_cost;
-    const Hidden_Labor = ((inputs.rep_hours * inputs.rep_rate * inputs.reps) + (inputs.owner_hours * inputs.owner_rate)) * 4; // Monthly
+    const Hidden_Labor = ((inputs.rep_hours * inputs.rep_rate * inputs.reps) + (inputs.owner_hours * inputs.owner_rate)) * WEEKS_PER_MONTH; // Monthly
     const Current_Hidden = Hidden_Labor;
-    const Missed_Revenue = inputs.leads * inputs.job_value * Lost_Leads_Percent;
+    
+    // Calculate potential monthly revenue first, then missed revenue
+    const close_rate_decimal = inputs.close_rate / 100;
+    const Potential_Revenue = inputs.leads * inputs.job_value * close_rate_decimal;
+    const Missed_Revenue = Potential_Revenue * Lost_Leads_Percent;
     const Current_Missed = Missed_Revenue;
     const Current_TCO = Current_Fixed + Current_Hidden + Current_Missed;
 
@@ -82,13 +87,14 @@ export default function TCOCalculator() {
 
     // Optimized Variable Costs
     const Optimized_Hidden = Hidden_Labor * (1 - Labor_Savings_Percent);
-    const Optimized_Missed = inputs.leads * inputs.job_value * Optimized_Lost_Leads_Percent;
+    const Optimized_Missed = Potential_Revenue * Optimized_Lost_Leads_Percent;
     const Optimized_TCO = Optimized_Fixed + Optimized_Hidden + Optimized_Missed;
 
     // Comparison Metrics
     const Net_Savings = Current_TCO - Optimized_TCO;
     const Revenue_Gained = Missed_Revenue - Optimized_Missed;
-    const ROI = Optimized_TCO > 0 ? (Net_Savings / Optimized_TCO) * 100 : 0;
+    // Calculate ROI as percentage return on the net investment/savings
+    const ROI = Current_TCO > 0 ? (Net_Savings / Current_TCO) * 100 : 0;
 
     return {
       Current_TCO,
