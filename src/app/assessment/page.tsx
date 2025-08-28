@@ -26,21 +26,21 @@ export default function Assessment() {
         
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Business Discovery Assessment
+            Lead Flow Assessment
           </h1>
           <p className="text-xl md:text-2xl text-slate-200 mb-4">
-            Get Personalized Recommendations for Your Business
+            Get Your Custom Revenue Recovery Roadmap
           </p>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto mb-6">
-            This comprehensive questionnaire helps us understand your current sales process, 
-            technology stack, and challenges so we can provide tailored solutions.
+            This comprehensive questionnaire helps us understand your current lead management, 
+            follow-up systems, and revenue leaks so we can provide a tailored solution.
           </p>
           <div className="bg-teal-600/20 border border-teal-400/30 p-4 rounded-xl max-w-2xl mx-auto backdrop-blur-sm">
             <p className="text-teal-200 text-sm mb-2">
-              <strong>Free 15-minute consultation available</strong>
+              <strong>Professional Assessment: $1K–$3K</strong>
             </p>
             <p className="text-slate-300 text-sm">
-              Full assessments typically range from $1,500-$3,000 depending on company size, revenue, and complexity.
+              Investment varies based on business complexity and revenue size. Free consultation available for those not ready for full assessment.
             </p>
           </div>
         </div>
@@ -80,7 +80,7 @@ export default function Assessment() {
                   {[
                     "Approximately 15-20 minutes to complete",
                     "Can be saved and resumed if needed",
-                    "Results delivered within 24 hours"
+                    "Contact within 24 hours to schedule call"
                   ].map((item, index) => (
                     <li key={index} className="flex items-start">
                       <span className="text-teal-600 mr-3 mt-1">
@@ -103,10 +103,10 @@ export default function Assessment() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-slate-900 mb-4">
-              Our Two-Stage Approach
+              Our Two-Step Approach
             </h2>
             <p className="text-slate-600">
-              We&apos;ve designed a comprehensive process to transform your sales operations:
+              We start with a complete system setup, then offer optional ongoing optimization for continued growth:
             </p>
           </div>
           
@@ -116,13 +116,15 @@ export default function Assessment() {
                 1
               </div>
               <h3 className="text-xl font-semibold text-slate-900 mb-3 text-center">
-                AI Sales Readiness Audit
+                Setup & Implementation
               </h3>
               <ul className="space-y-2 text-slate-600">
                 {[
-                  "Audit sales/marketing processes for AI opportunities",
-                  "Identify bottlenecks where AI or light tech upgrades could drive more leads, higher conversions, or better retention",
-                  "Prioritize the top 3–5 actions with projected ROI"
+                  "Complete lead flow audit and analysis",
+                  "CRM setup and automation workflows",
+                  "Instant lead response systems",
+                  "Team training and documentation",
+                  "Full system handover — it's yours"
                 ].map((item, index) => (
                   <li key={index} className="flex items-start">
                     <span className="text-teal-600 mr-3 mt-1 flex-shrink-0">
@@ -141,13 +143,15 @@ export default function Assessment() {
                 2
               </div>
               <h3 className="text-xl font-semibold text-slate-900 mb-3 text-center">
-                AI-as-a-Service Retainer
+                Ongoing Optimization
               </h3>
               <ul className="space-y-2 text-slate-600">
                 {[
-                  "Implement and manage AI tools (CRM automation, AI lead scoring, AI content generation, AI proposal templates)",
-                  "Apply light tech improvements as needed (CRM cleanup, workflow automation, dashboard/reporting fixes)",
-                  "Monthly monitoring + optimization"
+                  "Monthly system monitoring and optimization",
+                  "New lead source integrations",
+                  "Advanced reporting and analytics",
+                  "Chatbot and AI assistant setup",
+                  "Strategic growth guidance"
                 ].map((item, index) => (
                   <li key={index} className="flex items-start">
                     <span className="text-blue-600 mr-3 mt-1 flex-shrink-0">
@@ -174,11 +178,11 @@ export default function Assessment() {
             <div className="max-w-3xl mx-auto mb-6">
               <p className="text-slate-600 mb-4">
                 This form prepares us for your 60–90 minute discovery and assessment call. Within 1–2 weeks 
-                after that call, you&apos;ll receive your step-by-step AI Sales Roadmap with specific recommendations.
+                after that call, you&apos;ll receive your step-by-step Lead Flow Recovery Roadmap with specific recommendations.
               </p>
               <div className="bg-teal-50 border border-teal-200 p-4 rounded-xl">
                 <p className="text-teal-800 text-sm">
-                  <strong>Please note:</strong> The full assessment is a paid engagement ($1,500–$3,000) that includes 
+                  <strong>Please note:</strong> The full assessment is a paid engagement ($1K–$3K) that includes 
                   your discovery call, detailed analysis, and custom roadmap with ROI projections.
                 </p>
               </div>
@@ -230,13 +234,13 @@ export default function Assessment() {
               },
               {
                 number: "2",
-                title: "Recommendations",
-                description: "Custom report with prioritized improvements and ROI projections"
+                title: "Strategy Call",
+                description: "60-90 minute discovery and assessment call to dive deeper"
               },
               {
                 number: "3",
-                title: "Strategy Call",
-                description: "Free 30-minute call to discuss findings and next steps"
+                title: "Recommendations",
+                description: "Custom roadmap delivered ~1 week after scheduled call"
               }
             ].map((step, index) => (
               <div key={index} className="group">

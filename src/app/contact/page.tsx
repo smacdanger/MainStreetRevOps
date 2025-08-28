@@ -26,14 +26,20 @@ export default function Contact() {
         
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Let&apos;s Talk About Your Goals
+            Questions About Your Lead Flow?
           </h1>
           <p className="text-xl md:text-2xl text-slate-200 mb-4">
-            Not Ready for the Full Assessment?
+            Free 15-Minute Consultation Available
           </p>
-          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-            Let&apos;s talk about your goals and see if we&apos;re a fit. No pressure, just a conversation.
+          <p className="text-lg text-slate-300 max-w-2xl mx-auto mb-6">
+            Want to discuss your specific situation before committing to a full assessment? 
+            Let's talk about your goals and see how we can help.
           </p>
+          <div className="bg-teal-600/20 border border-teal-400/30 p-4 rounded-xl max-w-2xl mx-auto backdrop-blur-sm">
+            <p className="text-teal-200 text-sm">
+              <strong>Ready for a deeper dive?</strong> Consider our professional assessment ($1K–$3K) for a complete analysis and custom roadmap.
+            </p>
+          </div>
         </div>
       </section>
 

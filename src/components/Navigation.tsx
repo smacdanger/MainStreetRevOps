@@ -8,11 +8,11 @@ const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const navItems = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Services', href: '/services' },
-    { name: 'Assessment', href: '/assessment' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'How It Works', href: '#solution' },
+    { name: 'Outcomes', href: '#why-us' },
+    { name: 'Proof', href: '#case-studies' },
+    { name: 'Beyond Leads', href: '#beyond-leads' },
+    { name: 'Contact', href: '#contact' },
   ];
 
   // Handle scroll effect
@@ -24,6 +24,29 @@ const Navigation = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Smooth scroll handler for anchor links
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      
+      // Check if we're on the homepage
+      const isHomepage = window.location.pathname === '/';
+      
+      if (isHomepage) {
+        // We're on homepage, scroll to the element
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        // We're on a different page, navigate to homepage with hash
+        window.location.href = `/${href}`;
+      }
+      
+      setIsOpen(false);
+    }
+  };
 
   return (
     <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ${
@@ -44,19 +67,20 @@ const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => (
-              <Link
+              <a
                 key={item.name}
                 href={item.href}
-                className="text-slate-700 hover:text-teal-600 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg hover:bg-teal-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+                onClick={(e) => handleAnchorClick(e, item.href)}
+                className="text-slate-700 hover:text-teal-600 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg hover:bg-teal-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 cursor-pointer"
               >
                 {item.name}
-              </Link>
+              </a>
             ))}
             <Link
-              href="/contact"
+              href="/assessment"
               className="ml-4 bg-teal-600 text-white px-4 py-2 text-sm font-medium rounded-lg hover:bg-teal-700 transition-all duration-200 shadow-sm hover:shadow-md transform hover:-translate-y-0.5"
             >
-              Schedule Free Intro Call
+              Get Assessment
             </Link>
           </div>
 
@@ -99,21 +123,21 @@ const Navigation = () => {
           <div className="md:hidden transition-all duration-200">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-slate-200/50 rounded-b-lg shadow-lg">
               {navItems.map((item) => (
-                <Link
+                <a
                   key={item.name}
                   href={item.href}
-                  className="text-slate-700 hover:text-teal-600 block px-3 py-2 text-base font-medium transition-colors duration-200 rounded-lg hover:bg-teal-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => handleAnchorClick(e, item.href)}
+                  className="text-slate-700 hover:text-teal-600 block px-3 py-2 text-base font-medium transition-colors duration-200 rounded-lg hover:bg-teal-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 cursor-pointer"
                 >
                   {item.name}
-                </Link>
+                </a>
               ))}
               <Link
-                href="/contact"
+                href="/assessment"
                 className="block mt-4 bg-teal-600 text-white px-3 py-2 text-base font-medium rounded-lg hover:bg-teal-700 transition-colors duration-200 text-center"
                 onClick={() => setIsOpen(false)}
               >
-                Schedule Free Intro Call
+                Get Assessment
               </Link>
             </div>
           </div>
