@@ -15,8 +15,8 @@ const WhyUsSection: React.FC<WhyUsProps> = ({ className = '' }) => {
             Why Us?
           </h2>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Real contractor results. We've helped Main Street businesses transform their lead follow-up 
-            and close more deals. Here's what actual contractors achieved:
+            Real contractor results. We&apos;ve helped Main Street businesses transform their lead follow-up 
+            and close more deals. Here&apos;s what actual contractors achieved:
           </p>
         </div>
 
