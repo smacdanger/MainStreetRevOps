@@ -77,8 +77,8 @@ export default function Home() {
                 answer: "We work with your existing systems whenever possible. Our goal is to optimize what you have, not force expensive changes."
               },
               {
-                question: "What's the real cost after the initial setup?",
-                answer: "The ongoing optimization is completely optional. Many clients run their systems independently after setup. If you want monthly tuning and new features, that's $1K-3K/month."
+                question: "What&apos;s the real cost after the initial setup?",
+                answer: "The ongoing optimization is completely optional. Many clients run their systems independently after setup. If you want monthly tuning and new features, that&apos;s $1K-3K/month."
               }
             ].map((faq, index) => (
               <div key={index} className="bg-white p-6 rounded-2xl border border-slate-200 hover:border-teal-300 transition-colors duration-200 shadow-sm hover:shadow-md">
@@ -116,7 +116,7 @@ export default function Home() {
             Ready to Fix Your Lead Flow?
           </h2>
           <p className="text-xl mb-8 text-slate-200 max-w-3xl mx-auto leading-relaxed">
-            Get a professional lead flow assessment that identifies exactly where you're losing money and provides a custom roadmap to capture more revenue.
+            Get a professional lead flow assessment that identifies exactly where you&apos;re losing money and provides a custom roadmap to capture more revenue.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
