@@ -195,7 +195,7 @@ const BeyondLeadsSection: React.FC = () => {
               href="/assessment"
               className="bg-purple-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-purple-700 transition-colors duration-300 inline-block shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             >
-              Start With a Lead Flow Audit
+              Start With a Lead Flow Assessment
             </Link>
           </div>
         </motion.div>

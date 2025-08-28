@@ -128,7 +128,7 @@ const CaseStudiesSection: React.FC = () => {
               href="/assessment"
               className="bg-gradient-to-r from-teal-500 to-orange-500 text-white px-8 py-4 rounded-xl font-bold text-lg hover:from-teal-600 hover:to-orange-600 transition-all duration-300 inline-block shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             >
-              Book Your Audit
+              Book Your Assessment
             </Link>
           </div>
         </motion.div>

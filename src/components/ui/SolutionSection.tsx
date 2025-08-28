@@ -39,13 +39,13 @@ const SolutionSection: React.FC = () => {
                 Setup & Implementation
               </h3>
               <p className="text-slate-600 mb-6 leading-relaxed">
-                <strong>One-time project.</strong> We audit, design, and build your complete lead management system. 
+                <strong>One-time project.</strong> We assess, design, and build your complete lead management system. 
                 You own it forever.
               </p>
               
               <div className="space-y-4 mb-8">
                 {[
-                  "Complete lead flow audit and analysis",
+                  "Complete lead flow assessment and analysis",
                   "CRM setup and automation workflows", 
                   "Instant lead response systems",
                   "No more missed calls — AI + routing ensures every call gets answered",
@@ -65,7 +65,7 @@ const SolutionSection: React.FC = () => {
               
               <div className="bg-teal-50 p-4 rounded-xl mb-6">
                 <p className="text-teal-800 font-medium text-sm">
-                  <strong>Assessment:</strong> $500–$2K • Implementation pricing discussed after audit
+                  <strong>Assessment:</strong> $500–$2K • Implementation pricing discussed after assessment
                 </p>
               </div>
               
