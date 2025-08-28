@@ -46,38 +46,45 @@ export default function TCOCalculator() {
     Phone_cost: 150,
     Accounting_cost: 100,
     Other_cost: 75,
-    leads: 50,
-    job_value: 8500,
+    leads: 25,  // More realistic monthly leads for small contractor
+    job_value: 5000,  // More realistic average job value
     close_rate: 25,
-    rep_hours: 8,
-    owner_hours: 12,
-    rep_rate: 30,
-    owner_rate: 75,
+    rep_hours: 8,  // Hours per week spent on manual lead tasks
+    owner_hours: 6,  // Reduced owner time to be more realistic
+    rep_rate: 25,  // Slightly lower rate
+    owner_rate: 65,  // More realistic owner rate
     CRM_change: true,
     Phone_change: true,
     Accounting_change: true
   });
 
   const calculateTCO = (inputs: TCOInputs): TCOResults => {
-    // Default constants
-    const Lost_Leads_Percent = 0.30;
-    const Labor_Savings_Percent = 0.70;
-    const Optimized_Lost_Leads_Percent = 0.10;
-    const OpenAI_cost = Math.max(25, inputs.leads * 0.02);
+    // More realistic constants for typical contractors
+    const Lost_Leads_Percent = 0.15;  // 15% lead loss is more realistic
+    const Labor_Savings_Percent = 0.50;  // 50% savings is more achievable
+    const Optimized_Lost_Leads_Percent = 0.05;  // 5% loss after optimization
+    const OpenAI_cost = Math.max(25, inputs.leads * 0.50);  // More realistic AI cost per lead
 
     // Current TCO Calculation
     const Current_Fixed = inputs.CRM_user_cost + inputs.Phone_cost + inputs.Accounting_cost + inputs.Other_cost;
-    const Hidden_Labor = ((inputs.rep_hours * inputs.rep_rate * inputs.reps) + (inputs.owner_hours * inputs.owner_rate)) * 4; // Monthly
+    
+    // Weekly hours converted to monthly (weekly * 4.33 weeks/month)
+    const Weekly_Rep_Labor = inputs.rep_hours * inputs.rep_rate * inputs.reps;
+    const Weekly_Owner_Labor = inputs.owner_hours * inputs.owner_rate;
+    const Hidden_Labor = (Weekly_Rep_Labor + Weekly_Owner_Labor) * 4.33; // More accurate monthly conversion
     const Current_Hidden = Hidden_Labor;
+    
+    // Calculate potential monthly revenue to validate missed revenue
+    // const Monthly_Potential_Revenue = inputs.leads * inputs.job_value * (inputs.close_rate / 100);
     const Missed_Revenue = inputs.leads * inputs.job_value * Lost_Leads_Percent;
     const Current_Missed = Missed_Revenue;
     const Current_TCO = Current_Fixed + Current_Hidden + Current_Missed;
 
-    // Optimized Fixed Costs
-    const Optimized_CRM = inputs.CRM_change ? (50 + 20 * inputs.reps) : inputs.CRM_user_cost;
-    const Optimized_Phone = inputs.Phone_change ? (15 + 10 * inputs.reps) : inputs.Phone_cost;
-    const Optimized_Accounting = inputs.Accounting_change ? 85 : inputs.Accounting_cost;
-    const Optimized_Other = 50 + (30 * inputs.reps) + OpenAI_cost; // Zapier + PandaDoc + OpenAI
+    // Optimized Fixed Costs - more realistic pricing
+    const Optimized_CRM = inputs.CRM_change ? (40 + 15 * inputs.reps) : inputs.CRM_user_cost;  // Slightly reduced
+    const Optimized_Phone = inputs.Phone_change ? (25 + 8 * inputs.reps) : inputs.Phone_cost;  // More realistic
+    const Optimized_Accounting = inputs.Accounting_change ? 75 : inputs.Accounting_cost;  // Slightly reduced
+    const Optimized_Other = 40 + (25 * inputs.reps) + OpenAI_cost; // Zapier + PandaDoc + OpenAI
     const Optimized_Fixed = Optimized_CRM + Optimized_Phone + Optimized_Accounting + Optimized_Other;
 
     // Optimized Variable Costs
@@ -88,7 +95,14 @@ export default function TCOCalculator() {
     // Comparison Metrics
     const Net_Savings = Current_TCO - Optimized_TCO;
     const Revenue_Gained = Missed_Revenue - Optimized_Missed;
-    const ROI = Optimized_TCO > 0 ? (Net_Savings / Optimized_TCO) * 100 : 0;
+    
+    // Fix ROI calculation - should be based on implementation investment, not optimized TCO
+    // Realistic implementation cost for a small contractor: $5K-$15K range
+    const Base_Implementation_Cost = 8000;  // Base cost for setup
+    const Per_Rep_Cost = 1500;  // Additional cost per rep
+    const Implementation_Investment = Base_Implementation_Cost + (Per_Rep_Cost * inputs.reps);
+    const Monthly_Benefit = Net_Savings + Revenue_Gained;
+    const ROI = Implementation_Investment > 0 ? (Monthly_Benefit * 12 / Implementation_Investment) * 100 : 0;
 
     return {
       Current_TCO,
