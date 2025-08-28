@@ -12,7 +12,7 @@ const WhyUsSection: React.FC<WhyUsProps> = ({ className = '' }) => {
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
-            Why Sean MacDonald?
+            Why Us?
           </h2>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
             Enterprise systems experience, contractor-focused solutions. I&apos;ve helped companies manage millions 
