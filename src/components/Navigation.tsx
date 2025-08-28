@@ -48,15 +48,19 @@ const Navigation = () => {
   };
 
   return (
-    <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-      isScrolled 
-        ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-slate-200/50' 
-        : 'bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200/50'
-    }`}>
+    <nav 
+      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-slate-200/50' 
+          : 'bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200/50'
+      }`}
+      role="navigation"
+      aria-label="Main navigation"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link href="/" className="flex-shrink-0 flex items-center group">
+            <Link href="/" className="flex-shrink-0 flex items-center group" aria-label="MainStreet RevOps home">
               <span className="text-2xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent hover:scale-105 transition-transform duration-200">
                 MainStreet RevOps
               </span>
@@ -71,13 +75,15 @@ const Navigation = () => {
                 href={item.href}
                 onClick={(e) => handleAnchorClick(e, item.href)}
                 className="text-slate-700 hover:text-teal-600 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg hover:bg-teal-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 cursor-pointer"
+                aria-label={item.href.startsWith('#') ? `Navigate to ${item.name} section` : `Go to ${item.name} page`}
               >
                 {item.name}
               </a>
             ))}
             <Link
               href="/assessment"
-              className="ml-4 bg-teal-600 text-white px-4 py-2 text-sm font-medium rounded-lg hover:bg-teal-700 transition-all duration-200 shadow-sm hover:shadow-md transform hover:-translate-y-0.5"
+              className="ml-4 bg-teal-600 text-white px-4 py-2 text-sm font-medium rounded-lg hover:bg-teal-700 transition-all duration-200 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+              aria-label="Get your lead flow assessment"
             >
               Get Assessment
             </Link>
@@ -120,7 +126,7 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden transition-all duration-200">
+          <div className="md:hidden transition-all duration-200" role="menu" aria-label="Mobile navigation menu">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-slate-200/50 rounded-b-lg shadow-lg">
               {navItems.map((item) => (
                 <a
@@ -128,14 +134,18 @@ const Navigation = () => {
                   href={item.href}
                   onClick={(e) => handleAnchorClick(e, item.href)}
                   className="text-slate-700 hover:text-teal-600 block px-3 py-2 text-base font-medium transition-colors duration-200 rounded-lg hover:bg-teal-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 cursor-pointer"
+                  role="menuitem"
+                  aria-label={item.href.startsWith('#') ? `Navigate to ${item.name} section` : `Go to ${item.name} page`}
                 >
                   {item.name}
                 </a>
               ))}
               <Link
                 href="/assessment"
-                className="block mt-4 bg-teal-600 text-white px-3 py-2 text-base font-medium rounded-lg hover:bg-teal-700 transition-colors duration-200 text-center"
+                className="block mt-4 bg-teal-600 text-white px-3 py-2 text-base font-medium rounded-lg hover:bg-teal-700 transition-colors duration-200 text-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
                 onClick={() => setIsOpen(false)}
+                role="menuitem"
+                aria-label="Get your lead flow assessment"
               >
                 Get Assessment
               </Link>

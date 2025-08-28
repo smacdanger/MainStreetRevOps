@@ -97,17 +97,17 @@ export default function Home() {
 
       {/* Final CTA Section */}
       <section id="contact" className="relative bg-slate-900 text-white py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-teal-600/20 to-blue-600/20"></div>
-        <div className="absolute inset-0 opacity-40">
+        <div className="absolute inset-0 bg-gradient-to-r from-teal-600/20 to-blue-600/20" aria-hidden="true"></div>
+        <div className="absolute inset-0 opacity-40" aria-hidden="true">
           <div className="h-full w-full bg-gradient-to-r from-transparent via-teal-500/10 to-transparent"></div>
         </div>
-        <div className="absolute top-10 -right-20 w-72 h-72 bg-teal-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-10 -left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-10 -right-20 w-72 h-72 bg-teal-500/10 rounded-full blur-3xl" aria-hidden="true"></div>
+        <div className="absolute bottom-10 -left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" aria-hidden="true"></div>
         
         <div className="relative max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <div className="mb-6">
             <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-teal-500/20 text-teal-200 border border-teal-400/30">
-              <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
               Professional Assessment Available
@@ -123,30 +123,32 @@ export default function Home() {
             <Link
               href="/assessment"
               className="bg-gradient-to-r from-teal-500 to-teal-600 text-white px-10 py-5 rounded-xl font-bold text-xl hover:from-teal-600 hover:to-teal-700 transition-all duration-300 inline-block shadow-lg hover:shadow-2xl transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-teal-500/50 border-2 border-teal-400 hover:border-teal-300"
+              aria-label="Get your lead flow assessment for $500 to $2000"
             >
               Get Your Assessment ($500–$2,000)
             </Link>
             <Link
               href="/contact"
-              className="border-2 border-slate-400 text-slate-300 px-10 py-5 rounded-xl font-medium text-lg hover:border-white hover:text-white transition-colors duration-200 inline-block"
+              className="border-2 border-slate-400 text-slate-300 px-10 py-5 rounded-xl font-medium text-lg hover:border-white hover:text-white transition-colors duration-200 inline-block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-400"
+              aria-label="Schedule a free 15-minute consultation call"
             >
               Not Ready? Free 15-Min Chat
             </Link>
           </div>
           
           <div className="mt-12 text-center">
-            <div className="inline-flex items-center space-x-8 bg-white/10 backdrop-blur-sm px-8 py-4 rounded-xl border border-white/20">
-              <div className="text-center">
+            <div className="inline-flex items-center space-x-8 bg-white/10 backdrop-blur-sm px-8 py-4 rounded-xl border border-white/20" role="list" aria-label="Assessment benefits">
+              <div className="text-center" role="listitem">
                 <div className="text-2xl font-bold text-white">Custom</div>
                 <div className="text-slate-300 text-sm">Tailored roadmap</div>
               </div>
-              <div className="w-px h-8 bg-white/30"></div>
-              <div className="text-center">
+              <div className="w-px h-8 bg-white/30" aria-hidden="true"></div>
+              <div className="text-center" role="listitem">
                 <div className="text-2xl font-bold text-white">Actionable</div>
                 <div className="text-slate-300 text-sm">Immediate next steps</div>
               </div>
-              <div className="w-px h-8 bg-white/30"></div>
-              <div className="text-center">
+              <div className="w-px h-8 bg-white/30" aria-hidden="true"></div>
+              <div className="text-center" role="listitem">
                 <div className="text-2xl font-bold text-white">ROI Focused</div>
                 <div className="text-slate-300 text-sm">Revenue impact</div>
               </div>

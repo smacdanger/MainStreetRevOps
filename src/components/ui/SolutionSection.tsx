@@ -30,7 +30,7 @@ const SolutionSection: React.FC = () => {
             
             <div className="relative z-10">
               <div className="bg-teal-100 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-teal-200 transition-colors duration-300">
-                <svg className="w-8 h-8 text-teal-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-8 h-8 text-teal-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H3m2 0h3M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
               </div>
@@ -54,7 +54,7 @@ const SolutionSection: React.FC = () => {
                 ].map((feature, index) => (
                   <div key={index} className="flex items-start">
                     <div className="flex-shrink-0 w-5 h-5 bg-teal-100 rounded-full flex items-center justify-center mr-3 mt-1">
-                      <svg className="w-3 h-3 text-teal-600" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="w-3 h-3 text-teal-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
@@ -71,7 +71,8 @@ const SolutionSection: React.FC = () => {
               
               <Link
                 href="/assessment"
-                className="w-full bg-teal-600 text-white px-6 py-4 rounded-xl font-semibold text-center transition-all duration-200 block hover:bg-teal-700 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                className="w-full bg-teal-600 text-white px-6 py-4 rounded-xl font-semibold text-center transition-all duration-200 block hover:bg-teal-700 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+                aria-label="Get your lead flow assessment"
               >
                 Get Your Lead Flow Assessment
               </Link>
@@ -91,7 +92,7 @@ const SolutionSection: React.FC = () => {
             
             <div className="relative z-10">
               <div className="bg-blue-100 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-200 transition-colors duration-300">
-                <svg className="w-8 h-8 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-8 h-8 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
@@ -114,7 +115,7 @@ const SolutionSection: React.FC = () => {
                 ].map((feature, index) => (
                   <div key={index} className="flex items-start">
                     <div className="flex-shrink-0 w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center mr-3 mt-1">
-                      <svg className="w-3 h-3 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="w-3 h-3 text-blue-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
@@ -131,7 +132,8 @@ const SolutionSection: React.FC = () => {
               
               <Link
                 href="/contact"
-                className="w-full bg-slate-900 text-white px-6 py-4 rounded-xl font-semibold text-center transition-all duration-200 block hover:bg-slate-800 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                className="w-full bg-slate-900 text-white px-6 py-4 rounded-xl font-semibold text-center transition-all duration-200 block hover:bg-slate-800 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500"
+                aria-label="Learn about ongoing support options"
               >
                 Learn About Ongoing Support
               </Link>
