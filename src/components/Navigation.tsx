@@ -2,17 +2,19 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const router = useRouter();
 
   const navItems = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Services', href: '/services' },
-    { name: 'Assessment', href: '/assessment' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'How It Works', href: '#how-it-works' },
+    { name: 'Outcomes', href: '#outcomes' },
+    { name: 'Proof', href: '#proof' },
+    { name: 'Beyond Leads', href: '#beyond-leads' },
+    { name: 'Contact', href: '#contact' },
   ];
 
   // Handle scroll effect
@@ -24,6 +26,38 @@ const Navigation = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Handle smooth scrolling for anchor links
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setIsOpen(false);
+    
+    if (href.startsWith('#')) {
+      // If we're not on the homepage, navigate there first
+      if (window.location.pathname !== '/') {
+        router.push('/');
+        // Wait for navigation, then scroll
+        setTimeout(() => {
+          const element = document.querySelector(href);
+          if (element) {
+            element.scrollIntoView({ 
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        }, 100);
+      } else {
+        // We're already on homepage, just scroll
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }
+    }
+  };
 
   return (
     <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ${
@@ -44,19 +78,20 @@ const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => (
-              <Link
+              <a
                 key={item.name}
                 href={item.href}
-                className="text-slate-700 hover:text-teal-600 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg hover:bg-teal-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+                onClick={(e) => handleNavClick(e, item.href)}
+                className="text-slate-700 hover:text-teal-600 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg hover:bg-teal-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 cursor-pointer"
               >
                 {item.name}
-              </Link>
+              </a>
             ))}
             <Link
-              href="/contact"
+              href="/assessment"
               className="ml-4 bg-teal-600 text-white px-4 py-2 text-sm font-medium rounded-lg hover:bg-teal-700 transition-all duration-200 shadow-sm hover:shadow-md transform hover:-translate-y-0.5"
             >
-              Schedule Free Intro Call
+              Get Your Free Lead Flow Audit
             </Link>
           </div>
 
@@ -99,21 +134,21 @@ const Navigation = () => {
           <div className="md:hidden transition-all duration-200">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-slate-200/50 rounded-b-lg shadow-lg">
               {navItems.map((item) => (
-                <Link
+                <a
                   key={item.name}
                   href={item.href}
-                  className="text-slate-700 hover:text-teal-600 block px-3 py-2 text-base font-medium transition-colors duration-200 rounded-lg hover:bg-teal-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className="text-slate-700 hover:text-teal-600 block px-3 py-2 text-base font-medium transition-colors duration-200 rounded-lg hover:bg-teal-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 cursor-pointer"
                 >
                   {item.name}
-                </Link>
+                </a>
               ))}
               <Link
-                href="/contact"
+                href="/assessment"
                 className="block mt-4 bg-teal-600 text-white px-3 py-2 text-base font-medium rounded-lg hover:bg-teal-700 transition-colors duration-200 text-center"
                 onClick={() => setIsOpen(false)}
               >
-                Schedule Free Intro Call
+                Get Your Free Lead Flow Audit
               </Link>
             </div>
           </div>
