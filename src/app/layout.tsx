@@ -22,8 +22,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-sans antialiased">
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
         <Navigation />
-        <main className="pt-16 min-h-screen">
+        <main id="main-content" className="pt-16 min-h-screen">
           {children}
         </main>
         <Footer />

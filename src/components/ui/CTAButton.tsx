@@ -21,7 +21,7 @@ const CTAButton: React.FC<CTAButtonProps> = ({
   external = false,
   onClick
 }) => {
-  const baseClasses = 'inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-200 focus-ring transform hover:-translate-y-0.5';
+  const baseClasses = 'inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transform hover:-translate-y-0.5';
   
   const variantClasses = {
     primary: 'bg-slate-900 text-white hover:bg-slate-800 shadow-lg hover:shadow-xl',
@@ -55,6 +55,7 @@ const CTAButton: React.FC<CTAButtonProps> = ({
         rel="noopener noreferrer"
         className={classes}
         onClick={onClick}
+        aria-label={`${children} (opens in new tab)`}
       >
         {buttonContent}
       </a>

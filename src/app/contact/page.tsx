@@ -65,9 +65,10 @@ export default function Contact() {
               frameBorder="0"
               marginHeight={0}
               marginWidth={0}
-              title="Contact Us"
+              title="Contact form for MainStreet RevOps - send us a message"
               className="w-full"
               id="tally-contact-form"
+              aria-label="Contact form to send a message to MainStreet RevOps"
             >
             </iframe>
           </div>
@@ -79,33 +80,38 @@ export default function Contact() {
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center group">
-                <div className="bg-white w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm group-hover:shadow-md transition-shadow duration-200 border border-slate-200">
-                  <span className="text-2xl">📧</span>
+                <div className="bg-white w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm group-hover:shadow-md transition-shadow duration-200 border border-slate-200" aria-hidden="true">
+                  <span className="text-2xl" aria-hidden="true">📧</span>
                 </div>
                 <p className="font-medium text-slate-900 mb-2">Email</p>
-                <a href="mailto:sean@mainstrevops.com" className="text-teal-600 hover:text-teal-800 font-medium transition-colors duration-200">
+                <a 
+                  href="mailto:sean@mainstrevops.com" 
+                  className="text-teal-600 hover:text-teal-800 font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 rounded"
+                  aria-label="Send email to Sean at MainStreet RevOps"
+                >
                   sean@mainstrevops.com
                 </a>
               </div>
               
               <div className="text-center group">
-                <div className="bg-white w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm group-hover:shadow-md transition-shadow duration-200 border border-slate-200">
-                  <span className="text-2xl">💼</span>
+                <div className="bg-white w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm group-hover:shadow-md transition-shadow duration-200 border border-slate-200" aria-hidden="true">
+                  <span className="text-2xl" aria-hidden="true">💼</span>
                 </div>
                 <p className="font-medium text-slate-900 mb-2">LinkedIn</p>
                 <a 
                   href="https://www.linkedin.com/in/seanmacd/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-teal-600 hover:text-teal-800 font-medium transition-colors duration-200"
+                  className="text-teal-600 hover:text-teal-800 font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 rounded"
+                  aria-label="Connect with Sean on LinkedIn (opens in new tab)"
                 >
                   Connect with Sean
                 </a>
               </div>
               
               <div className="text-center group">
-                <div className="bg-white w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm group-hover:shadow-md transition-shadow duration-200 border border-slate-200">
-                  <span className="text-2xl">⏰</span>
+                <div className="bg-white w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm group-hover:shadow-md transition-shadow duration-200 border border-slate-200" aria-hidden="true">
+                  <span className="text-2xl" aria-hidden="true">⏰</span>
                 </div>
                 <p className="font-medium text-slate-900 mb-2">Response Time</p>
                 <p className="text-slate-600 font-medium">Within 24 hours</p>
