@@ -189,14 +189,17 @@ export default function Assessment() {
             </div>
           </div>
 
-          {/* Tally Form Embed */}
+          {/* Tally Form Embed with Enhanced Fallback */}
           <div className="bg-white rounded-2xl shadow-lg p-4 border border-slate-200">
             <div className="w-full overflow-hidden rounded-xl">
               {/* Loading placeholder */}
               <div id="tally-loading" className="flex items-center justify-center h-96 bg-slate-50 rounded-lg">
                 <div className="text-center">
                   <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-600 mx-auto mb-4"></div>
-                  <p className="text-slate-600">Loading assessment form...</p>
+                  <p className="text-slate-600 font-medium">Loading assessment form...</p>
+                  <p className="text-slate-500 text-sm mt-2">
+                    This may take a moment. If it doesn&apos;t load, try refreshing the page.
+                  </p>
                 </div>
               </div>
               
@@ -215,6 +218,42 @@ export default function Assessment() {
                 id="tally-assessment-form"
                 aria-label="Discovery questionnaire for lead flow assessment"
               />
+              
+              {/* Manual form fallback */}
+              <div id="manual-assessment-form" className="p-8 text-center" style={{ display: 'none' }}>
+                <div className="max-w-2xl mx-auto">
+                  <h3 className="text-xl font-semibold text-slate-900 mb-4">Assessment Form Unavailable</h3>
+                  <p className="text-slate-600 mb-6">
+                    Our assessment form couldn&apos;t load. Let&apos;s connect directly to discuss your needs.
+                  </p>
+                  
+                  <div className="bg-gradient-to-br from-teal-50 to-blue-50 p-6 rounded-xl border border-teal-200 mb-6">
+                    <h4 className="font-semibold text-slate-900 mb-3">Option 1: Email Assessment</h4>
+                    <p className="text-slate-600 text-sm mb-4">
+                      Send us an email with your current challenges and we&apos;ll send you a detailed questionnaire.
+                    </p>
+                    <a 
+                      href="mailto:sean@mainstrevops.com?subject=Lead Flow Assessment Request&body=Hi Sean,%0D%0A%0D%0AI'd like to request a lead flow assessment for my business.%0D%0A%0D%0AHere are some details about my current situation:%0D%0A- Business type: [e.g., HVAC, roofing, landscaping]%0D%0A- Current lead volume: [per month]%0D%0A- Main challenges: [briefly describe]%0D%0A%0D%0APlease send me the full assessment questionnaire.%0D%0A%0D%0AThank you!"
+                      className="inline-block bg-teal-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-teal-700 transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500"
+                    >
+                      Send Assessment Request
+                    </a>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-blue-50 to-slate-50 p-6 rounded-xl border border-blue-200">
+                    <h4 className="font-semibold text-slate-900 mb-3">Option 2: Free Consultation</h4>
+                    <p className="text-slate-600 text-sm mb-4">
+                      Skip the form and book a free 15-minute consultation to discuss your needs directly.
+                    </p>
+                    <a 
+                      href="/contact"
+                      className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                      Schedule Free Call
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -323,9 +362,7 @@ export default function Assessment() {
                   };
                   
                   iframe.onerror = function() {
-                    if (loading) {
-                      loading.innerHTML = '<div class="text-center"><p class="text-slate-600 mb-4">Unable to load form. Please try refreshing the page.</p><button onclick="window.location.reload()" class="bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700">Refresh Page</button></div>';
-                    }
+                    showManualAssessmentForm();
                   };
                   
                   return true;
@@ -339,9 +376,17 @@ export default function Assessment() {
             }
           }
           
+          function showManualAssessmentForm() {
+            const loading = document.getElementById('tally-loading');
+            const manualForm = document.getElementById('manual-assessment-form');
+            
+            if (loading) loading.style.display = 'none';
+            if (manualForm) manualForm.style.display = 'block';
+          }
+          
           // Multiple initialization attempts for reliability
           let attempts = 0;
-          const maxAttempts = 5;
+          const maxAttempts = 4;
           
           function tryInit() {
             attempts++;
@@ -349,12 +394,22 @@ export default function Assessment() {
               return;
             }
             
-            // Exponential backoff: 100ms, 200ms, 400ms, 800ms, 1600ms
+            // Exponential backoff: 100ms, 200ms, 400ms, 800ms
             setTimeout(tryInit, 100 * Math.pow(2, attempts - 1));
           }
           
           // Start initialization
           tryInit();
+          
+          // Show manual form after 12 seconds if nothing loaded
+          setTimeout(function() {
+            const iframe = document.getElementById('tally-assessment-form');
+            const loading = document.getElementById('tally-loading');
+            
+            if (iframe && iframe.style.display === 'none' && loading && loading.style.display !== 'none') {
+              showManualAssessmentForm();
+            }
+          }, 12000);
           
           // Also retry when the page becomes visible (helps with tab switching)
           document.addEventListener('visibilitychange', function() {
@@ -362,23 +417,6 @@ export default function Assessment() {
               setTimeout(tryInit, 100);
             }
           });
-          
-          // Final fallback after 10 seconds
-          setTimeout(function() {
-            const iframe = document.getElementById('tally-assessment-form');
-            const loading = document.getElementById('tally-loading');
-            
-            if (iframe && iframe.style.display === 'none') {
-              // Force show form even if Tally didn't load perfectly
-              if (loading) loading.style.display = 'none';
-              iframe.style.display = 'block';
-              iframe.style.height = '800px';
-              
-              if (!iframe.src) {
-                iframe.src = iframe.dataset.tallySrc;
-              }
-            }
-          }, 10000);
         `}
       </Script>
     </div>
