@@ -18,15 +18,15 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
 }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.6, delay }}
+      transition={{ duration: 0.4, delay, ease: "easeOut" }}
       whileHover={{ 
         y: -4,
         transition: { duration: 0.2 }
       }}
-      className={`group relative bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300 ${className}`}
+      className={`group relative bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300 motion-safe ${className}`}
     >
       {/* Subtle gradient background */}
       <motion.div 
@@ -51,23 +51,21 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
           </motion.svg>
         </div>
         
-        {/* Quote text */}
-        <blockquote className="text-slate-700 mb-6 text-lg leading-relaxed italic">
+        {/* Quote */}
+        <blockquote className="text-lg text-slate-700 mb-6 leading-relaxed italic">
           &ldquo;{quote}&rdquo;
         </blockquote>
         
-        {/* Author info */}
+        {/* Attribution */}
         <div className="flex items-center">
-          <motion.div 
-            className="w-12 h-12 bg-gradient-to-br from-teal-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4"
-            whileHover={{ scale: 1.1 }}
-            transition={{ duration: 0.2 }}
-          >
-            {name.split(' ').map(n => n[0]).join('')}
-          </motion.div>
+          <div className="w-12 h-12 bg-gradient-to-r from-teal-500 to-blue-500 rounded-full flex items-center justify-center mr-4">
+            <span className="text-white font-semibold text-lg">
+              {name.split(' ').map(n => n[0]).join('')}
+            </span>
+          </div>
           <div>
-            <p className="font-semibold text-slate-900">{name}</p>
-            <p className="text-teal-600 font-medium">{company}</p>
+            <div className="font-semibold text-slate-900">{name}</div>
+            <div className="text-sm text-slate-500">{company}</div>
           </div>
         </div>
       </div>

@@ -18,11 +18,11 @@ const CaseStudiesSection: React.FC = () => {
 
         {/* Current Results Preview */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="bg-white p-8 rounded-3xl shadow-lg border border-slate-200 max-w-4xl mx-auto mb-12 relative overflow-hidden"
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="bg-white p-8 rounded-3xl shadow-lg border border-slate-200 max-w-4xl mx-auto mb-12 relative overflow-hidden motion-safe"
         >
           {/* Background gradient */}
           <div className="absolute inset-0 bg-gradient-to-br from-slate-50 to-orange-50 opacity-50"></div>
@@ -88,11 +88,11 @@ const CaseStudiesSection: React.FC = () => {
           ].map((category, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 text-center hover:shadow-md transition-shadow duration-300"
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.4, delay: index * 0.08, ease: "easeOut" }}
+              className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 text-center hover:shadow-md transition-shadow duration-300 motion-safe"
             >
               <div className="text-4xl mb-4">{category.icon}</div>
               <h3 className="text-lg font-semibold text-slate-900 mb-3">{category.title}</h3>
@@ -110,25 +110,24 @@ const CaseStudiesSection: React.FC = () => {
 
         {/* CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center"
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.4, delay: 0.3, ease: "easeOut" }}
+          className="text-center motion-safe"
         >
-          <div className="bg-gradient-to-r from-orange-50 to-teal-50 p-8 rounded-2xl border border-slate-200">
+          <div className="bg-white p-8 rounded-2xl shadow-lg border border-slate-200">
             <h3 className="text-2xl font-bold text-slate-900 mb-4">
-              Want to be one of our first featured success stories?
+              Want to Be Our Next Success Story?
             </h3>
-            <p className="text-slate-600 mb-6 max-w-2xl mx-auto">
-              Early clients get priority attention, detailed documentation of their results, 
-              and the opportunity to be featured as we build our case study library.
+            <p className="text-slate-600 mb-6 max-w-2xl mx-auto leading-relaxed">
+              Join contractors who are already seeing measurable improvements in their lead management and conversion rates.
             </p>
             <Link
               href="/assessment"
-              className="bg-gradient-to-r from-teal-500 to-orange-500 text-white px-8 py-4 rounded-xl font-bold text-lg hover:from-teal-600 hover:to-orange-600 transition-all duration-300 inline-block shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+              className="bg-gradient-to-r from-teal-500 to-teal-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:from-teal-600 hover:to-teal-700 transition-all duration-300 inline-block shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             >
-              Book Your Assessment
+              Start Your Assessment
             </Link>
           </div>
         </motion.div>

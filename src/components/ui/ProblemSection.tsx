@@ -41,9 +41,9 @@ const ProblemSection: React.FC = () => {
                   key={index}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="flex items-start"
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.4, delay: index * 0.08 }}
+                  className="flex items-start motion-safe"
                 >
                   <div className="flex-shrink-0 w-6 h-6 bg-red-100 rounded-full flex items-center justify-center mr-4 mt-1">
                     <svg className="w-3 h-3 text-red-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
@@ -59,11 +59,11 @@ const ProblemSection: React.FC = () => {
           {/* Visual: Leaking Funnel */}
           <div className="relative">
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="bg-gradient-to-br from-slate-50 to-red-50 p-12 rounded-3xl border border-slate-200 shadow-lg relative overflow-hidden"
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="bg-gradient-to-br from-slate-50 to-red-50 p-12 rounded-3xl border border-slate-200 shadow-lg relative overflow-hidden motion-safe"
             >
               {/* Background pattern */}
               <div className="absolute inset-0 opacity-5">
@@ -78,11 +78,11 @@ const ProblemSection: React.FC = () => {
                 <div className="space-y-6">
                   {/* Top of funnel */}
                   <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="bg-green-100 px-8 py-4 rounded-lg border border-green-200"
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.4, delay: 0.1 }}
+                    className="bg-green-100 px-8 py-4 rounded-lg border border-green-200 motion-safe"
                   >
                     <div className="text-green-800 font-bold text-lg">27 Leads/Day</div>
                     <div className="text-green-600 text-sm">Marketing Working Hard</div>
@@ -93,11 +93,11 @@ const ProblemSection: React.FC = () => {
                     {[1, 2, 3].map((i) => (
                       <motion.div
                         key={i}
-                        initial={{ opacity: 0, x: -10 }}
+                        initial={{ opacity: 0, x: -5 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.4 + i * 0.1 }}
-                        className="text-red-500 text-center"
+                        viewport={{ once: true, margin: "-50px" }}
+                        transition={{ duration: 0.3, delay: 0.2 + i * 0.05 }}
+                        className="text-red-500 text-center motion-safe"
                       >
                         <svg className="w-8 h-8 mx-auto mb-1" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 0-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -109,11 +109,11 @@ const ProblemSection: React.FC = () => {
                   
                   {/* Bottom of funnel */}
                   <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.8 }}
-                    className="bg-red-100 px-6 py-4 rounded-lg border border-red-200"
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.4, delay: 0.4 }}
+                    className="bg-red-100 px-6 py-4 rounded-lg border border-red-200 motion-safe"
                   >
                     <div className="text-red-800 font-bold text-lg">3-5 Actual Jobs</div>
                     <div className="text-red-600 text-sm">80%+ Wasted</div>

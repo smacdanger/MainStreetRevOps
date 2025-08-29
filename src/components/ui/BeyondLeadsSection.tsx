@@ -42,7 +42,7 @@ const BeyondLeadsSection: React.FC = () => {
                 {
                   icon: (
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 0 002-2zm0 0V9a2 2 0 012-2h2a2 0 012 2v10m-6 0a2 2 0 002 2h2a2 0 002-2m0 0V5a2 2 0 012-2h2a2 0 012 2v14a2 2 0 01-2 2h-2a2 0 01-2-2z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 0 012 2v14a2 2 0 01-2 2h-2a2 0 01-2-2z" />
                     </svg>
                   ),
                   title: "Automated supplier price tracking to protect margins",
@@ -69,11 +69,11 @@ const BeyondLeadsSection: React.FC = () => {
               ].map((capability, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: -15 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="flex items-start group"
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.4, delay: index * 0.05, ease: "easeOut" }}
+                  className="flex items-start group motion-safe"
                 >
                   <div className="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mr-4 group-hover:bg-purple-200 transition-colors duration-300">
                     <div className="text-purple-700 group-hover:text-purple-800 transition-colors duration-300">
@@ -96,11 +96,11 @@ const BeyondLeadsSection: React.FC = () => {
           {/* Visual: System Integration */}
           <div className="relative">
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="bg-gradient-to-br from-slate-50 to-purple-50 p-8 rounded-3xl border border-slate-200 shadow-lg relative overflow-hidden"
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="bg-gradient-to-br from-slate-50 to-purple-50 p-8 rounded-3xl border border-slate-200 shadow-lg relative overflow-hidden motion-safe"
             >
               {/* Background pattern */}
               <div className="absolute inset-0 opacity-5">
@@ -115,11 +115,11 @@ const BeyondLeadsSection: React.FC = () => {
                 <div className="space-y-6">
                   {/* Top: Lead System */}
                   <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="bg-teal-100 px-6 py-4 rounded-lg border border-teal-200"
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.4, delay: 0.1 }}
+                    className="bg-teal-100 px-6 py-4 rounded-lg border border-teal-200 motion-safe"
                   >
                     <div className="text-teal-800 font-bold">Lead Management</div>
                     <div className="text-teal-600 text-sm">Optimized & Automated</div>
@@ -128,11 +128,11 @@ const BeyondLeadsSection: React.FC = () => {
                   {/* Connection lines */}
                   <div className="flex justify-center">
                     <motion.div
-                      initial={{ opacity: 0, scale: 0 }}
+                      initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: 0.4 }}
-                      className="w-8 h-8 bg-purple-200 rounded-full flex items-center justify-center"
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.3, delay: 0.2 }}
+                      className="w-8 h-8 bg-purple-200 rounded-full flex items-center justify-center motion-safe"
                     >
                       <svg className="w-4 h-4 text-purple-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.293l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clipRule="evenodd" />
@@ -143,21 +143,21 @@ const BeyondLeadsSection: React.FC = () => {
                   {/* Connected Systems */}
                   <div className="grid grid-cols-2 gap-4">
                     <motion.div
-                      initial={{ opacity: 0, x: -20 }}
+                      initial={{ opacity: 0, x: -10 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: 0.6 }}
-                      className="bg-blue-100 px-4 py-3 rounded-lg border border-blue-200"
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.4, delay: 0.3 }}
+                      className="bg-blue-100 px-4 py-3 rounded-lg border border-blue-200 motion-safe"
                     >
                       <div className="text-blue-800 font-medium text-sm">Accounting</div>
                       <div className="text-blue-600 text-xs">QuickBooks</div>
                     </motion.div>
                     <motion.div
-                      initial={{ opacity: 0, x: 20 }}
+                      initial={{ opacity: 0, x: 10 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: 0.6 }}
-                      className="bg-green-100 px-4 py-3 rounded-lg border border-green-200"
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.4, delay: 0.3 }}
+                      className="bg-green-100 px-4 py-3 rounded-lg border border-green-200 motion-safe"
                     >
                       <div className="text-green-800 font-medium text-sm">Suppliers</div>
                       <div className="text-green-600 text-xs">Price Tracking</div>
@@ -177,11 +177,11 @@ const BeyondLeadsSection: React.FC = () => {
 
         {/* Value Proposition */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="text-center"
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="text-center motion-safe"
         >
           <div className="bg-gradient-to-r from-purple-50 to-blue-50 p-8 rounded-2xl border border-slate-200">
             <h3 className="text-2xl font-bold text-slate-900 mb-4">
