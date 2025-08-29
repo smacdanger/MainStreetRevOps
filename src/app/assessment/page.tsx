@@ -190,10 +190,10 @@ export default function Assessment() {
           </div>
 
           {/* Tally Form Embed with Enhanced Fallback */}
-          <div className="bg-white rounded-2xl shadow-lg p-4 border border-slate-200">
-            <div className="w-full overflow-hidden rounded-xl">
+          <div className="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
+            <div className="w-full">
               {/* Loading placeholder */}
-              <div id="tally-loading" className="flex items-center justify-center h-96 bg-slate-50 rounded-lg">
+              <div id="tally-loading" className="flex items-center justify-center h-96 bg-slate-50">
                 <div className="text-center">
                   <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-600 mx-auto mb-4"></div>
                   <p className="text-slate-600 font-medium">Loading assessment form...</p>
@@ -203,17 +203,17 @@ export default function Assessment() {
                 </div>
               </div>
               
-              {/* Tally iframe */}
+              {/* Tally iframe - using exact embed approach */}
               <iframe
-                data-tally-src="https://tally.so/embed/waR2VE?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-                loading="eager"
+                data-tally-src="https://tally.so/embed/waR2VE"
+                loading="lazy"
                 width="100%"
-                height="0"
+                height="800"
                 frameBorder="0"
                 marginHeight={0}
                 marginWidth={0}
-                title="Lead Flow Assessment Discovery Questionnaire - MainStreet RevOps"
-                className="rounded-lg w-full min-h-96"
+                title="Lead Flow Assessment Discovery Questionnaire"
+                className="w-full"
                 style={{ display: 'none' }}
                 id="tally-assessment-form"
                 aria-label="Discovery questionnaire for lead flow assessment"
@@ -315,108 +315,67 @@ export default function Assessment() {
         </div>
       </section>
 
-      {/* Enhanced Tally Script Loading with Reliability Improvements */}
-      <Script 
-        src="https://tally.so/widgets/embed.js" 
-        strategy="beforeInteractive"
-        id="tally-script"
-      />
-      
+      {/* Tally Embed Script - using exact approach provided */}
       <Script id="tally-assessment-init" strategy="afterInteractive">
         {`
-          function initTallyForm() {
-            try {
-              if (typeof Tally !== 'undefined') {
+          (function() {
+            var d = document;
+            var w = "https://tally.so/widgets/embed.js";
+            var v = function() {
+              if (typeof Tally !== "undefined") {
                 Tally.loadEmbeds();
-                return true;
-              }
-              
-              // Fallback: manually load iframe if Tally script fails
-              const iframe = document.getElementById('tally-assessment-form');
-              const loading = document.getElementById('tally-loading');
-              
-              if (iframe && !iframe.src) {
-                const src = iframe.dataset.tallySrc;
-                if (src) {
-                  iframe.src = src;
-                  iframe.onload = function() {
+                // Hide loading and show form
+                var loading = document.getElementById('tally-loading');
+                var iframe = document.getElementById('tally-assessment-form');
+                if (loading) loading.style.display = 'none';
+                if (iframe) iframe.style.display = 'block';
+              } else {
+                // Fallback: manually set iframe src
+                d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function(e) {
+                  e.src = e.dataset.tallySrc;
+                  e.onload = function() {
+                    var loading = document.getElementById('tally-loading');
                     if (loading) loading.style.display = 'none';
-                    iframe.style.display = 'block';
-                    iframe.style.height = 'auto';
-                    
-                    // Dynamic height adjustment
-                    const observer = new ResizeObserver(function(entries) {
-                      for (let entry of entries) {
-                        iframe.style.height = entry.contentRect.height + 'px';
-                      }
-                    });
-                    
-                    try {
-                      if (iframe.contentDocument) {
-                        observer.observe(iframe.contentDocument.body);
-                      }
-                    } catch (e) {
-                      // Cross-origin, fallback to minimum height
-                      iframe.style.height = '800px';
-                    }
+                    e.style.display = 'block';
                   };
-                  
-                  iframe.onerror = function() {
+                  e.onerror = function() {
                     showManualAssessmentForm();
                   };
-                  
-                  return true;
-                }
+                });
               }
+            };
+            
+            function showManualAssessmentForm() {
+              var loading = document.getElementById('tally-loading');
+              var manualForm = document.getElementById('manual-assessment-form');
+              var iframe = document.getElementById('tally-assessment-form');
               
-              return false;
-            } catch (error) {
-              console.log('Tally initialization error:', error);
-              return false;
-            }
-          }
-          
-          function showManualAssessmentForm() {
-            const loading = document.getElementById('tally-loading');
-            const manualForm = document.getElementById('manual-assessment-form');
-            
-            if (loading) loading.style.display = 'none';
-            if (manualForm) manualForm.style.display = 'block';
-          }
-          
-          // Multiple initialization attempts for reliability
-          let attempts = 0;
-          const maxAttempts = 4;
-          
-          function tryInit() {
-            attempts++;
-            if (initTallyForm() || attempts >= maxAttempts) {
-              return;
+              if (loading) loading.style.display = 'none';
+              if (iframe) iframe.style.display = 'none';
+              if (manualForm) manualForm.style.display = 'block';
             }
             
-            // Exponential backoff: 100ms, 200ms, 400ms, 800ms
-            setTimeout(tryInit, 100 * Math.pow(2, attempts - 1));
-          }
-          
-          // Start initialization
-          tryInit();
-          
-          // Show manual form after 12 seconds if nothing loaded
-          setTimeout(function() {
-            const iframe = document.getElementById('tally-assessment-form');
-            const loading = document.getElementById('tally-loading');
+            if (typeof Tally !== "undefined") {
+              v();
+            } else if (d.querySelector('script[src="' + w + '"]') == null) {
+              var s = d.createElement("script");
+              s.src = w;
+              s.onload = v;
+              s.onerror = function() {
+                console.log('Tally script failed to load, showing manual form');
+                showManualAssessmentForm();
+              };
+              d.body.appendChild(s);
+            }
             
-            if (iframe && iframe.style.display === 'none' && loading && loading.style.display !== 'none') {
-              showManualAssessmentForm();
-            }
-          }, 12000);
-          
-          // Also retry when the page becomes visible (helps with tab switching)
-          document.addEventListener('visibilitychange', function() {
-            if (!document.hidden && attempts < maxAttempts) {
-              setTimeout(tryInit, 100);
-            }
-          });
+            // Fallback timeout - show manual form if nothing loads after 10 seconds
+            setTimeout(function() {
+              var loading = document.getElementById('tally-loading');
+              if (loading && loading.style.display !== 'none') {
+                showManualAssessmentForm();
+              }
+            }, 10000);
+          })();
         `}
       </Script>
     </div>

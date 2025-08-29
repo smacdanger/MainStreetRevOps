@@ -56,61 +56,62 @@ export default function Contact() {
           </div>
 
           {/* Tally Form Embed with Enhanced Fallback */}
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden mb-12 border border-slate-200">
-            {/* Loading state */}
-            <div id="contact-form-loading" className="flex items-center justify-center h-96 bg-slate-50">
-              <div className="text-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-600 mx-auto mb-4"></div>
-                <p className="text-slate-600">Loading contact form...</p>
-                <p className="text-slate-500 text-sm mt-2">
-                  If this takes longer than expected, please use the email link below
-                </p>
-              </div>
-            </div>
-            
-            {/* Tally iframe */}
-            <iframe
-              data-tally-src="https://tally.so/embed/n98GLY?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-              loading="eager"
-              width="100%"
-              height="0"
-              frameBorder="0"
-              marginHeight={0}
-              marginWidth={0}
-              title="Contact form for MainStreet RevOps - send us a message"
-              className="w-full"
-              style={{ display: 'none' }}
-              id="tally-contact-form"
-              aria-label="Contact form to send a message to MainStreet RevOps"
-            >
-            </iframe>
-            
-            {/* Manual form fallback */}
-            <div id="manual-contact-form" className="p-8" style={{ display: 'none' }}>
-              <h3 className="text-xl font-semibold text-slate-900 mb-6">Contact Form</h3>
-              <p className="text-slate-600 mb-6">
-                Our embedded form couldn&apos;t load. Please use one of the contact methods below:
-              </p>
-              <div className="space-y-4">
-                <div className="bg-teal-50 p-4 rounded-lg border border-teal-200">
-                  <p className="font-medium text-teal-900">Email us directly:</p>
-                  <a 
-                    href="mailto:sean@mainstrevops.com?subject=Lead Flow Inquiry&body=Hi Sean,%0D%0A%0D%0AI'm interested in learning more about MainStreet RevOps and how you can help improve our lead flow.%0D%0A%0D%0APlease reach out to discuss:%0D%0A- [Your specific needs]%0D%0A%0D%0AThank you!"
-                    className="text-teal-700 hover:text-teal-900 font-semibold"
-                  >
-                    sean@mainstrevops.com
-                  </a>
+          <div className="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
+            <div className="w-full">
+              {/* Loading state */}
+              <div id="contact-form-loading" className="flex items-center justify-center h-96 bg-slate-50">
+                <div className="text-center">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-600 mx-auto mb-4"></div>
+                  <p className="text-slate-600">Loading contact form...</p>
+                  <p className="text-slate-500 text-sm mt-2">
+                    If this takes longer than expected, please use the email link below
+                  </p>
                 </div>
-                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                  <p className="font-medium text-blue-900">Schedule a call:</p>
-                  <a 
-                    href="https://www.linkedin.com/in/seanmacd/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-700 hover:text-blue-900 font-semibold"
-                  >
-                    Connect on LinkedIn to schedule
-                  </a>
+              </div>
+              
+              {/* Tally iframe - using exact embed approach */}
+              <iframe
+                data-tally-src="https://tally.so/embed/n98GLY"
+                loading="lazy"
+                width="100%"
+                height="780"
+                frameBorder="0"
+                marginHeight={0}
+                marginWidth={0}
+                title="Contact Us"
+                className="w-full"
+                style={{ display: 'none' }}
+                id="tally-contact-form"
+                aria-label="Contact form to send a message to MainStreet RevOps"
+              />
+              
+              {/* Manual form fallback */}
+              <div id="manual-contact-form" className="p-8" style={{ display: 'none' }}>
+                <h3 className="text-xl font-semibold text-slate-900 mb-6">Contact Form</h3>
+                <p className="text-slate-600 mb-6">
+                  Our embedded form couldn&apos;t load. Please use one of the contact methods below:
+                </p>
+                <div className="space-y-4">
+                  <div className="bg-teal-50 p-4 rounded-lg border border-teal-200">
+                    <p className="font-medium text-teal-900">Email us directly:</p>
+                    <a 
+                      href="mailto:sean@mainstrevops.com?subject=Lead Flow Inquiry&body=Hi Sean,%0D%0A%0D%0AI'm interested in learning more about MainStreet RevOps and how you can help improve our lead flow.%0D%0A%0D%0APlease reach out to discuss:%0D%0A- [Your specific needs]%0D%0A%0D%0AThank you!"
+                      className="text-teal-700 hover:text-teal-900 font-semibold"
+                    >
+                      sean@mainstrevops.com
+                    </a>
+                  </div>
+                  <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                    <p className="font-medium text-blue-900">Schedule a call:</p>
+                    <a 
+                      href="https://www.linkedin.com/in/seanmacd/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-700 hover:text-blue-900 font-semibold"
+                    >
+                      Connect on LinkedIn to schedule
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -164,107 +165,67 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Tally Embed Script - Load early with retry mechanism */}
-      <Script 
-        src="https://tally.so/widgets/embed.js" 
-        strategy="beforeInteractive"
-        id="tally-script"
-      />
-      
+      {/* Tally Embed Script - using exact approach provided */}
       <Script id="tally-contact-init" strategy="afterInteractive">
         {`
-          function initTallyForm() {
-            try {
-              if (typeof Tally !== 'undefined') {
+          (function() {
+            var d = document;
+            var w = "https://tally.so/widgets/embed.js";
+            var v = function() {
+              if (typeof Tally !== "undefined") {
                 Tally.loadEmbeds();
-                return true;
-              }
-              
-              // Fallback: manually load iframe
-              const iframe = document.getElementById('tally-contact-form');
-              const loading = document.getElementById('contact-form-loading');
-              
-              if (iframe && !iframe.src) {
-                const src = iframe.dataset.tallySrc;
-                if (src) {
-                  iframe.src = src;
-                  iframe.style.height = '755px';
-                  
-                  iframe.onload = function() {
-                    // Check if content is actually accessible
-                    setTimeout(() => {
-                      try {
-                        const doc = iframe.contentDocument || iframe.contentWindow.document;
-                        if (!doc || doc.body.innerText.includes('blocked') || doc.body.innerText.length < 50) {
-                          showManualForm();
-                        } else {
-                          if (loading) loading.style.display = 'none';
-                          iframe.style.display = 'block';
-                        }
-                      } catch (e) {
-                        // Cross-origin error means it's likely blocked
-                        showManualForm();
-                      }
-                    }, 1000);
+                // Hide loading and show form
+                var loading = document.getElementById('contact-form-loading');
+                var iframe = document.getElementById('tally-contact-form');
+                if (loading) loading.style.display = 'none';
+                if (iframe) iframe.style.display = 'block';
+              } else {
+                // Fallback: manually set iframe src
+                d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function(e) {
+                  e.src = e.dataset.tallySrc;
+                  e.onload = function() {
+                    var loading = document.getElementById('contact-form-loading');
+                    if (loading) loading.style.display = 'none';
+                    e.style.display = 'block';
                   };
-                  
-                  iframe.onerror = function() {
+                  e.onerror = function() {
                     showManualForm();
                   };
-                  
-                  return true;
-                }
+                });
               }
+            };
+            
+            function showManualForm() {
+              var loading = document.getElementById('contact-form-loading');
+              var manualForm = document.getElementById('manual-contact-form');
+              var iframe = document.getElementById('tally-contact-form');
               
-              return false;
-            } catch (error) {
-              console.log('Tally initialization error:', error);
-              return false;
-            }
-          }
-          
-          function showManualForm() {
-            const loading = document.getElementById('contact-form-loading');
-            const manualForm = document.getElementById('manual-contact-form');
-            const iframe = document.getElementById('tally-contact-form');
-            
-            if (loading) loading.style.display = 'none';
-            if (iframe) iframe.style.display = 'none';
-            if (manualForm) manualForm.style.display = 'block';
-          }
-          
-          // Multiple initialization attempts
-          let attempts = 0;
-          const maxAttempts = 3;
-          
-          function tryInit() {
-            attempts++;
-            if (initTallyForm() || attempts >= maxAttempts) {
-              return;
+              if (loading) loading.style.display = 'none';
+              if (iframe) iframe.style.display = 'none';
+              if (manualForm) manualForm.style.display = 'block';
             }
             
-            setTimeout(tryInit, 1000 * attempts);
-          }
-          
-          // Start initialization
-          tryInit();
-          
-          // Always show manual form after 6 seconds if form isn't working
-          setTimeout(function() {
-            const iframe = document.getElementById('tally-contact-form');
-            const loading = document.getElementById('contact-form-loading');
+            if (typeof Tally !== "undefined") {
+              v();
+            } else if (d.querySelector('script[src="' + w + '"]') == null) {
+              var s = d.createElement("script");
+              s.src = w;
+              s.onload = v;
+              s.onerror = function() {
+                console.log('Tally script failed to load, showing manual form');
+                showManualForm();
+              };
+              d.body.appendChild(s);
+            }
             
-            if (loading && loading.style.display !== 'none') {
-              showManualForm();
-            }
-          }, 6000);
-          
-          // Also retry when the page becomes visible
-          document.addEventListener('visibilitychange', function() {
-            if (!document.hidden && attempts < maxAttempts) {
-              setTimeout(tryInit, 100);
-            }
-          });
+            // Fallback timeout - show manual form if nothing loads after 8 seconds
+            setTimeout(function() {
+              var loading = document.getElementById('contact-form-loading');
+              if (loading && loading.style.display !== 'none') {
+                showManualForm();
+              }
+            }, 8000);
+          })();
         `}
       </Script>
     </div>
