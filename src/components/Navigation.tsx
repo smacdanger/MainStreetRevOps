@@ -6,6 +6,7 @@ import Link from 'next/link';
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>('');
 
   const navItems = [
     { name: 'How It Works', href: '#solution' },
@@ -14,10 +15,22 @@ const Navigation = () => {
     { name: 'Contact', href: '#contact' },
   ];
 
-  // Handle scroll effect
+  // Handle scroll effect and active section detection
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
+
+      // Find active section
+      const sections = ['solution', 'case-studies', 'beyond-leads', 'contact'];
+      const scrollPosition = window.scrollY + 100; // Offset for better UX
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const element = document.getElementById(sections[i]);
+        if (element && element.offsetTop <= scrollPosition) {
+          setActiveSection(`#${sections[i]}`);
+          break;
+        }
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -74,7 +87,11 @@ const Navigation = () => {
                 key={item.name}
                 href={item.href}
                 onClick={(e) => handleAnchorClick(e, item.href)}
-                className="text-slate-700 hover:text-teal-600 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg hover:bg-teal-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 cursor-pointer"
+                className={`px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 cursor-pointer ${
+                  activeSection === item.href
+                    ? 'text-teal-600 bg-teal-50 border border-teal-200'
+                    : 'text-slate-700 hover:text-teal-600 hover:bg-teal-50'
+                }`}
                 aria-label={item.href.startsWith('#') ? `Navigate to ${item.name} section` : `Go to ${item.name} page`}
               >
                 {item.name}
@@ -133,7 +150,11 @@ const Navigation = () => {
                   key={item.name}
                   href={item.href}
                   onClick={(e) => handleAnchorClick(e, item.href)}
-                  className="text-slate-700 hover:text-teal-600 block px-3 py-2 text-base font-medium transition-colors duration-200 rounded-lg hover:bg-teal-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 cursor-pointer"
+                  className={`block px-3 py-2 text-base font-medium transition-colors duration-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 cursor-pointer ${
+                    activeSection === item.href
+                      ? 'text-teal-600 bg-teal-50 border border-teal-200'
+                      : 'text-slate-700 hover:text-teal-600 hover:bg-teal-50'
+                  }`}
                   role="menuitem"
                   aria-label={item.href.startsWith('#') ? `Navigate to ${item.name} section` : `Go to ${item.name} page`}
                 >
