@@ -6,64 +6,74 @@ const ProblemSection: React.FC = () => {
     <section className="py-16 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
-            You&apos;re Not Alone — This Problem is Everywhere
+          <div className="mb-4">
+            <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-red-100 text-red-800">
+              The Problem
+            </span>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+            Your Marketing Works. Your Follow-Up Doesn't.
           </h2>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Most contractors lose 60-80% of their leads to poor follow-up. Here&apos;s what&apos;s really happening:
+            You're generating 20+ leads daily, but 80% slip away. Every missed call is lost revenue.
           </p>
         </div>
+        
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Problem Content */}
+          {/* Problem Content - Now in card format */}
           <div>
-            <div className="mb-6">
-              <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-red-100 text-red-800">
-                The Problem
-              </span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-              Getting 27+ Leads a Day, But Most Are Wasted
-            </h2>
-            <p className="text-xl text-slate-600 mb-8 leading-relaxed">
-              You&apos;re doing the hard work to generate leads, but without the right systems, 
-              most of them slip through the cracks. Sound familiar?
-            </p>
-            
-            <div className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
               {[
-                "Hours between lead contact attempts",
-                "No follow-up system when someone doesn\'t answer",
-                "Lost leads because the phone rings while you\'re on a job",
-                "Manual data entry eating up valuable time",
-                "No way to track which marketing actually works"
+                { icon: "⏰", title: "Hours between responses", pain: "Lost to faster competitors" },
+                { icon: "📞", title: "Missed calls during jobs", pain: "No backup system" },
+                { icon: "📝", title: "Manual data entry", pain: "Wastes valuable time" },
+                { icon: "🤷", title: "No follow-up system", pain: "Leads go cold" },
+                { icon: "📊", title: "Can't track what works", pain: "Wasted ad spend" },
+                { icon: "🔄", title: "Inconsistent processes", pain: "Team confusion" }
               ].map((problem, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.4, delay: index * 0.08 }}
-                  className="flex items-start motion-safe"
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  className="bg-red-50 p-4 rounded-xl border border-red-200 hover:border-red-300 transition-colors motion-safe"
                 >
-                  <div className="flex-shrink-0 w-6 h-6 bg-red-100 rounded-full flex items-center justify-center mr-4 mt-1">
-                    <svg className="w-3 h-3 text-red-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                      <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-                    </svg>
+                  <div className="flex items-start">
+                    <span className="text-2xl mr-3 flex-shrink-0">{problem.icon}</span>
+                    <div>
+                      <h4 className="font-semibold text-slate-900 mb-1">{problem.title}</h4>
+                      <p className="text-sm text-red-700">{problem.pain}</p>
+                    </div>
                   </div>
-                  <p className="text-slate-700 font-medium">{problem}</p>
                 </motion.div>
               ))}
             </div>
+            
+            <div className="bg-slate-100 p-6 rounded-xl">
+              <h3 className="text-lg font-bold text-slate-900 mb-2">The Real Cost:</h3>
+              <p className="text-slate-700 mb-2">
+                If you're getting 25 leads/month at $5,000 average job value...
+              </p>
+              <div className="bg-red-100 p-4 rounded-lg border border-red-200">
+                <p className="text-red-800 font-bold text-lg">
+                  80% loss = $100,000 monthly revenue walking away
+                </p>
+                <p className="text-red-600 text-sm mt-1">
+                  That's $1.2M annually because you can't answer the phone while on jobs
+                </p>
+              </div>
+            </div>
           </div>
 
-          {/* Visual: Leaking Funnel */}
+          {/* Visual: Leaking Funnel - Made more compact */}
           <div className="relative">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="bg-gradient-to-br from-slate-50 to-red-50 p-12 rounded-3xl border border-slate-200 shadow-lg relative overflow-hidden motion-safe"
+              className="bg-gradient-to-br from-slate-50 to-red-50 p-8 rounded-3xl border border-slate-200 shadow-lg relative overflow-hidden motion-safe"
             >
               {/* Background pattern */}
               <div className="absolute inset-0 opacity-5">
@@ -72,39 +82,28 @@ const ProblemSection: React.FC = () => {
               </div>
               
               <div className="relative text-center">
-                <h3 className="text-2xl font-bold text-slate-900 mb-8">Your Lead Funnel Today</h3>
+                <h3 className="text-xl font-bold text-slate-900 mb-6">Your Lead Funnel Reality</h3>
                 
-                {/* Funnel Visual */}
-                <div className="space-y-6">
+                {/* Simplified Funnel Visual */}
+                <div className="space-y-4">
                   {/* Top of funnel */}
                   <motion.div
                     initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-50px" }}
                     transition={{ duration: 0.4, delay: 0.1 }}
-                    className="bg-green-100 px-8 py-4 rounded-lg border border-green-200 motion-safe"
+                    className="bg-green-100 px-6 py-3 rounded-lg border border-green-200 motion-safe"
                   >
-                    <div className="text-green-800 font-bold text-lg">27 Leads/Day</div>
-                    <div className="text-green-600 text-sm">Marketing Working Hard</div>
+                    <div className="text-green-800 font-bold">25 Leads/Month</div>
+                    <div className="text-green-600 text-sm">Marketing Working</div>
                   </motion.div>
                   
-                  {/* Leaking arrows */}
-                  <div className="flex justify-between items-center">
-                    {[1, 2, 3].map((i) => (
-                      <motion.div
-                        key={i}
-                        initial={{ opacity: 0, x: -5 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "-50px" }}
-                        transition={{ duration: 0.3, delay: 0.2 + i * 0.05 }}
-                        className="text-red-500 text-center motion-safe"
-                      >
-                        <svg className="w-8 h-8 mx-auto mb-1" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 0-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                        </svg>
-                        <div className="text-xs font-medium">Lost</div>
-                      </motion.div>
-                    ))}
+                  {/* Arrow down with loss indicators */}
+                  <div className="flex justify-center items-center space-x-2">
+                    <span className="text-red-500 text-sm">80% Lost</span>
+                    <svg className="w-6 h-6 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clipRule="evenodd" />
+                    </svg>
                   </div>
                   
                   {/* Bottom of funnel */}
@@ -112,20 +111,20 @@ const ProblemSection: React.FC = () => {
                     initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.4, delay: 0.4 }}
-                    className="bg-red-100 px-6 py-4 rounded-lg border border-red-200 motion-safe"
+                    transition={{ duration: 0.4, delay: 0.3 }}
+                    className="bg-red-100 px-4 py-3 rounded-lg border border-red-200 motion-safe"
                   >
-                    <div className="text-red-800 font-bold text-lg">3-5 Actual Jobs</div>
-                    <div className="text-red-600 text-sm">80%+ Wasted</div>
+                    <div className="text-red-800 font-bold">5 Actual Jobs</div>
+                    <div className="text-red-600 text-sm">Massive Waste</div>
                   </motion.div>
                 </div>
                 
-                <div className="mt-8 p-4 bg-slate-100 rounded-lg">
+                <div className="mt-6 p-4 bg-slate-100 rounded-lg">
                   <p className="text-slate-700 font-medium text-sm">
-                    Your marketing is working. Your follow-up isn&apos;t.
+                    An AI assistant could catch those 20 lost leads automatically
                   </p>
-                  <p className="text-slate-600 text-sm mt-2">
-                    Leads lost because the phone rings while you&apos;re on a job.
+                  <p className="text-slate-600 text-sm mt-1">
+                    Instant responses, follow-up sequences, qualification — 24/7
                   </p>
                 </div>
               </div>

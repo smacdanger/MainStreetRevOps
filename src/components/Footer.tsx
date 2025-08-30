@@ -30,33 +30,23 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-4 text-white">Quick Links</h4>
             <nav className="space-y-3" aria-label="Footer navigation">
               {[
-                { name: 'How It Works', href: '#solution' },
-                { name: 'Why Us', href: '#why-us' },
-                { name: 'Case Studies', href: '#case-studies' },
-                { name: 'Beyond Leads', href: '#beyond-leads' },
+                { name: 'How It Works', href: '/#solution' },
+                { name: 'Why Us', href: '/#why-us' },
+                { name: 'Case Studies', href: '/#testimonials' },
+                { name: 'Beyond Leads', href: '/#beyond-leads' },
                 { name: 'Assessment', href: '/assessment' },
                 { name: 'Contact', href: '/contact' },
                 { name: 'TCO Calculator', href: '/tco-calculator' },
                 { name: 'Privacy Policy', href: '/privacy' }
               ].map((link) => (
                 <div key={link.name}>
-                  {link.href.startsWith('#') ? (
-                    <a
-                      href={link.href}
-                      className="block text-slate-300 hover:text-teal-400 transition-colors duration-200 font-medium hover:translate-x-1 transform cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-400 rounded"
-                      aria-label={`Navigate to ${link.name} section`}
-                    >
-                      {link.name}
-                    </a>
-                  ) : (
-                    <Link 
-                      href={link.href} 
-                      className="block text-slate-300 hover:text-teal-400 transition-colors duration-200 font-medium hover:translate-x-1 transform focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-400 rounded"
-                      aria-label={`Go to ${link.name} page`}
-                    >
-                      {link.name}
-                    </Link>
-                  )}
+                  <Link 
+                    href={link.href} 
+                    className="block text-slate-300 hover:text-teal-400 transition-colors duration-200 font-medium hover:translate-x-1 transform focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-400 rounded"
+                    aria-label={`Go to ${link.name}${link.href.startsWith('/#') ? ' section on home page' : ' page'}`}
+                  >
+                    {link.name}
+                  </Link>
                 </div>
               ))}
             </nav>

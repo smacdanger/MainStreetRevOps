@@ -8,15 +8,20 @@ const SolutionSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
-            How We Fix Your Lead Flow
+          <div className="mb-4">
+            <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-teal-100 text-teal-800">
+              Strategic Partnership
+            </span>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+            We Design the System That Works for YOU
           </h2>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Stop losing leads to poor follow-up. We design, build, and hand over systems that work for contractors.
+            Strategic automation using your preferred tools and platforms. We implement, you own. No vendor lock-in, no ongoing fees required.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           {/* Setup & Implementation */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
@@ -26,7 +31,7 @@ const SolutionSection: React.FC = () => {
             className="bg-white p-8 rounded-3xl shadow-lg border border-slate-200 relative overflow-hidden group hover:shadow-xl transition-all duration-300 motion-safe"
           >
             {/* Background gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-teal-50 to-blue-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-teal-50 to-green-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             
             <div className="relative z-10">
               <div className="bg-teal-100 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-teal-200 transition-colors duration-300">
@@ -36,29 +41,26 @@ const SolutionSection: React.FC = () => {
               </div>
               
               <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                Setup & Implementation
+                Strategic Implementation & Setup
               </h3>
               <p className="text-slate-600 mb-6 leading-relaxed">
-                We build everything from scratch, test it thoroughly, then hand over the keys. 
-                You own the system forever — no monthly subscriptions for the core setup.
+                We analyze your current process, design the optimal system using tools you prefer, then implement and transfer ownership to you.
               </p>
               
-              <div className="space-y-4 mb-8">
+              <div className="grid grid-cols-1 gap-3 mb-8">
                 {[
-                  "Complete lead flow assessment and analysis",
-                  "CRM setup and automation workflows", 
-                  "Instant lead response systems",
-                  "No more missed calls — AI + routing ensures every call gets answered",
-                  "Team training and documentation",
-                  "Full system handover — it's yours"
+                  "🔍 Complete lead flow audit and gap analysis",
+                  "🛠️ Tool selection based on YOUR business needs", 
+                  "📞 Custom integration — no more missed opportunities",
+                  "⚙️ Automated follow-up sequences tailored to your process",
+                  "📚 Team training and complete documentation",
+                  "🎯 Full system ownership — it's yours forever"
                 ].map((feature, index) => (
                   <div key={index} className="flex items-start">
-                    <div className="flex-shrink-0 w-5 h-5 bg-teal-100 rounded-full flex items-center justify-center mr-3 mt-1">
-                      <svg className="w-3 h-3 text-teal-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
+                    <div className="text-teal-600 mr-3 mt-1 flex-shrink-0 text-sm">
+                      {feature.split(' ')[0]}
                     </div>
-                    <p className="text-slate-600 text-sm leading-relaxed">{feature}</p>
+                    <p className="text-slate-600 text-sm leading-relaxed">{feature.substring(feature.indexOf(' ') + 1)}</p>
                   </div>
                 ))}
               </div>
@@ -66,9 +68,9 @@ const SolutionSection: React.FC = () => {
               <Link
                 href="/assessment"
                 className="w-full bg-teal-600 text-white px-6 py-4 rounded-xl font-semibold text-center transition-all duration-200 block hover:bg-teal-700 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
-                aria-label="Get your lead flow assessment"
+                aria-label="Get your strategic assessment"
               >
-                Get Your Lead Flow Assessment
+                Get Strategic Assessment
               </Link>
             </div>
           </motion.div>
@@ -92,28 +94,26 @@ const SolutionSection: React.FC = () => {
               </div>
               
               <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                Ongoing Optimization
+                Optional Strategic Partnership
               </h3>
               <p className="text-slate-600 mb-6 leading-relaxed">
-                Optional monthly service to keep your systems current, add new features, 
-                and optimize performance as your business grows.
+                Ongoing strategic guidance to expand your automation capabilities as your business grows. Completely optional after initial setup.
               </p>
               
-              <div className="space-y-4 mb-8">
+              <div className="grid grid-cols-1 gap-3 mb-8">
                 {[
-                  "Monthly system monitoring and optimization",
-                  "New lead source integrations as you expand",
-                  "Advanced reporting and analytics dashboard",
-                  "Additional automation workflows",
-                  "Priority support and strategic consulting"
+                  "📊 Monthly performance optimization consulting",
+                  "🔗 New tool integrations as you expand",
+                  "📈 Advanced analytics and reporting strategy", 
+                  "⚡ Additional automation workflow design",
+                  "🎯 Strategic guidance on scaling operations",
+                  "📞 Priority consulting and technical support"
                 ].map((feature, index) => (
                   <div key={index} className="flex items-start">
-                    <div className="flex-shrink-0 w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center mr-3 mt-1">
-                      <svg className="w-3 h-3 text-blue-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
+                    <div className="text-blue-600 mr-3 mt-1 flex-shrink-0 text-sm">
+                      {feature.split(' ')[0]}
                     </div>
-                    <p className="text-slate-600 text-sm leading-relaxed">{feature}</p>
+                    <p className="text-slate-600 text-sm leading-relaxed">{feature.substring(feature.indexOf(' ') + 1)}</p>
                   </div>
                 ))}
               </div>
@@ -121,36 +121,43 @@ const SolutionSection: React.FC = () => {
               <Link
                 href="/contact"
                 className="w-full bg-slate-900 text-white px-6 py-4 rounded-xl font-semibold text-center transition-all duration-200 block hover:bg-slate-800 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500"
-                aria-label="Learn about ongoing support options"
+                aria-label="Learn about ongoing strategic partnership"
               >
-                Learn About Ongoing Support
+                Discuss Strategic Partnership
               </Link>
             </div>
           </motion.div>
         </div>
 
-        {/* CTA Below */}
+        {/* CTA Checkpoint */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-          className="text-center mt-16 motion-safe"
+          className="text-center motion-safe"
         >
-          <div className="bg-white p-8 rounded-2xl shadow-lg border border-slate-200">
+          <div className="bg-gradient-to-r from-teal-50 to-blue-50 p-8 rounded-2xl border border-slate-200">
             <h3 className="text-2xl font-bold text-slate-900 mb-4">
-              Ready to Stop Losing Leads?
+              Ready to Stop Losing Leads to Poor Follow-Up?
             </h3>
             <p className="text-slate-600 mb-6 max-w-2xl mx-auto leading-relaxed">
-              Get a professional assessment that identifies exactly where your leads are falling through the cracks 
-              and provides a custom roadmap to capture more revenue.
+              Get a strategic assessment that identifies exactly where your leads are falling through the cracks and provides a custom implementation roadmap.
             </p>
-            <Link
-              href="/assessment"
-              className="bg-gradient-to-r from-teal-500 to-teal-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:from-teal-600 hover:to-teal-700 transition-all duration-300 inline-block shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-            >
-              Start Your Assessment
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/assessment"
+                className="bg-gradient-to-r from-teal-500 to-teal-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:from-teal-600 hover:to-teal-700 transition-all duration-300 inline-block shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+              >
+                Start Strategic Assessment
+              </Link>
+              <Link
+                href="/tco-calculator"
+                className="border-2 border-teal-500 text-teal-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-teal-50 transition-all duration-300 inline-block"
+              >
+                Calculate Your Current Loss
+              </Link>
+            </div>
           </div>
         </motion.div>
       </div>
