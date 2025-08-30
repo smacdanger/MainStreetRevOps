@@ -12,10 +12,10 @@ const ProblemSection: React.FC = () => {
             </span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-            Your Marketing Works. Your Follow-Up Doesn't.
+            Your Marketing Works. Your Follow-Up Doesn&apos;t.
           </h2>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            You're generating 20+ leads daily, but 80% slip away. Every missed call is lost revenue.
+            You&apos;re generating 20+ leads daily, but 80% slip away. Every missed call is lost revenue.
           </p>
         </div>
         
@@ -53,14 +53,14 @@ const ProblemSection: React.FC = () => {
             <div className="bg-slate-100 p-6 rounded-xl">
               <h3 className="text-lg font-bold text-slate-900 mb-2">The Real Cost:</h3>
               <p className="text-slate-700 mb-2">
-                If you're getting 25 leads/month at $5,000 average job value...
+                If you&apos;re getting 25 leads/month at $5,000 average job value...
               </p>
               <div className="bg-red-100 p-4 rounded-lg border border-red-200">
                 <p className="text-red-800 font-bold text-lg">
                   80% loss = $100,000 monthly revenue walking away
                 </p>
                 <p className="text-red-600 text-sm mt-1">
-                  That's $1.2M annually because you can't answer the phone while on jobs
+                  That&apos;s $1.2M annually because you can&apos;t answer the phone while on jobs
                 </p>
               </div>
             </div>

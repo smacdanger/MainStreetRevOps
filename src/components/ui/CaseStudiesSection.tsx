@@ -17,7 +17,7 @@ const CaseStudiesSection: React.FC = () => {
             Real AI Results for Real Contractors
           </h2>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Early clients are seeing immediate improvements. Here's what happens when AI takes over lead follow-up.
+            Early clients are seeing immediate improvements. Here&apos;s what happens when AI takes over lead follow-up.
           </p>
         </div>
 
@@ -42,7 +42,7 @@ const CaseStudiesSection: React.FC = () => {
             </div>
             
             <blockquote className="text-slate-700 mb-6 italic">
-              "We went from missing 60% of our leads to responding in under 2 minutes. The AI handles everything while we're on jobs. It's like having a full-time sales assistant."
+              &quot;We went from missing 60% of our leads to responding in under 2 minutes. The AI handles everything while we&apos;re on jobs. It&apos;s like having a full-time sales assistant.&quot;
             </blockquote>
             
             <div className="grid grid-cols-2 gap-4 pt-4 border-t border-slate-200">
@@ -76,7 +76,7 @@ const CaseStudiesSection: React.FC = () => {
             </div>
             
             <blockquote className="text-slate-700 mb-6 italic">
-              "Our CRM was a mess. MainStreet RevOps rebuilt everything and automated our entire pipeline. We closed $500K in the first quarter alone."
+              &quot;Our CRM was a mess. MainStreet RevOps rebuilt everything and automated our entire pipeline. We closed $500K in the first quarter alone.&quot;
             </blockquote>
             
             <div className="grid grid-cols-2 gap-4 pt-4 border-t border-slate-200">
@@ -133,7 +133,7 @@ const CaseStudiesSection: React.FC = () => {
               Ready to Join These Success Stories?
             </h3>
             <p className="text-slate-600 mb-6 max-w-2xl mx-auto leading-relaxed">
-              See exactly how much revenue you're losing to poor follow-up, then get a custom AI roadmap to fix it.
+              See exactly how much revenue you&apos;re losing to poor follow-up, then get a custom AI roadmap to fix it.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
@@ -151,6 +151,57 @@ const CaseStudiesSection: React.FC = () => {
             </div>
           </div>
         </motion.div>
+
+        {/* Additional Testimonials */}
+        <div className="bg-slate-100 p-6 rounded-xl">
+          <h3 className="text-lg font-bold text-slate-900 mb-4">What They&apos;re Saying</h3>
+          <div className="space-y-4">
+            <div className="bg-white p-4 rounded-lg border border-slate-200">
+              <p className="text-slate-700 text-sm mb-2">
+                &quot;Finally someone who actually understands contractors. We went from missing 3-4 leads per week to catching every single one. Our close rate went from 15% to 35% just from better follow-up timing.&quot;
+              </p>
+              <div className="flex items-center text-sm text-slate-600">
+                <span className="font-medium">Mike R.</span>
+                <span className="mx-2">•</span>
+                <span>Electrical Contractor, Austin TX</span>
+              </div>
+            </div>
+            
+            <div className="bg-white p-4 rounded-lg border border-slate-200">
+              <p className="text-slate-700 text-sm mb-2">
+                &quot;The ROI was immediate. First month we closed two extra jobs worth $18K that would have been lost to slow follow-up.&quot;
+              </p>
+              <div className="flex items-center text-sm text-slate-600">
+                <span className="font-medium">Sarah K.</span>
+                <span className="mx-2">•</span>
+                <span>HVAC Company Owner, Denver CO</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Real Revenue Impact */}
+        <div className="bg-slate-100 p-6 rounded-xl">
+          <h3 className="text-lg font-bold text-slate-900 mb-4">Real Revenue Impact</h3>
+          <div className="space-y-3">
+            <div className="flex justify-between items-center py-2 border-b border-slate-200">
+              <span className="text-slate-700 text-sm">Average Close Rate Improvement</span>
+              <span className="font-bold text-green-600">+67%</span>
+            </div>
+            <div className="flex justify-between items-center py-2 border-b border-slate-200">
+              <span className="text-slate-700 text-sm">Response Time Reduction</span>
+              <span className="font-bold text-green-600">-89%</span>
+            </div>
+            <div className="flex justify-between items-center py-2 border-b border-slate-200">
+              <span className="text-slate-700 text-sm">Monthly Revenue Increase</span>
+              <span className="font-bold text-green-600">$15K-$45K</span>
+            </div>
+            <div className="flex justify-between items-center py-2">
+              <span className="text-slate-700 text-sm">ROI Timeline</span>
+              <span className="font-bold text-green-600">30-60 days</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

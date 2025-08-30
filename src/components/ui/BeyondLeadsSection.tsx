@@ -10,14 +10,14 @@ const BeyondLeadsSection: React.FC = () => {
         <div className="text-center mb-12">
           <div className="mb-4">
             <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-purple-100 text-purple-800">
-              What's Next
+              What&apos;s Next
             </span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
             Your AI Assistant Roadmap
           </h2>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Lead automation is just the beginning. Here's how your AI assistant grows with your business.
+            Lead automation is just the beginning. Here&apos;s how your AI assistant grows with your business.
           </p>
         </div>
 
@@ -172,6 +172,51 @@ const BeyondLeadsSection: React.FC = () => {
           </div>
         </motion.div>
 
+        <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+          Your growth isn&apos;t just about more leads. It&apos;s about creating business systems that work smarter, not harder.
+        </p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          <div className="bg-white p-6 rounded-xl shadow-lg border border-slate-200 hover:shadow-xl transition-shadow duration-300">
+            <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
+              <svg className="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+            </div>
+            <h3 className="text-xl font-bold text-slate-900 mb-3">Strategic Operations Consulting</h3>
+            <p className="text-slate-600 mb-4">
+              Beyond AI and automation, we help optimize your entire business operations. From process design to team training, 
+              we ensure your growth foundation is solid and scalable.
+            </p>
+            <ul className="space-y-2 text-slate-600 text-sm">
+              <li className="flex items-center">
+                <svg className="w-4 h-4 text-teal-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                Business process optimization and workflow design
+              </li>
+              <li className="flex items-center">
+                <svg className="w-4 h-4 text-teal-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                Team training and change management support
+              </li>
+              <li className="flex items-center">
+                <svg className="w-4 h-4 text-teal-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                Performance metrics and KPI development
+              </li>
+              <li className="flex items-center">
+                <svg className="w-4 h-4 text-teal-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                Scalability planning and growth strategy
+              </li>
+            </ul>
+          </div>
+        </div>
+
         {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
@@ -185,7 +230,7 @@ const BeyondLeadsSection: React.FC = () => {
               Start with Lead Flow, Scale to Full AI Operations
             </h3>
             <p className="text-slate-600 mb-6 max-w-3xl mx-auto leading-relaxed">
-              Most contractors need their lead flow fixed first. Once that's running smoothly, we can automate billing, supplier management, cost control, and any other system that touches your revenue.
+              Most contractors need their lead flow fixed first. Once that&apos;s running smoothly, we can automate billing, supplier management, cost control, and any other system that touches your revenue.
             </p>
             <Link
               href="/assessment"

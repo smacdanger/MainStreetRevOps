@@ -54,7 +54,7 @@ export default function Home() {
             Calculate What Poor Follow-Up Is Really Costing You
           </h2>
           <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-            See exactly how much revenue you're losing to manual processes, missed calls, and delayed responses. 
+            See exactly how much revenue you&apos;re losing to manual processes, missed calls, and delayed responses. 
             Plus get ROI projections for strategic automation.
           </p>
           
