@@ -191,13 +191,16 @@ body::-webkit-scrollbar-thumb:hover {
 
 /* Mobile Performance Optimizations */
 @media (max-width: 768px) {
-  /* Reduce animation complexity on mobile */
-  * {
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    transform-style: preserve-3d;
-    -webkit-transform-style: preserve-3d;
+  /* Disable complex animations on mobile to prevent glitching */
+  .motion-safe {
+    animation: none !important;
+    transition: opacity 0.2s ease !important;
+  }
+  
+  /* Simplify motion for mobile */
+  [data-motion="true"] {
+    opacity: 1 !important;
+    transform: none !important;
   }
   
   /* Optimize scrolling performance */
@@ -207,14 +210,13 @@ body::-webkit-scrollbar-thumb:hover {
   }
   
   /* Prevent layout shifts during scroll */
-  .motion-div {
-    will-change: transform, opacity;
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
+  * {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
 }
 
 /* Improve animation performance */
 .motion-safe {
-  contain: layout style paint;
+  contain: layout style;
 }
