@@ -10,9 +10,9 @@ const Navigation = () => {
 
   const navItems = [
     { name: 'How It Works', href: '#solution' },
-    { name: 'Case Studies', href: '#case-studies' },
+    { name: 'Case Studies', href: '#testimonials' },
     { name: 'Beyond Leads', href: '#beyond-leads' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   // Handle scroll effect and active section detection
@@ -21,7 +21,7 @@ const Navigation = () => {
       setIsScrolled(window.scrollY > 10);
 
       // Find active section
-      const sections = ['solution', 'case-studies', 'beyond-leads', 'contact'];
+      const sections = ['solution', 'testimonials', 'beyond-leads'];
       const scrollPosition = window.scrollY + 100; // Offset for better UX
 
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -100,7 +100,7 @@ const Navigation = () => {
             <Link
               href="/assessment"
               className="ml-4 bg-teal-700 text-white px-4 py-2 text-sm font-medium rounded-lg hover:bg-teal-800 transition-all duration-200 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
-              aria-label="Get your lead flow assessment"
+              aria-label="Get your business assessment"
             >
               Get Assessment
             </Link>
@@ -166,7 +166,7 @@ const Navigation = () => {
                 className="block mt-4 bg-teal-600 text-white px-3 py-2 text-base font-medium rounded-lg hover:bg-teal-700 transition-colors duration-200 text-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
                 onClick={() => setIsOpen(false)}
                 role="menuitem"
-                aria-label="Get your lead flow assessment"
+                aria-label="Get your business assessment"
               >
                 Get Assessment
               </Link>

@@ -31,7 +31,6 @@ const Footer = () => {
             <nav className="space-y-3" aria-label="Footer navigation">
               {[
                 { name: 'How It Works', href: '/#solution' },
-                { name: 'Why Us', href: '/#why-us' },
                 { name: 'Case Studies', href: '/#testimonials' },
                 { name: 'Beyond Leads', href: '/#beyond-leads' },
                 { name: 'Assessment', href: '/assessment' },

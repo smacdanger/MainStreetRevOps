@@ -26,14 +26,14 @@ export default function Assessment() {
         
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Lead Flow Assessment
+            Business Assessment
           </h1>
           <p className="text-xl md:text-2xl text-slate-200 mb-4">
-            Get Your Custom Revenue Recovery Roadmap
+            Get Your Custom Revenue Operations Roadmap
           </p>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto mb-6">
-            This comprehensive questionnaire helps us understand your current lead management, 
-            follow-up systems, and revenue leaks so we can provide a tailored solution.
+            This comprehensive questionnaire helps us understand your current systems, manual processes, 
+            and automation opportunities so we can provide a tailored modernization strategy.
           </p>
           <div className="bg-teal-600/20 border border-teal-400/30 p-4 rounded-xl max-w-2xl mx-auto backdrop-blur-sm">
             <p className="text-teal-200 text-sm mb-2">
@@ -150,7 +150,7 @@ export default function Assessment() {
                   "Monthly system monitoring and optimization",
                   "New lead source integrations",
                   "Advanced reporting and analytics",
-                  "Chatbot and AI assistant setup",
+                  "Customer communication automation setup",
                   "Strategic growth guidance"
                 ].map((item, index) => (
                   <li key={index} className="flex items-start">
@@ -178,7 +178,7 @@ export default function Assessment() {
             <div className="max-w-3xl mx-auto mb-6">
               <p className="text-slate-600 mb-4">
                 This form prepares us for your 60–90 minute discovery and assessment call. Within 1–2 weeks 
-                after that call, you&apos;ll receive your step-by-step Lead Flow Recovery Roadmap with specific recommendations.
+                after that call, you&apos;ll receive your step-by-step Revenue Operations Roadmap with specific recommendations.
               </p>
               <div className="bg-teal-50 border border-teal-200 p-4 rounded-xl">
                 <p className="text-teal-800 text-sm">
