@@ -1,6 +1,6 @@
 import { Handler } from '@netlify/functions';
 
-const ZAPIER_WEBHOOK_URL = process.env.ZAPIER_WEBHOOK_URL || '';
+const ZAPIER_CONTACT_WEBHOOK_URL = process.env.ZAPIER_CONTACT_WEBHOOK_URL || '';
 
 export const handler: Handler = async (event) => {
   // Set CORS headers
@@ -55,7 +55,7 @@ export const handler: Handler = async (event) => {
     }
 
     // Forward to Zapier webhook
-    const response = await fetch(ZAPIER_WEBHOOK_URL, {
+    const response = await fetch(ZAPIER_CONTACT_WEBHOOK_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
