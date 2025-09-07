@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Script from "next/script";
+import ContactForm from "@/components/ui/ContactForm";
 
 export const metadata: Metadata = {
   title: "Contact - MainStreet RevOps",
@@ -55,70 +55,13 @@ export default function Contact() {
             </p>
           </div>
 
-          {/* Tally Form Embed with Enhanced Fallback */}
-          <div className="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
-            <div className="w-full">
-              {/* Loading state */}
-              <div id="contact-form-loading" className="flex items-center justify-center h-96 bg-slate-50">
-                <div className="text-center">
-                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-600 mx-auto mb-4"></div>
-                  <p className="text-slate-600">Loading contact form...</p>
-                  <p className="text-slate-500 text-sm mt-2">
-                    If this takes longer than expected, please use the email link below
-                  </p>
-                </div>
-              </div>
-              
-              {/* Tally iframe - using exact embed approach */}
-              <iframe
-                data-tally-src="https://tally.so/embed/n98GLY"
-                loading="lazy"
-                width="100%"
-                height="780"
-                frameBorder="0"
-                marginHeight={0}
-                marginWidth={0}
-                title="Contact Us"
-                className="w-full"
-                style={{ display: 'none' }}
-                id="tally-contact-form"
-                aria-label="Contact form to send a message to MainStreet RevOps"
-              />
-              
-              {/* Manual form fallback */}
-              <div id="manual-contact-form" className="p-8" style={{ display: 'none' }}>
-                <h3 className="text-xl font-semibold text-slate-900 mb-6">Contact Form</h3>
-                <p className="text-slate-600 mb-6">
-                  Our embedded form couldn&apos;t load. Please use one of the contact methods below:
-                </p>
-                <div className="space-y-4">
-                  <div className="bg-teal-50 p-4 rounded-lg border border-teal-200">
-                    <p className="font-medium text-teal-900">Email us directly:</p>
-                    <a 
-                      href="mailto:sean@mainstrevops.com?subject=Lead Flow Inquiry&body=Hi Sean,%0D%0A%0D%0AI'm interested in learning more about MainStreet RevOps and how you can help improve our lead flow.%0D%0A%0D%0APlease reach out to discuss:%0D%0A- [Your specific needs]%0D%0A%0D%0AThank you!"
-                      className="text-teal-700 hover:text-teal-900 font-semibold"
-                    >
-                      sean@mainstrevops.com
-                    </a>
-                  </div>
-                  <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                    <p className="font-medium text-blue-900">Schedule a call:</p>
-                    <a 
-                      href="https://www.linkedin.com/in/seanmacd/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-700 hover:text-blue-900 font-semibold"
-                    >
-                      Connect on LinkedIn to schedule
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
+          {/* Contact Form */}
+          <div className="bg-white rounded-2xl shadow-lg border border-slate-200 p-8">
+            <ContactForm />
           </div>
 
           {/* Direct Contact Info */}
-          <div className="bg-gradient-to-br from-slate-50 to-teal-50 p-8 rounded-2xl border border-slate-200">
+          <div className="mt-12 bg-gradient-to-br from-slate-50 to-teal-50 p-8 rounded-2xl border border-slate-200">
             <h3 className="text-2xl font-semibold text-slate-900 mb-6 text-center">
               Other Ways to Reach Us
             </h3>
@@ -164,70 +107,6 @@ export default function Contact() {
           </div>
         </div>
       </section>
-
-      {/* Tally Embed Script - using exact approach provided */}
-      <Script id="tally-contact-init" strategy="afterInteractive">
-        {`
-          (function() {
-            var d = document;
-            var w = "https://tally.so/widgets/embed.js";
-            var v = function() {
-              if (typeof Tally !== "undefined") {
-                Tally.loadEmbeds();
-                // Hide loading and show form
-                var loading = document.getElementById('contact-form-loading');
-                var iframe = document.getElementById('tally-contact-form');
-                if (loading) loading.style.display = 'none';
-                if (iframe) iframe.style.display = 'block';
-              } else {
-                // Fallback: manually set iframe src
-                d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function(e) {
-                  e.src = e.dataset.tallySrc;
-                  e.onload = function() {
-                    var loading = document.getElementById('contact-form-loading');
-                    if (loading) loading.style.display = 'none';
-                    e.style.display = 'block';
-                  };
-                  e.onerror = function() {
-                    showManualForm();
-                  };
-                });
-              }
-            };
-            
-            function showManualForm() {
-              var loading = document.getElementById('contact-form-loading');
-              var manualForm = document.getElementById('manual-contact-form');
-              var iframe = document.getElementById('tally-contact-form');
-              
-              if (loading) loading.style.display = 'none';
-              if (iframe) iframe.style.display = 'none';
-              if (manualForm) manualForm.style.display = 'block';
-            }
-            
-            if (typeof Tally !== "undefined") {
-              v();
-            } else if (d.querySelector('script[src="' + w + '"]') == null) {
-              var s = d.createElement("script");
-              s.src = w;
-              s.onload = v;
-              s.onerror = function() {
-                console.log('Tally script failed to load, showing manual form');
-                showManualForm();
-              };
-              d.body.appendChild(s);
-            }
-            
-            // Fallback timeout - show manual form if nothing loads after 8 seconds
-            setTimeout(function() {
-              var loading = document.getElementById('contact-form-loading');
-              if (loading && loading.style.display !== 'none') {
-                showManualForm();
-              }
-            }, 8000);
-          })();
-        `}
-      </Script>
     </div>
   );
 }
