@@ -222,7 +222,7 @@ const ContactForm: React.FC = () => {
             className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition-colors resize-y ${
               errors.message ? 'border-red-500 focus:ring-red-500' : 'border-slate-300'
             }`}
-            placeholder="Tell us about your current challenges and what you're looking to achieve with lead management and sales automation..."
+            placeholder="Tell us about your current challenges and what you're looking to achieve..."
             aria-invalid={errors.message ? 'true' : 'false'}
             aria-describedby={errors.message ? 'message-error' : undefined}
           />
@@ -273,7 +273,7 @@ const ContactForm: React.FC = () => {
               </div>
               <div className="ml-3">
                 <p className="text-green-800 font-medium">Thank you for your message!</p>
-                <p className="text-green-700 text-sm mt-1">We&apos;ll get back to you within 24 hours.</p>
+                <p className="text-green-700 text-sm mt-1">We&apos;ll get back to you as soon as possible.</p>
               </div>
             </div>
           </motion.div>

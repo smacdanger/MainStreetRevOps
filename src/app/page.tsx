@@ -13,7 +13,7 @@ export default function Home() {
     <div className="bg-white">
       {/* Hero Section */}
       <Hero
-        badge="AI-Powered Growth for Contractors"
+        badge="AI-Powered Growth for Main Street"
         title="Turn More Leads Into Revenue — Without Another Platform"
         description='We connect the tools you already use and make them work smarter—no rip-and-replace, no learning curve, just results you can see in your calendar and bank account.'
         primaryCTA={{

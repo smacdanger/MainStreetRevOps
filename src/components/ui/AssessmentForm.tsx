@@ -366,7 +366,7 @@ const AssessmentForm: React.FC = () => {
                   className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition-colors ${
                     errors.industry ? 'border-red-500' : 'border-slate-300'
                   }`}
-                  placeholder="Construction, HVAC, Plumbing, etc."
+                  placeholder="Contractor, Home Services, etc.."
                 />
                 {errors.industry && <p className="mt-1 text-sm text-red-600">{errors.industry}</p>}
               </div>
