@@ -70,6 +70,7 @@ interface FormData {
 
   // Step 3
   leadTracking: string;
+  crmName?: string;
   textFromBiz: string;
   autoTextHelp: string;
   bookingLink: string;
@@ -135,6 +136,7 @@ const AssessmentForm: React.FC = () => {
     leadHeadache: '',
     missedCallHandling: '',
     leadTracking: '',
+    crmName: '',
     textFromBiz: '',
     autoTextHelp: '',
     bookingLink: '',
@@ -197,6 +199,7 @@ const AssessmentForm: React.FC = () => {
         break;
       case 2:
         if (!formData.leadTracking) newErrors.leadTracking = 'Required';
+        if (formData.leadTracking === 'CRM' && !formData.crmName) newErrors.crmName = 'Required';
         if (!formData.textFromBiz) newErrors.textFromBiz = 'Required';
         if (!formData.autoTextHelp) newErrors.autoTextHelp = 'Required';
         if (!formData.bookingLink) newErrors.bookingLink = 'Required';
@@ -287,30 +290,30 @@ const AssessmentForm: React.FC = () => {
           <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="yourName" className="block text-sm font-medium text-slate-700 mb-2">Your name *</label>
+                <label htmlFor="yourName" className="block text-sm font-medium text-slate-900 mb-2">Your name *</label>
                 <input type="text" id="yourName" name="yourName" value={formData.yourName} onChange={handleChange} className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 ${errors.yourName ? 'border-red-500' : 'border-slate-300'}`} placeholder="Jane Smith" />
                 {errors.yourName && <p className="mt-1 text-sm text-red-600">{errors.yourName}</p>}
               </div>
               <div>
-                <label htmlFor="companyName" className="block text-sm font-medium text-slate-700 mb-2">Company name *</label>
+                <label htmlFor="companyName" className="block text-sm font-medium text-slate-900 mb-2">Company name *</label>
                 <input type="text" id="companyName" name="companyName" value={formData.companyName} onChange={handleChange} className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 ${errors.companyName ? 'border-red-500' : 'border-slate-300'}`} placeholder="ABC Services" />
                 {errors.companyName && <p className="mt-1 text-sm text-red-600">{errors.companyName}</p>}
               </div>
               <div>
-                <label htmlFor="bestEmail" className="block text-sm font-medium text-slate-700 mb-2">Best email *</label>
+                <label htmlFor="bestEmail" className="block text-sm font-medium text-slate-900 mb-2">Best email *</label>
                 <input type="email" id="bestEmail" name="bestEmail" value={formData.bestEmail} onChange={handleChange} className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 ${errors.bestEmail ? 'border-red-500' : 'border-slate-300'}`} placeholder="jane@company.com" />
                 {errors.bestEmail && <p className="mt-1 text-sm text-red-600">{errors.bestEmail}</p>}
               </div>
               <div>
-                <label htmlFor="bestPhone" className="block text-sm font-medium text-slate-700 mb-2">Best phone *</label>
+                <label htmlFor="bestPhone" className="block text-sm font-medium text-slate-900 mb-2">Best phone *</label>
                 <input type="tel" id="bestPhone" name="bestPhone" value={formData.bestPhone} onChange={handleChange} className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 ${errors.bestPhone ? 'border-red-500' : 'border-slate-300'}`} placeholder="(555) 123-4567" />
                 {errors.bestPhone && <p className="mt-1 text-sm text-red-600">{errors.bestPhone}</p>}
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Consent to contact you by email/text? *</label>
+                <label className="block text-sm font-medium text-slate-900 mb-2">Consent to contact you by email/text? *</label>
                 <div className="flex gap-4">
                   {['Yes', 'No'].map(opt => (
-                    <label key={opt} className="inline-flex items-center">
+                    <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
                       <input type="radio" name="consent" value={opt} checked={formData.consent === opt} onChange={handleChange} className="mr-2" />{opt}
                   </label>
                   ))}
@@ -318,7 +321,7 @@ const AssessmentForm: React.FC = () => {
                 {errors.consent && <p className="mt-1 text-sm text-red-600">{errors.consent}</p>}
               </div>
               <div>
-                <label htmlFor="tradeIndustry" className="block text-sm font-medium text-slate-700 mb-2">Trade / Industry *</label>
+                <label htmlFor="tradeIndustry" className="block text-sm font-medium text-slate-900 mb-2">Trade / Industry *</label>
                 <select id="tradeIndustry" name="tradeIndustry" value={formData.tradeIndustry} onChange={handleChange} className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 ${errors.tradeIndustry ? 'border-red-500' : 'border-slate-300'}`}> 
                   <option value="">Select...</option>
                   <option>Home Services (cleaning, lawn care, pest control, etc.)</option>
@@ -331,11 +334,11 @@ const AssessmentForm: React.FC = () => {
                 {errors.tradeIndustry && <p className="mt-1 text-sm text-red-600">{errors.tradeIndustry}</p>}
               </div>
               <div>
-                <label htmlFor="serviceArea" className="block text-sm font-medium text-slate-700 mb-2">Service area / city</label>
+                <label htmlFor="serviceArea" className="block text-sm font-medium text-slate-900 mb-2">Service area / city</label>
                 <input type="text" id="serviceArea" name="serviceArea" value={formData.serviceArea} onChange={handleChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300" placeholder="Boston, MA" />
               </div>
               <div>
-                <label htmlFor="website" className="block text-sm font-medium text-slate-700 mb-2">Website (if you have one)</label>
+                <label htmlFor="website" className="block text-sm font-medium text-slate-900 mb-2">Website (if you have one)</label>
                 <input type="url" id="website" name="website" value={formData.website} onChange={handleChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300" placeholder="https://yourcompany.com" />
               </div>
             </div>
@@ -345,10 +348,10 @@ const AssessmentForm: React.FC = () => {
         return (
           <div className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">Where do new leads usually come from? * <span className="text-xs text-slate-500">(Select all that apply)</span></label>
+              <label className="block text-sm font-medium text-slate-900 mb-2">Where do new leads usually come from? * <span className="text-xs text-slate-500">(Select all that apply)</span></label>
               <div className="flex flex-wrap gap-3">
                 {['Website form', 'Phone calls', 'Ads (Google/FB)', 'Referrals', 'Marketplaces (Angi/Thumbtack, etc.)', 'Walk-ins', 'Other'].map(opt => (
-                  <label key={opt} className="inline-flex items-center">
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
                     <input type="checkbox" name="leadSources" value={opt} checked={formData.leadSources.includes(opt)} onChange={() => handleMultiSelect('leadSources', opt)} className="mr-2" />{opt}
                   </label>
                 ))}
@@ -356,10 +359,10 @@ const AssessmentForm: React.FC = () => {
               {errors.leadSources && <p className="mt-1 text-sm text-red-600">{errors.leadSources}</p>}
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">About how many new leads per month? *</label>
+              <label className="block text-sm font-medium text-slate-900 mb-2">About how many new leads per month? *</label>
               <div className="flex flex-wrap gap-4">
                 {['0–10', '11–25', '26–50', '51–100', '100+'].map(opt => (
-                  <label key={opt} className="inline-flex items-center">
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
                     <input type="radio" name="monthlyLeads" value={opt} checked={formData.monthlyLeads === opt} onChange={handleChange} className="mr-2" />{opt}
                   </label>
                 ))}
@@ -367,10 +370,10 @@ const AssessmentForm: React.FC = () => {
               {errors.monthlyLeads && <p className="mt-1 text-sm text-red-600">{errors.monthlyLeads}</p>}
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">When someone reaches out, how fast do they usually hear back? *</label>
+              <label className="block text-sm font-medium text-slate-900 mb-2">When someone reaches out, how fast do they usually hear back? *</label>
               <div className="flex flex-wrap gap-4">
                 {['Within 1 hour', 'Same day', '1–2 days', '3+ days', 'Honestly, hit or miss'].map(opt => (
-                  <label key={opt} className="inline-flex items-center">
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
                     <input type="radio" name="responseSpeed" value={opt} checked={formData.responseSpeed === opt} onChange={handleChange} className="mr-2" />{opt}
                   </label>
                 ))}
@@ -378,10 +381,10 @@ const AssessmentForm: React.FC = () => {
               {errors.responseSpeed && <p className="mt-1 text-sm text-red-600">{errors.responseSpeed}</p>}
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">After-hours leads, what usually happens? *</label>
+              <label className="block text-sm font-medium text-slate-900 mb-2">After-hours leads, what usually happens? *</label>
               <div className="flex flex-wrap gap-4">
                 {['Goes to voicemail', 'Someone answers', 'We text back', 'Nothing reliable yet'].map(opt => (
-                  <label key={opt} className="inline-flex items-center">
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
                     <input type="radio" name="afterHours" value={opt} checked={formData.afterHours === opt} onChange={handleChange} className="mr-2" />{opt}
                   </label>
                 ))}
@@ -391,10 +394,10 @@ const AssessmentForm: React.FC = () => {
             {/* Branch: If Phone calls is selected, show Step 2b */}
             {formData.leadSources.includes('Phone calls') && (
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">If you miss a call, what usually happens? *</label>
+                <label className="block text-sm font-medium text-slate-900 mb-2">If you miss a call, what usually happens? *</label>
                 <div className="flex flex-wrap gap-4">
                   {['Goes to voicemail', 'Someone calls back', 'We text back', 'Nothing reliable yet'].map(opt => (
-                    <label key={opt} className="inline-flex items-center">
+                    <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
                       <input type="radio" name="missedCallHandling" value={opt} checked={formData.missedCallHandling === opt} onChange={handleChange} className="mr-2" />{opt}
                     </label>
                   ))}
@@ -403,7 +406,7 @@ const AssessmentForm: React.FC = () => {
               </div>
             )}
             <div>
-              <label htmlFor="leadHeadache" className="block text-sm font-medium text-slate-700 mb-2">Biggest headache with leads right now? *</label>
+              <label htmlFor="leadHeadache" className="block text-sm font-medium text-slate-900 mb-2">Biggest headache with leads right now? *</label>
               <input type="text" id="leadHeadache" name="leadHeadache" value={formData.leadHeadache} onChange={handleChange} className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 ${errors.leadHeadache ? 'border-red-500' : 'border-slate-300'}`} placeholder="Short answer" />
               {errors.leadHeadache && <p className="mt-1 text-sm text-red-600">{errors.leadHeadache}</p>}
             </div>
@@ -413,22 +416,30 @@ const AssessmentForm: React.FC = () => {
         return (
           <div className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">How do you track new leads today? *</label>
-              <select id="leadTracking" name="leadTracking" value={formData.leadTracking} onChange={handleChange} className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 ${errors.leadTracking ? 'border-red-500' : 'border-slate-300'}`}>
+              <label className="block text-sm font-medium text-slate-900 mb-2">How do you track new leads today? *</label>
+              <select id="leadTracking" name="leadTracking" value={formData.leadTracking} onChange={handleChange} className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 ${errors.leadTracking ? 'border-red-500' : 'border-slate-300'}`}> 
                 <option value="">Select...</option>
-                <option>CRM (name it)</option>
+                <option>CRM</option>
                 <option>Spreadsheet</option>
                 <option>Paper/whiteboard</option>
                 <option>Inbox</option>
                 <option>Nothing formal</option>
               </select>
               {errors.leadTracking && <p className="mt-1 text-sm text-red-600">{errors.leadTracking}</p>}
+              {/* If CRM is selected, show CRM name input */}
+              {formData.leadTracking === 'CRM' && (
+                <div className="mt-2">
+                  <label htmlFor="crmName" className="block text-xs font-medium text-slate-900 mb-1">Which CRM do you use? *</label>
+                  <input type="text" id="crmName" name="crmName" value={formData.crmName || ''} onChange={handleChange} className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 ${errors.crmName ? 'border-red-500' : 'border-slate-300'}`} placeholder="e.g. HubSpot, Salesforce, Zoho" />
+                  {errors.crmName && <p className="mt-1 text-xs text-red-600">{errors.crmName}</p>}
+                </div>
+              )}
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">Do you text customers from a business number? *</label>
+              <label className="block text-sm font-medium text-slate-900 mb-2">Do you text customers from a business number? *</label>
               <div className="flex gap-4">
                 {['Yes', 'No', 'Sometimes'].map(opt => (
-                  <label key={opt} className="inline-flex items-center">
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
                     <input type="radio" name="textFromBiz" value={opt} checked={formData.textFromBiz === opt} onChange={handleChange} className="mr-2" />{opt}
                   </label>
                 ))}
@@ -436,10 +447,10 @@ const AssessmentForm: React.FC = () => {
               {errors.textFromBiz && <p className="mt-1 text-sm text-red-600">{errors.textFromBiz}</p>}
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">Would auto-texting “Got your message—here’s my calendar” help? *</label>
+              <label className="block text-sm font-medium text-slate-900 mb-2">Would auto-texting “Got your message—here’s my calendar” help? *</label>
               <div className="flex gap-4">
                 {['Yes', 'No', 'Not sure'].map(opt => (
-                  <label key={opt} className="inline-flex items-center">
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
                     <input type="radio" name="autoTextHelp" value={opt} checked={formData.autoTextHelp === opt} onChange={handleChange} className="mr-2" />{opt}
                   </label>
                 ))}
@@ -447,10 +458,10 @@ const AssessmentForm: React.FC = () => {
               {errors.autoTextHelp && <p className="mt-1 text-sm text-red-600">{errors.autoTextHelp}</p>}
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">Do you use a booking link for estimates/appointments? *</label>
+              <label className="block text-sm font-medium text-slate-900 mb-2">Do you use a booking link for estimates/appointments? *</label>
               <div className="flex gap-4">
                 {['Yes', 'No'].map(opt => (
-                  <label key={opt} className="inline-flex items-center">
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
                     <input type="radio" name="bookingLink" value={opt} checked={formData.bookingLink === opt} onChange={handleChange} className="mr-2" />{opt}
                   </label>
                 ))}
@@ -459,17 +470,17 @@ const AssessmentForm: React.FC = () => {
               {/* If Yes, ask which one */}
               {formData.bookingLink === 'Yes' && (
                 <div className="mt-2">
-                  <label htmlFor="bookingLinkWhich" className="block text-xs font-medium text-slate-700 mb-1">Which one?</label>
+                  <label htmlFor="bookingLinkWhich" className="block text-xs font-medium text-slate-900 mb-1">Which one?</label>
                   <input type="text" id="bookingLinkWhich" name="bookingLinkWhich" value={formData.bookingLinkWhich} onChange={handleChange} className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 ${errors.bookingLinkWhich ? 'border-red-500' : 'border-slate-300'}`} placeholder="Calendly, Acuity, etc." />
                   {errors.bookingLinkWhich && <p className="mt-1 text-xs text-red-600">{errors.bookingLinkWhich}</p>}
                 </div>
               )}
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">If you had to pick one improvement first, which matters most? *</label>
+              <label className="block text-sm font-medium text-slate-900 mb-2">If you had to pick one improvement first, which matters most? *</label>
               <div className="flex flex-wrap gap-4">
                 {['Faster response', 'Automatic follow-up', 'Online booking', 'Better tracking', 'Not sure yet'].map(opt => (
-                  <label key={opt} className="inline-flex items-center">
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
                     <input type="radio" name="firstImprovement" value={opt} checked={formData.firstImprovement === opt} onChange={handleChange} className="mr-2" />{opt}
                   </label>
                 ))}
@@ -478,7 +489,237 @@ const AssessmentForm: React.FC = () => {
             </div>
           </div>
         );
-      // Continue with steps 3-9, implementing all fields, types, and branching as described
+      case 3: // Step 4 — Estimates & Work Tracking
+        return (
+          <div className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium text-slate-900 mb-2">How do you create estimates/quotes or track new jobs/projects today? *</label>
+              <select id="estimateMethod" name="estimateMethod" value={formData.estimateMethod} onChange={handleChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300">
+                <option value="">Select...</option>
+                <option>Spreadsheets (Excel/Google Sheets)</option>
+                <option>Word/PDF</option>
+                <option>QuickBooks / FreshBooks</option>
+                <option>Jobber / Housecall Pro / ServiceTitan</option>
+                <option>Buildertrend / CoConstruct / Acculynx</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-900 mb-2">How are estimates usually approved? *</label>
+              <div className="flex flex-wrap gap-4">
+                {['E-signature', '“Text/email me yes”', 'In-person only', 'Mix of the above'].map(opt => (
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
+                    <input type="radio" name="estimateApproval" value={opt} checked={formData.estimateApproval === opt} onChange={handleChange} className="mr-2" />{opt}
+                  </label>
+                ))}
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-900 mb-2">Average job/project size (rough guess)? *</label>
+              <div className="flex flex-wrap gap-4">
+                {['<$1k', '$1–5k', '$5–15k', '$15–50k', '$50k+'].map(opt => (
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
+                    <input type="radio" name="avgJobSize" value={opt} checked={formData.avgJobSize === opt} onChange={handleChange} className="mr-2" />{opt}
+                  </label>
+                ))}
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-900 mb-2">What % of leads usually turn into paying work? *</label>
+              <div className="flex flex-wrap gap-4">
+                {'<10%|10–25%|26–40%|41–60%|60%+'.split('|').map(opt => (
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
+                    <input type="radio" name="leadToJobRate" value={opt} checked={formData.leadToJobRate === opt} onChange={handleChange} className="mr-2" />{opt}
+                  </label>
+                ))}
+              </div>
+            </div>
+            <div>
+              <label htmlFor="estimateBlocker" className="block text-sm font-medium text-slate-900 mb-2">Biggest blocker between estimate and signed job/project? *</label>
+              <input type="text" id="estimateBlocker" name="estimateBlocker" value={formData.estimateBlocker} onChange={handleChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300" placeholder="Short answer" />
+            </div>
+          </div>
+        );
+      case 4: // Step 5 — Money Flow
+        return (
+          <div className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium text-slate-900 mb-2">How do you invoice? *</label>
+              <select id="invoiceMethod" name="invoiceMethod" value={formData.invoiceMethod} onChange={handleChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300">
+                <option value="">Select...</option>
+                <option>QuickBooks</option>
+                <option>FreshBooks</option>
+                <option>Jobber / Housecall Pro / ServiceTitan</option>
+                <option>Other / Inconsistent</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-900 mb-2">When do you usually send invoices? *</label>
+              <div className="flex flex-wrap gap-4">
+                {['After completion', 'At milestones', 'Deposit + final', 'Inconsistent'].map(opt => (
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
+                    <input type="radio" name="invoiceTiming" value={opt} checked={formData.invoiceTiming === opt} onChange={handleChange} className="mr-2" />{opt}
+                  </label>
+                ))}
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-900 mb-2">What payment methods do you accept? <span className="text-xs text-slate-500">(Select all that apply)</span></label>
+              <div className="flex flex-wrap gap-4">
+                {['ACH', 'Card', 'Check', 'Financing', 'Other'].map(opt => (
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
+                    <input type="checkbox" name="paymentMethods" value={opt} checked={formData.paymentMethods.includes(opt)} onChange={() => handleMultiSelect('paymentMethods', opt)} className="mr-2" />{opt}
+                  </label>
+                ))}
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-900 mb-2">Do quotes or unapproved jobs sync into QuickBooks? *</label>
+              <div className="flex gap-4">
+                {['Yes', 'No', 'Not sure'].map(opt => (
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
+                    <input type="radio" name="syncToQB" value={opt} checked={formData.syncToQB === opt} onChange={handleChange} className="mr-2" />{opt}
+                  </label>
+                ))}
+              </div>
+            </div>
+            <div>
+              <label htmlFor="billingHeadache" className="block text-sm font-medium text-slate-900 mb-2">What’s the #1 billing/payment headache right now? *</label>
+              <input type="text" id="billingHeadache" name="billingHeadache" value={formData.billingHeadache} onChange={handleChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300" placeholder="Short answer" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-900 mb-2">(Optional) Want to share an example invoice or estimate?</label>
+              <input type="file" id="invoiceFile" name="invoiceFile" onChange={handleFileChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300" />
+            </div>
+          </div>
+        );
+      case 5: // Step 6 — Tools & Duplicated Work
+        return (
+          <div className="space-y-6">
+            <div>
+              <label htmlFor="toolsUsed" className="block text-sm font-medium text-slate-900 mb-2">What tools/software do you use to keep track of customers, jobs, or money? *</label>
+              <textarea id="toolsUsed" name="toolsUsed" value={formData.toolsUsed} onChange={handleChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300" rows={2} placeholder="List your tools/software" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-900 mb-2">Website platform:</label>
+              <div className="flex flex-wrap gap-4">
+                {['WordPress', 'Squarespace', 'Wix', 'Custom', 'Don’t know'].map(opt => (
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
+                    <input type="radio" name="websitePlatform" value={opt} checked={formData.websitePlatform === opt} onChange={handleChange} className="mr-2" />{opt}
+                  </label>
+                ))}
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-900 mb-2">Phone system:</label>
+              <div className="flex flex-wrap gap-4">
+                {['Cell only', 'Grasshopper', 'RingCentral', 'Twilio', 'Other'].map(opt => (
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
+                    <input type="radio" name="phoneSystem" value={opt} checked={formData.phoneSystem === opt} onChange={handleChange} className="mr-2" />{opt}
+                  </label>
+                ))}
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-900 mb-2">Calendar:</label>
+              <div className="flex flex-wrap gap-4">
+                {['Google', 'Microsoft', 'Paper', 'Other'].map(opt => (
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
+                    <input type="radio" name="calendar" value={opt} checked={formData.calendar === opt} onChange={handleChange} className="mr-2" />{opt}
+                  </label>
+                ))}
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-900 mb-2">Are you running marketing/ads right now?</label>
+              <div className="flex flex-wrap gap-4">
+                {['None', 'Google Ads', 'Facebook/Instagram', 'SEO agency', 'Lead marketplaces'].map(opt => (
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
+                    <input type="radio" name="runningAds" value={opt} checked={formData.runningAds === opt} onChange={handleChange} className="mr-2" />{opt}
+                  </label>
+                ))}
+              </div>
+            </div>
+            <div>
+              <label htmlFor="duplicateWork" className="block text-sm font-medium text-slate-900 mb-2">Where do you feel you’re doing the same work twice?</label>
+              <input type="text" id="duplicateWork" name="duplicateWork" value={formData.duplicateWork} onChange={handleChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300" placeholder="Short answer" />
+            </div>
+          </div>
+        );
+      case 6: // Step 7 — Agency & Access
+        return (
+          <div className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium text-slate-900 mb-2">Do you work with a marketing/web agency today? *</label>
+              <div className="flex gap-4">
+                {['Yes', 'No', 'Unsure'].map(opt => (
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
+                    <input type="radio" name="hasAgency" value={opt} checked={formData.hasAgency === opt} onChange={handleChange} className="mr-2" />{opt}
+                  </label>
+                ))}
+              </div>
+            </div>
+            {formData.hasAgency === 'Yes' && (
+              <>
+                <div>
+                  <label className="block text-sm font-medium text-slate-900 mb-2">What do they handle? <span className="text-xs text-slate-500">(Select all that apply)</span></label>
+                  <div className="flex flex-wrap gap-4">
+                    {['Website', 'SEO', 'Ads', 'All of it'].map(opt => (
+                      <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
+                        <input type="checkbox" name="agencyHandles" value={opt} checked={formData.agencyHandles?.includes(opt)} onChange={() => handleMultiSelect('agencyHandles', opt)} className="mr-2" />{opt}
+                      </label>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-900 mb-2">Are you happy with the results?</label>
+                  <div className="flex flex-wrap gap-4">
+                    {['Yes', 'Mixed', 'Not really'].map(opt => (
+                      <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
+                        <input type="radio" name="agencyHappy" value={opt} checked={formData.agencyHappy === opt} onChange={handleChange} className="mr-2" />{opt}
+                      </label>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor="agencyAgreementEnd" className="block text-sm font-medium text-slate-900 mb-2">When does your agreement end? <span className="text-xs text-slate-500">(date or “month-to-month”)</span></label>
+                  <input type="text" id="agencyAgreementEnd" name="agencyAgreementEnd" value={formData.agencyAgreementEnd} onChange={handleChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300" placeholder="e.g. 2025-12-31 or month-to-month" />
+                </div>
+              </>
+            )}
+          </div>
+        );
+      case 7: // Step 8 — Goals, Constraints, Timeline
+        return (
+          <div className="space-y-6">
+            <div>
+              <label htmlFor="oneFix" className="block text-sm font-medium text-slate-900 mb-2">If we fixed ONE thing first and nailed it, what should it be? *</label>
+              <input type="text" id="oneFix" name="oneFix" value={formData.oneFix} onChange={handleChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300" placeholder="Short answer" />
+            </div>
+            <div>
+              <label htmlFor="sixMonthSuccess" className="block text-sm font-medium text-slate-900 mb-2">In 6 months, what would “this was worth it” look like? *</label>
+              <input type="text" id="sixMonthSuccess" name="sixMonthSuccess" value={formData.sixMonthSuccess} onChange={handleChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300" placeholder="Short answer" />
+            </div>
+            <div>
+              <label htmlFor="constraints" className="block text-sm font-medium text-slate-900 mb-2">Any “do-not-do” requests or constraints?</label>
+              <input type="text" id="constraints" name="constraints" value={formData.constraints} onChange={handleChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300" placeholder="Short answer" />
+            </div>
+            <div>
+              <label htmlFor="decisionMakers" className="block text-sm font-medium text-slate-900 mb-2">Decision-makers for this project (names/roles)</label>
+              <input type="text" id="decisionMakers" name="decisionMakers" value={formData.decisionMakers} onChange={handleChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300" placeholder="Short answer" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-900 mb-2">How fast do you want to move?</label>
+              <div className="flex flex-wrap gap-4">
+                {['Yesterday', 'This month', 'This quarter', 'Just exploring'].map(opt => (
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
+                    <input type="radio" name="moveSpeed" value={opt} checked={formData.moveSpeed === opt} onChange={handleChange} className="mr-2" />{opt}
+                  </label>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
     }
   };
 
@@ -576,15 +817,16 @@ const AssessmentForm: React.FC = () => {
             </p>
           </div>
 
-          {currentStep === steps.length - 1 ? (
+          {/* Show Submit button from Step 3 onward (currentStep >= 3) */}
+          {currentStep >= 3 && (
             <motion.button
               type="button"
               onClick={handleSubmit}
-              disabled={isSubmitting}
+              disabled={isSubmitting || !validateStep(0) || !validateStep(1) || !validateStep(2)}
               whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
               whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-              className={`px-8 py-3 rounded-lg font-semibold text-white transition-all duration-200 ${
-                isSubmitting
+              className={`px-8 py-3 rounded-lg font-semibold text-white transition-all duration-200 ml-4 ${
+                isSubmitting || !validateStep(0) || !validateStep(1) || !validateStep(2)
                   ? 'bg-slate-400 cursor-not-allowed'
                   : 'bg-teal-600 hover:bg-teal-700 shadow-lg hover:shadow-xl'
               }`}
@@ -601,11 +843,14 @@ const AssessmentForm: React.FC = () => {
                 'Submit Assessment'
               )}
             </motion.button>
-          ) : (
+          )}
+
+          {/* Show Next button if not on last step */}
+          {currentStep < steps.length - 1 && (
             <button
               type="button"
               onClick={handleNext}
-              className="px-6 py-3 bg-teal-600 text-white rounded-lg font-medium hover:bg-teal-700 transition-colors"
+              className="px-6 py-3 bg-teal-600 text-white rounded-lg font-medium hover:bg-teal-700 transition-colors ml-4"
             >
               Next
             </button>
