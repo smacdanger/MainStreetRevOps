@@ -54,7 +54,6 @@ interface FormData {
   companyName: string;
   bestEmail: string;
   bestPhone: string;
-  okToText: string; // Yes/No
   consent: string; // Yes/No
   tradeIndustry: string;
   serviceArea: string;
@@ -125,7 +124,6 @@ const AssessmentForm: React.FC = () => {
     companyName: '',
     bestEmail: '',
     bestPhone: '',
-    okToText: '',
     consent: '',
     tradeIndustry: '',
     serviceArea: '',
@@ -183,7 +181,6 @@ const AssessmentForm: React.FC = () => {
         if (!formData.companyName) newErrors.companyName = 'Required';
         if (!formData.bestEmail) newErrors.bestEmail = 'Required';
         if (!formData.bestPhone) newErrors.bestPhone = 'Required';
-        if (!formData.okToText) newErrors.okToText = 'Required';
         if (!formData.consent) newErrors.consent = 'Required';
         if (!formData.tradeIndustry) newErrors.tradeIndustry = 'Required';
         break;
@@ -308,17 +305,6 @@ const AssessmentForm: React.FC = () => {
                 <label htmlFor="bestPhone" className="block text-sm font-medium text-slate-700 mb-2">Best phone *</label>
                 <input type="tel" id="bestPhone" name="bestPhone" value={formData.bestPhone} onChange={handleChange} className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 ${errors.bestPhone ? 'border-red-500' : 'border-slate-300'}`} placeholder="(555) 123-4567" />
                 {errors.bestPhone && <p className="mt-1 text-sm text-red-600">{errors.bestPhone}</p>}
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Okay to text? *</label>
-                <div className="flex gap-4">
-                  {['Yes', 'No'].map(opt => (
-                    <label key={opt} className="inline-flex items-center">
-                      <input type="radio" name="okToText" value={opt} checked={formData.okToText === opt} onChange={handleChange} className="mr-2" />{opt}
-                    </label>
-                  ))}
-                </div>
-                {errors.okToText && <p className="mt-1 text-sm text-red-600">{errors.okToText}</p>}
               </div>
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">Consent to contact you by email/text? *</label>
