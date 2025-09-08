@@ -28,6 +28,28 @@ const ContactForm: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
+  // Add a global style for input and textarea elements
+  React.useEffect(() => {
+    // Add custom styles for placeholder text and input text
+    const style = document.createElement('style');
+    style.innerHTML = `
+      ::placeholder {
+        color: #64748b !important; /* slate-500 - slightly darker than default */
+        opacity: 1;
+      }
+      
+      input, textarea, select {
+        color: #000000 !important; /* Pure black for typed text */
+      }
+    `;
+    document.head.appendChild(style);
+    
+    // Cleanup on unmount
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
+
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
 
