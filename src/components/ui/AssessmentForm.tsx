@@ -23,32 +23,27 @@ const steps = [
   {
     id: 'estimates',
     title: 'Estimates & Work Tracking',
-    description: 'How do you quote and win jobs?',
+    description: 'How do you quote and win jobs? (Optional)',
   },
   {
     id: 'money',
     title: 'Money Flow',
-    description: 'How do you invoice and get paid?',
+    description: 'How do you invoice and get paid? (Optional)',
   },
   {
     id: 'tools',
     title: 'Tools & Duplicated Work',
-    description: 'What software and systems do you use?',
+    description: 'What software and systems do you use? (Optional)',
   },
   {
     id: 'agency',
     title: 'Agency & Access',
-    description: 'Do you work with a marketing/web agency?',
+    description: 'Do you work with a marketing/web agency? (Optional)',
   },
   {
     id: 'goals',
     title: 'Goals, Constraints, Timeline',
-    description: 'What does success look like?',
-  },
-  {
-    id: 'consent',
-    title: 'Consent',
-    description: 'Can we reach out with next steps?',
+    description: 'What does success look like? (Optional)',
   },
 ];
 
@@ -60,6 +55,7 @@ interface FormData {
   bestEmail: string;
   bestPhone: string;
   okToText: string; // Yes/No
+  consent: string; // Yes/No
   tradeIndustry: string;
   serviceArea: string;
   website: string;
@@ -116,9 +112,6 @@ interface FormData {
   constraints: string;
   decisionMakers: string;
   moveSpeed: string;
-
-  // Step 9
-  consent: string;
 }
 
 interface FormErrors {
@@ -133,6 +126,7 @@ const AssessmentForm: React.FC = () => {
     bestEmail: '',
     bestPhone: '',
     okToText: '',
+    consent: '',
     tradeIndustry: '',
     serviceArea: '',
     website: '',
@@ -174,7 +168,6 @@ const AssessmentForm: React.FC = () => {
     constraints: '',
     decisionMakers: '',
     moveSpeed: '',
-    consent: '',
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
@@ -191,6 +184,7 @@ const AssessmentForm: React.FC = () => {
         if (!formData.bestEmail) newErrors.bestEmail = 'Required';
         if (!formData.bestPhone) newErrors.bestPhone = 'Required';
         if (!formData.okToText) newErrors.okToText = 'Required';
+        if (!formData.consent) newErrors.consent = 'Required';
         if (!formData.tradeIndustry) newErrors.tradeIndustry = 'Required';
         break;
       case 1:
@@ -213,47 +207,7 @@ const AssessmentForm: React.FC = () => {
         if (formData.bookingLink === 'Yes' && !formData.bookingLinkWhich) newErrors.bookingLinkWhich = 'Required';
         if (!formData.firstImprovement) newErrors.firstImprovement = 'Required';
         break;
-      case 3:
-        if (!formData.estimateMethod) newErrors.estimateMethod = 'Required';
-        if (!formData.estimateApproval) newErrors.estimateApproval = 'Required';
-        if (!formData.avgJobSize) newErrors.avgJobSize = 'Required';
-        if (!formData.leadToJobRate) newErrors.leadToJobRate = 'Required';
-        if (!formData.estimateBlocker) newErrors.estimateBlocker = 'Required';
-        break;
-      case 4:
-        if (!formData.invoiceMethod) newErrors.invoiceMethod = 'Required';
-        if (!formData.invoiceTiming) newErrors.invoiceTiming = 'Required';
-        if (!formData.paymentMethods || formData.paymentMethods.length === 0) newErrors.paymentMethods = 'Select at least one';
-        if (!formData.syncToQB) newErrors.syncToQB = 'Required';
-        if (!formData.billingHeadache) newErrors.billingHeadache = 'Required';
-        // invoiceFile is optional
-        break;
-      case 5:
-        if (!formData.toolsUsed) newErrors.toolsUsed = 'Required';
-        if (!formData.websitePlatform) newErrors.websitePlatform = 'Required';
-        if (!formData.phoneSystem) newErrors.phoneSystem = 'Required';
-        if (!formData.calendar) newErrors.calendar = 'Required';
-        if (!formData.runningAds) newErrors.runningAds = 'Required';
-        if (!formData.duplicateWork) newErrors.duplicateWork = 'Required';
-        break;
-      case 6:
-        if (!formData.hasAgency) newErrors.hasAgency = 'Required';
-        // Branch: If Yes, require agencyHandles, agencyHappy, agencyAgreementEnd
-        if (formData.hasAgency === 'Yes') {
-          if (!formData.agencyHandles || formData.agencyHandles.length === 0) newErrors.agencyHandles = 'Required';
-          if (!formData.agencyHappy) newErrors.agencyHappy = 'Required';
-          if (!formData.agencyAgreementEnd) newErrors.agencyAgreementEnd = 'Required';
-        }
-        break;
-      case 7:
-        if (!formData.oneFix) newErrors.oneFix = 'Required';
-        if (!formData.sixMonthSuccess) newErrors.sixMonthSuccess = 'Required';
-        // constraints and decisionMakers are optional
-        if (!formData.moveSpeed) newErrors.moveSpeed = 'Required';
-        break;
-      case 8:
-        if (!formData.consent) newErrors.consent = 'Required';
-        break;
+      // Steps 3+ are optional
       default:
         break;
     }
@@ -365,6 +319,17 @@ const AssessmentForm: React.FC = () => {
                   ))}
                 </div>
                 {errors.okToText && <p className="mt-1 text-sm text-red-600">{errors.okToText}</p>}
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-2">Consent to contact you by email/text? *</label>
+                <div className="flex gap-4">
+                  {['Yes', 'No'].map(opt => (
+                    <label key={opt} className="inline-flex items-center">
+                      <input type="radio" name="consent" value={opt} checked={formData.consent === opt} onChange={handleChange} className="mr-2" />{opt}
+                  </label>
+                  ))}
+                </div>
+                {errors.consent && <p className="mt-1 text-sm text-red-600">{errors.consent}</p>}
               </div>
               <div>
                 <label htmlFor="tradeIndustry" className="block text-sm font-medium text-slate-700 mb-2">Trade / Industry *</label>
@@ -533,6 +498,9 @@ const AssessmentForm: React.FC = () => {
 
   return (
     <div className="w-full max-w-4xl mx-auto">
+      <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-xl text-blue-900 text-base">
+        <strong>Note:</strong> Only Sections 1–3 are required. You can submit the form after completing these, or continue for a more detailed assessment (recommended).
+      </div>
       {/* Progress Bar */}
       <div className="mb-8">
         <div className="flex items-center justify-between mb-4">

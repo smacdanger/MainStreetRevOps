@@ -220,3 +220,12 @@ body::-webkit-scrollbar-thumb:hover {
 .motion-safe {
   contain: layout style;
 }
+
+/* Force entered text to pure black and set placeholder color */
+input, textarea, select {
+  color: #000 !important; /* Pure black for entered text */
+}
+::placeholder {
+  color: #64748b !important; /* slate-500, slightly darker than default */
+  opacity: 1;
+}
