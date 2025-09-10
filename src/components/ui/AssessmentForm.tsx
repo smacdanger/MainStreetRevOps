@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Updated steps for the new 9-step assessment
@@ -174,6 +174,32 @@ const AssessmentForm: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
+  // Memoize validation results for required steps without setting errors
+  const isRequiredStepsValid = useMemo(() => {
+    const checkStep = (stepIndex: number): boolean => {
+      switch (stepIndex) {
+        case 0:
+          return !!(formData.yourName && formData.companyName && formData.bestEmail && 
+                   formData.bestPhone && formData.consent && formData.tradeIndustry);
+        case 1:
+          const hasLeadSources = formData.leadSources && formData.leadSources.length > 0;
+          const hasMissedCallHandling = !formData.leadSources.includes('Phone calls') || formData.missedCallHandling;
+          return !!(hasLeadSources && formData.monthlyLeads && formData.responseSpeed && 
+                   formData.afterHours && formData.leadHeadache && hasMissedCallHandling);
+        case 2:
+          const hasCrmName = formData.leadTracking !== 'CRM' || formData.crmName;
+          const hasBookingLinkWhich = formData.bookingLink !== 'Yes' || formData.bookingLinkWhich;
+          return !!(formData.leadTracking && hasCrmName && formData.textFromBiz && 
+                   formData.autoTextHelp && formData.bookingLink && hasBookingLinkWhich && 
+                   formData.firstImprovement);
+        default:
+          return true;
+      }
+    };
+    
+    return checkStep(0) && checkStep(1) && checkStep(2);
+  }, [formData]);
+
   const validateStep = (stepIndex: number): boolean => {
     const newErrors: FormErrors = {};
     // Step-by-step validation
@@ -232,6 +258,17 @@ const AssessmentForm: React.FC = () => {
     setSubmitStatus('idle');
 
     try {
+      // Check if we're in development mode
+      const isDevelopment = process.env.NODE_ENV === 'development';
+      
+      if (isDevelopment) {
+        // Simulate successful submission in development
+        console.log('Development mode - Form data:', formData);
+        await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate network delay
+        setSubmitStatus('success');
+        return;
+      }
+
       const response = await fetch('/.netlify/functions/assessment-form', {
         method: 'POST',
         headers: {
@@ -817,44 +854,46 @@ const AssessmentForm: React.FC = () => {
             </p>
           </div>
 
-          {/* Show Submit button from Step 3 onward (currentStep >= 3) */}
-          {currentStep >= 3 && (
-            <motion.button
-              type="button"
-              onClick={handleSubmit}
-              disabled={isSubmitting || !validateStep(0) || !validateStep(1) || !validateStep(2)}
-              whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
-              whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-              className={`px-8 py-3 rounded-lg font-semibold text-white transition-all duration-200 ml-4 ${
-                isSubmitting || !validateStep(0) || !validateStep(1) || !validateStep(2)
-                  ? 'bg-slate-400 cursor-not-allowed'
-                  : 'bg-teal-600 hover:bg-teal-700 shadow-lg hover:shadow-xl'
-              }`}
-            >
-              {isSubmitting ? (
-                <span className="flex items-center">
-                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                  Submitting...
-                </span>
-              ) : (
-                'Submit Assessment'
-              )}
-            </motion.button>
-          )}
+          <div className="flex gap-2">
+            {/* Show Submit button from Step 4 onward (currentStep >= 3) */}
+            {currentStep >= 3 && (
+              <motion.button
+                type="button"
+                onClick={handleSubmit}
+                disabled={isSubmitting || !isRequiredStepsValid}
+                whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                className={`px-8 py-3 rounded-lg font-semibold text-white transition-all duration-200 ${
+                  isSubmitting || !isRequiredStepsValid
+                    ? 'bg-slate-400 cursor-not-allowed'
+                    : 'bg-teal-600 hover:bg-teal-700 shadow-lg hover:shadow-xl'
+                }`}
+              >
+                {isSubmitting ? (
+                  <span className="flex items-center">
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Submitting...
+                  </span>
+                ) : (
+                  'Submit Assessment'
+                )}
+              </motion.button>
+            )}
 
-          {/* Show Next button if not on last step */}
-          {currentStep < steps.length - 1 && (
-            <button
-              type="button"
-              onClick={handleNext}
-              className="px-6 py-3 bg-teal-600 text-white rounded-lg font-medium hover:bg-teal-700 transition-colors ml-4"
-            >
-              Next
-            </button>
-          )}
+            {/* Show Next button if not on last step */}
+            {currentStep < steps.length - 1 && (
+              <button
+                type="button"
+                onClick={handleNext}
+                className="px-6 py-3 bg-teal-600 text-white rounded-lg font-medium hover:bg-teal-700 transition-colors"
+              >
+                Next
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Error Message */}
