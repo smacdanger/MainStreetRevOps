@@ -2,6 +2,40 @@
 
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+
+// TCO Calculator Types
+export interface TCOInputs {
+  reps: number;
+  CRM_user_cost: number;
+  Phone_cost: number;
+  Accounting_cost: number;
+  Other_cost: number;
+  leads: number;
+  job_value: number;
+  close_rate: number;
+  rep_hours: number;
+  owner_hours: number;
+  rep_rate: number;
+  owner_rate: number;
+  CRM_change: boolean;
+  Phone_change: boolean;
+  Accounting_change: boolean;
+}
+
+export interface TCOResults {
+  Current_TCO: number;
+  Optimized_TCO: number;
+  Net_Savings: number;
+  Revenue_Gained: number;
+  ROI: number;
+  Current_Fixed: number;
+  Current_Hidden: number;
+  Current_Missed: number;
+  Optimized_Fixed: number;
+  Optimized_Hidden: number;
+  Optimized_Missed: number;
+}
 
 // Updated steps for the new 9-step assessment
 const steps = [
@@ -67,6 +101,10 @@ interface FormData {
   leadHeadache: string;
   // Step 2b (branch)
   missedCallHandling?: string;
+  // New TCO-relevant fields
+  teamSize: string;
+  ownerHoursPerWeek: string;
+  manualHoursPerWeek: string;
 
   // Step 3
   leadTracking: string;
@@ -76,6 +114,9 @@ interface FormData {
   bookingLink: string;
   bookingLinkWhich?: string;
   firstImprovement: string;
+  // New TCO-relevant fields
+  currentToolCosts: string;
+  timeToFollowUp: string;
 
   // Step 4
   estimateMethod: string;
@@ -120,6 +161,7 @@ interface FormErrors {
 
 const AssessmentForm: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
+  const [showTCOResults, setShowTCOResults] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     yourName: '',
     companyName: '',
@@ -135,6 +177,9 @@ const AssessmentForm: React.FC = () => {
     afterHours: '',
     leadHeadache: '',
     missedCallHandling: '',
+    teamSize: '',
+    ownerHoursPerWeek: '',
+    manualHoursPerWeek: '',
     leadTracking: '',
     crmName: '',
     textFromBiz: '',
@@ -142,6 +187,8 @@ const AssessmentForm: React.FC = () => {
     bookingLink: '',
     bookingLinkWhich: '',
     firstImprovement: '',
+    currentToolCosts: '',
+    timeToFollowUp: '',
     estimateMethod: '',
     estimateApproval: '',
     avgJobSize: '',
@@ -174,6 +221,153 @@ const AssessmentForm: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
+  // TCO Calculation based on assessment data
+  const generateTCOInputsFromAssessment = (): TCOInputs => {
+    // Parse monthly leads
+    const leadsMapping: { [key: string]: number } = {
+      '0–10': 5,
+      '11–25': 18,
+      '26–50': 38,
+      '51–100': 75,
+      '100+': 150
+    };
+    const leads = leadsMapping[formData.monthlyLeads] || 25;
+
+    // Parse job size
+    const jobSizeMapping: { [key: string]: number } = {
+      '<$1k': 500,
+      '$1–5k': 3000,
+      '$5–15k': 10000,
+      '$15–50k': 30000,
+      '$50k+': 75000
+    };
+    const job_value = jobSizeMapping[formData.avgJobSize] || 5000;
+
+    // Parse close rate
+    const closeRateMapping: { [key: string]: number } = {
+      '<10%': 5,
+      '10–25%': 17,
+      '26–40%': 33,
+      '41–60%': 50,
+      '60%+': 70
+    };
+    const close_rate = closeRateMapping[formData.leadToJobRate] || 25;
+
+    // Parse team size
+    const teamSizeMapping: { [key: string]: number } = {
+      'Just me': 1,
+      '2-3 people': 2.5,
+      '4-6 people': 5,
+      '7-10 people': 8.5,
+      '10+ people': 15
+    };
+    const reps = teamSizeMapping[formData.teamSize] || 3;
+
+    // Parse owner hours per week
+    const ownerHoursMapping: { [key: string]: number } = {
+      '<10 hours': 5,
+      '10-20 hours': 15,
+      '20-40 hours': 30,
+      '40+ hours': 50
+    };
+    const owner_hours = ownerHoursMapping[formData.ownerHoursPerWeek] || 6;
+
+    // Parse manual work hours per week
+    const manualHoursMapping: { [key: string]: number } = {
+      '<5 hours': 3,
+      '5-10 hours': 8,
+      '10-20 hours': 15,
+      '20+ hours': 25
+    };
+    const manual_hours = manualHoursMapping[formData.manualHoursPerWeek] || 8;
+
+    // Parse current tool costs
+    const toolCostMapping: { [key: string]: number } = {
+      '<$100/month': 50,
+      '$100-$300/month': 200,
+      '$300-$500/month': 400,
+      '$500+ month': 750
+    };
+    const current_tool_cost = toolCostMapping[formData.currentToolCosts] || 200;
+
+    return {
+      reps,
+      CRM_user_cost: formData.leadTracking === 'CRM' ? current_tool_cost * 0.4 : 50,
+      Phone_cost: current_tool_cost * 0.3,
+      Accounting_cost: current_tool_cost * 0.2,
+      Other_cost: current_tool_cost * 0.1,
+      leads,
+      job_value,
+      close_rate,
+      rep_hours: manual_hours / reps,
+      owner_hours,
+      rep_rate: 25, // Still use reasonable default
+      owner_rate: 65, // Still use reasonable default
+      CRM_change: true,
+      Phone_change: true,
+      Accounting_change: true
+    };
+  };
+
+  const calculateTCO = (inputs: TCOInputs): TCOResults => {
+    // Constants for calculation
+    const Lost_Leads_Percent = 0.15;
+    const Labor_Savings_Percent = 0.50;
+    const Optimized_Lost_Leads_Percent = 0.05;
+    const OpenAI_cost = Math.max(25, inputs.leads * 0.50);
+
+    // Current TCO Calculation
+    const Current_Fixed = inputs.CRM_user_cost + inputs.Phone_cost + inputs.Accounting_cost + inputs.Other_cost;
+    
+    const Weekly_Rep_Labor = inputs.rep_hours * inputs.rep_rate * inputs.reps;
+    const Weekly_Owner_Labor = inputs.owner_hours * inputs.owner_rate;
+    const Hidden_Labor = (Weekly_Rep_Labor + Weekly_Owner_Labor) * 4.33;
+    const Current_Hidden = Hidden_Labor;
+    
+    const Missed_Revenue = inputs.leads * inputs.job_value * Lost_Leads_Percent;
+    const Current_Missed = Missed_Revenue;
+    const Current_TCO = Current_Fixed + Current_Hidden + Current_Missed;
+
+    // Optimized Fixed Costs
+    const Optimized_CRM = inputs.CRM_change ? (40 + 15 * inputs.reps) : inputs.CRM_user_cost;
+    const Optimized_Phone = inputs.Phone_change ? (25 + 8 * inputs.reps) : inputs.Phone_cost;
+    const Optimized_Accounting = inputs.Accounting_change ? 75 : inputs.Accounting_cost;
+    const Optimized_Other = 40 + (25 * inputs.reps) + OpenAI_cost;
+    const Optimized_Fixed = Optimized_CRM + Optimized_Phone + Optimized_Accounting + Optimized_Other;
+
+    // Optimized Variable Costs
+    const Optimized_Hidden = Hidden_Labor * (1 - Labor_Savings_Percent);
+    const Optimized_Missed = inputs.leads * inputs.job_value * Optimized_Lost_Leads_Percent;
+    const Optimized_TCO = Optimized_Fixed + Optimized_Hidden + Optimized_Missed;
+
+    // Comparison Metrics
+    const Net_Savings = Current_TCO - Optimized_TCO;
+    const Revenue_Gained = Missed_Revenue - Optimized_Missed;
+    
+    const Base_Implementation_Cost = 8000;
+    const Per_Rep_Cost = 1500;
+    const Implementation_Investment = Base_Implementation_Cost + (Per_Rep_Cost * inputs.reps);
+    const Monthly_Benefit = Net_Savings + Revenue_Gained;
+    const ROI = Implementation_Investment > 0 ? (Monthly_Benefit * 12 / Implementation_Investment) * 100 : 0;
+
+    return {
+      Current_TCO,
+      Optimized_TCO,
+      Net_Savings,
+      Revenue_Gained,
+      ROI,
+      Current_Fixed,
+      Current_Hidden,
+      Current_Missed,
+      Optimized_Fixed,
+      Optimized_Hidden,
+      Optimized_Missed
+    };
+  };
+
+  const tcoInputs = generateTCOInputsFromAssessment();
+  const tcoResults = calculateTCO(tcoInputs);
+
   // Memoize validation results for required steps without setting errors
   const isRequiredStepsValid = useMemo(() => {
     const checkStep = (stepIndex: number): boolean => {
@@ -185,13 +379,14 @@ const AssessmentForm: React.FC = () => {
           const hasLeadSources = formData.leadSources && formData.leadSources.length > 0;
           const hasMissedCallHandling = !formData.leadSources.includes('Phone calls') || formData.missedCallHandling;
           return !!(hasLeadSources && formData.monthlyLeads && formData.responseSpeed && 
-                   formData.afterHours && formData.leadHeadache && hasMissedCallHandling);
+                   formData.afterHours && formData.leadHeadache && hasMissedCallHandling &&
+                   formData.teamSize && formData.ownerHoursPerWeek && formData.manualHoursPerWeek);
         case 2:
           const hasCrmName = formData.leadTracking !== 'CRM' || formData.crmName;
           const hasBookingLinkWhich = formData.bookingLink !== 'Yes' || formData.bookingLinkWhich;
           return !!(formData.leadTracking && hasCrmName && formData.textFromBiz && 
                    formData.autoTextHelp && formData.bookingLink && hasBookingLinkWhich && 
-                   formData.firstImprovement);
+                   formData.firstImprovement && formData.currentToolCosts && formData.timeToFollowUp);
         default:
           return true;
       }
@@ -222,6 +417,10 @@ const AssessmentForm: React.FC = () => {
         if (formData.leadSources.includes('Phone calls') && !formData.missedCallHandling) {
           newErrors.missedCallHandling = 'Required';
         }
+        // New required fields for step 2
+        if (!formData.teamSize) newErrors.teamSize = 'Required';
+        if (!formData.ownerHoursPerWeek) newErrors.ownerHoursPerWeek = 'Required';
+        if (!formData.manualHoursPerWeek) newErrors.manualHoursPerWeek = 'Required';
         break;
       case 2:
         if (!formData.leadTracking) newErrors.leadTracking = 'Required';
@@ -232,6 +431,9 @@ const AssessmentForm: React.FC = () => {
         // If bookingLink is Yes, require bookingLinkWhich
         if (formData.bookingLink === 'Yes' && !formData.bookingLinkWhich) newErrors.bookingLinkWhich = 'Required';
         if (!formData.firstImprovement) newErrors.firstImprovement = 'Required';
+        // New required fields for step 3
+        if (!formData.currentToolCosts) newErrors.currentToolCosts = 'Required';
+        if (!formData.timeToFollowUp) newErrors.timeToFollowUp = 'Required';
         break;
       // Steps 3+ are optional
       default:
@@ -243,8 +445,18 @@ const AssessmentForm: React.FC = () => {
 
   const handleNext = () => {
     if (validateStep(currentStep)) {
-      setCurrentStep(prev => Math.min(prev + 1, steps.length - 1));
+      // After completing required steps (0, 1, 2), show TCO results
+      if (currentStep === 2 && !showTCOResults) {
+        setShowTCOResults(true);
+      } else {
+        setCurrentStep(prev => Math.min(prev + 1, steps.length - 1));
+      }
     }
+  };
+
+  const handleContinueFromTCO = () => {
+    setShowTCOResults(false);
+    setCurrentStep(prev => Math.min(prev + 1, steps.length - 1));
   };
 
   const handlePrev = () => {
@@ -317,6 +529,150 @@ const AssessmentForm: React.FC = () => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
     setFormData(prev => ({ ...prev, invoiceFile: file }));
+  };
+
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(amount);
+  };
+
+  const formatPercent = (percent: number) => {
+    return `${percent.toFixed(1)}%`;
+  };
+
+  const renderTCOResults = () => {
+    const chartData = [
+      {
+        category: 'Fixed Costs',
+        Current: tcoResults.Current_Fixed,
+        Optimized: tcoResults.Optimized_Fixed,
+      },
+      {
+        category: 'Hidden Labor',
+        Current: tcoResults.Current_Hidden,
+        Optimized: tcoResults.Optimized_Hidden,
+      },
+      {
+        category: 'Missed Revenue',
+        Current: tcoResults.Current_Missed,
+        Optimized: tcoResults.Optimized_Missed,
+      },
+    ];
+
+    return (
+      <div className="space-y-8">
+        <div className="text-center">
+          <h3 className="text-3xl font-bold text-slate-900 mb-4">
+            Your Instant TCO Analysis
+          </h3>
+          <p className="text-lg text-slate-600 mb-6">
+            Based on your assessment responses, here&apos;s what you could save with optimized systems:
+          </p>
+        </div>
+
+        {/* Summary Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-xl border border-green-200">
+            <div className="text-3xl font-bold text-green-600 mb-2">
+              {formatCurrency(tcoResults.Net_Savings)}
+            </div>
+            <div className="text-green-800 font-medium">Monthly Savings</div>
+            <div className="text-green-600 text-sm">Cost reduction per month</div>
+          </div>
+          
+          <div className="bg-gradient-to-br from-blue-50 to-cyan-50 p-6 rounded-xl border border-blue-200">
+            <div className="text-3xl font-bold text-blue-600 mb-2">
+              {formatCurrency(tcoResults.Revenue_Gained)}
+            </div>
+            <div className="text-blue-800 font-medium">Revenue Gained</div>
+            <div className="text-blue-600 text-sm">From capturing more leads</div>
+          </div>
+          
+          <div className="bg-gradient-to-br from-purple-50 to-violet-50 p-6 rounded-xl border border-purple-200">
+            <div className="text-3xl font-bold text-purple-600 mb-2">
+              {formatPercent(tcoResults.ROI)}
+            </div>
+            <div className="text-purple-800 font-medium">Annual ROI</div>
+            <div className="text-purple-600 text-sm">Return on investment</div>
+          </div>
+        </div>
+
+        {/* Chart */}
+        <div className="bg-white p-6 rounded-xl border border-slate-200">
+          <h4 className="text-xl font-semibold text-slate-900 mb-4">Current vs Optimized Breakdown</h4>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="category" />
+                <YAxis tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`} />
+                <Tooltip formatter={(value) => formatCurrency(Number(value))} />
+                <Bar dataKey="Current" fill="#64748b" name="Current" />
+                <Bar dataKey="Optimized" fill="#0d9488" name="Optimized" />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Key Insights */}
+        <div className="bg-gradient-to-br from-teal-50 to-cyan-50 p-6 rounded-xl border border-teal-200">
+          <h4 className="text-xl font-semibold text-slate-900 mb-4">What This Means for {formData.companyName || 'Your Business'}</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <h5 className="font-medium text-slate-900 mb-2">💰 Total Monthly Impact:</h5>
+              <p className="text-slate-700">
+                {formatCurrency(tcoResults.Net_Savings + tcoResults.Revenue_Gained)} in combined savings and new revenue
+              </p>
+            </div>
+            <div>
+              <h5 className="font-medium text-slate-900 mb-2">📈 Annual Potential:</h5>
+              <p className="text-slate-700">
+                {formatCurrency((tcoResults.Net_Savings + tcoResults.Revenue_Gained) * 12)} in total annual benefit
+              </p>
+            </div>
+            <div>
+              <h5 className="font-medium text-slate-900 mb-2">⚡ Time Savings:</h5>
+              <p className="text-slate-700">
+                ~50% reduction in manual lead management tasks
+              </p>
+            </div>
+            <div>
+              <h5 className="font-medium text-slate-900 mb-2">📊 Lead Capture:</h5>
+              <p className="text-slate-700">
+                {formatCurrency(tcoResults.Revenue_Gained)} in previously missed opportunities
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Call to Action */}
+        <div className="text-center bg-slate-900 text-white p-8 rounded-xl">
+          <h4 className="text-2xl font-bold mb-4">Ready to Capture This Value?</h4>
+          <p className="text-slate-200 mb-6 max-w-2xl mx-auto">
+            Let&apos;s discuss how to implement these optimizations for your business. 
+            Continue your assessment to schedule a detailed consultation.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              onClick={handleContinueFromTCO}
+              className="bg-teal-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-teal-700 transition-colors"
+            >
+              Continue Assessment
+            </button>
+            <button
+              onClick={handleSubmit}
+              className="bg-white text-slate-900 px-8 py-3 rounded-lg font-semibold hover:bg-slate-100 transition-colors"
+            >
+              Skip to Consultation Request
+            </button>
+          </div>
+        </div>
+      </div>
+    );
   };
 
   const renderStepContent = () => {
@@ -447,6 +803,43 @@ const AssessmentForm: React.FC = () => {
               <input type="text" id="leadHeadache" name="leadHeadache" value={formData.leadHeadache} onChange={handleChange} className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 ${errors.leadHeadache ? 'border-red-500' : 'border-slate-300'}`} placeholder="Short answer" />
               {errors.leadHeadache && <p className="mt-1 text-sm text-red-600">{errors.leadHeadache}</p>}
             </div>
+            
+            {/* New TCO-relevant fields */}
+            <div>
+              <label className="block text-sm font-medium text-slate-900 mb-2">How many people work in your business? *</label>
+              <div className="flex flex-wrap gap-4">
+                {['Just me', '2-3 people', '4-6 people', '7-10 people', '10+ people'].map(opt => (
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
+                    <input type="radio" name="teamSize" value={opt} checked={formData.teamSize === opt} onChange={handleChange} className="mr-2" />{opt}
+                  </label>
+                ))}
+              </div>
+              {errors.teamSize && <p className="mt-1 text-sm text-red-600">{errors.teamSize}</p>}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-900 mb-2">How many hours per week do you (the owner) spend on lead management? *</label>
+              <div className="flex flex-wrap gap-4">
+                {['<10 hours', '10-20 hours', '20-40 hours', '40+ hours'].map(opt => (
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
+                    <input type="radio" name="ownerHoursPerWeek" value={opt} checked={formData.ownerHoursPerWeek === opt} onChange={handleChange} className="mr-2" />{opt}
+                  </label>
+                ))}
+              </div>
+              {errors.ownerHoursPerWeek && <p className="mt-1 text-sm text-red-600">{errors.ownerHoursPerWeek}</p>}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-900 mb-2">How many hours per week does your team spend on manual lead tasks (tracking, follow-up, scheduling)? *</label>
+              <div className="flex flex-wrap gap-4">
+                {['<5 hours', '5-10 hours', '10-20 hours', '20+ hours'].map(opt => (
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
+                    <input type="radio" name="manualHoursPerWeek" value={opt} checked={formData.manualHoursPerWeek === opt} onChange={handleChange} className="mr-2" />{opt}
+                  </label>
+                ))}
+              </div>
+              {errors.manualHoursPerWeek && <p className="mt-1 text-sm text-red-600">{errors.manualHoursPerWeek}</p>}
+            </div>
           </div>
         );
       case 2: // Step 3 — Follow-up & Scheduling
@@ -523,6 +916,31 @@ const AssessmentForm: React.FC = () => {
                 ))}
               </div>
               {errors.firstImprovement && <p className="mt-1 text-sm text-red-600">{errors.firstImprovement}</p>}
+            </div>
+
+            {/* New TCO-relevant fields */}
+            <div>
+              <label className="block text-sm font-medium text-slate-900 mb-2">What do you spend monthly on business software/tools (CRM, phone, etc.)? *</label>
+              <div className="flex flex-wrap gap-4">
+                {['<$100/month', '$100-$300/month', '$300-$500/month', '$500+ month'].map(opt => (
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
+                    <input type="radio" name="currentToolCosts" value={opt} checked={formData.currentToolCosts === opt} onChange={handleChange} className="mr-2" />{opt}
+                  </label>
+                ))}
+              </div>
+              {errors.currentToolCosts && <p className="mt-1 text-sm text-red-600">{errors.currentToolCosts}</p>}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-900 mb-2">How long does it typically take to follow up with a new lead? *</label>
+              <div className="flex flex-wrap gap-4">
+                {['Within 1 hour', 'Same day', '1-2 days', '3+ days', 'Inconsistent'].map(opt => (
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
+                    <input type="radio" name="timeToFollowUp" value={opt} checked={formData.timeToFollowUp === opt} onChange={handleChange} className="mr-2" />{opt}
+                  </label>
+                ))}
+              </div>
+              {errors.timeToFollowUp && <p className="mt-1 text-sm text-red-600">{errors.timeToFollowUp}</p>}
             </div>
           </div>
         );
@@ -813,28 +1231,41 @@ const AssessmentForm: React.FC = () => {
       {/* Form Content */}
       <div className="bg-white rounded-2xl shadow-lg border border-slate-200 p-8">
         <AnimatePresence mode="wait">
-          <motion.div
-            key={currentStep}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.2 }}
-          >
-            <div className="mb-8">
-              <h3 className="text-2xl font-bold text-slate-900 mb-2">
-                {steps[currentStep].title}
-              </h3>
-              <p className="text-slate-600">
-                {steps[currentStep].description}
-              </p>
-            </div>
+          {showTCOResults ? (
+            <motion.div
+              key="tco-results"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.4 }}
+            >
+              {renderTCOResults()}
+            </motion.div>
+          ) : (
+            <motion.div
+              key={currentStep}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.2 }}
+            >
+              <div className="mb-8">
+                <h3 className="text-2xl font-bold text-slate-900 mb-2">
+                  {steps[currentStep].title}
+                </h3>
+                <p className="text-slate-600">
+                  {steps[currentStep].description}
+                </p>
+              </div>
 
-            {renderStepContent()}
-          </motion.div>
+              {renderStepContent()}
+            </motion.div>
+          )}
         </AnimatePresence>
 
-        {/* Navigation Buttons */}
-        <div className="flex justify-between items-center mt-8 pt-6 border-t border-slate-200">
+        {/* Navigation Buttons - Hide when showing TCO results */}
+        {!showTCOResults && (
+          <div className="flex justify-between items-center mt-8 pt-6 border-t border-slate-200">
           <button
             type="button"
             onClick={handlePrev}
@@ -895,6 +1326,7 @@ const AssessmentForm: React.FC = () => {
             )}
           </div>
         </div>
+        )}
 
         {/* Error Message */}
         {submitStatus === 'error' && (

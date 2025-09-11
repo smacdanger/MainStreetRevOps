@@ -64,18 +64,12 @@ const CaseStudiesSection: React.FC = () => {
               <br />
               <span className="text-sm md:text-xs italic">*Ask about discounted rates in exchange for case studies*</span>
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 md:gap-3 justify-center">
+            <div className="flex justify-center">
               <Link
                 href="/assessment"
                 className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-4 md:px-6 md:py-3 rounded-xl font-bold text-lg md:text-base hover:from-orange-600 hover:to-red-600 transition-all duration-300 inline-block shadow-lg hover:shadow-xl transform hover:-translate-y-1"
               >
                 Get Your Assessment
-              </Link>
-              <Link
-                href="/tco-calculator"
-                className="border-2 border-orange-500 text-orange-600 px-8 py-4 md:px-6 md:py-3 rounded-xl font-semibold text-lg md:text-base hover:bg-orange-50 transition-all duration-300 inline-block"
-              >
-                Calculate Your Current Loss
               </Link>
             </div>
           </div>
