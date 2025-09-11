@@ -14,14 +14,14 @@ export default function Home() {
       {/* Hero Section */}
       <Hero
         badge="AI-Powered Growth for Main Street"
-        title="Turn More Leads Into Revenue — Without Another Platform"
-        description='We connect the tools you already use and make them work smarter—no rip-and-replace, no learning curve, just results you can see in your calendar and bank account.'
+        title="Turn More Leads Into Revenue — Using What You Already Have"
+        description='We help you connect and optimize the tools you already use—no learning curve, just better results you can see in your calendar and bank account.'
         primaryCTA={{
-          text: "Get Your Business Assessment",
+          text: "Book a Business Assessment",
           href: "/assessment"
         }}
         secondaryCTA={{
-          text: "See How It Works", 
+          text: "See How We Help", 
           href: "#solution"
         }}
         variant="gradient"

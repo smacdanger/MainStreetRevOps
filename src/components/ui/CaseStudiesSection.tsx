@@ -35,14 +35,13 @@ const CaseStudiesSection: React.FC = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-3">
             {[
-              { metric: "300%", label: "Faster Response", icon: "⚡" },
-              { metric: "85%", label: "Less Manual Work", icon: "🤖" },
-              { metric: "40%", label: "More Conversions", icon: "📈" },
+              { metric: "300%", label: "Faster Response" },
+              { metric: "85%", label: "Less Manual Work" },
+              { metric: "40%", label: "More Conversions" },
             ].map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-3xl md:text-2xl mb-2">{stat.icon}</div>
-                <div className="text-3xl md:text-2xl font-bold text-slate-900 mb-1">{stat.metric}</div>
-                <div className="text-sm md:text-xs text-slate-600">{stat.label}</div>
+                <div className="text-4xl md:text-3xl font-bold text-slate-900 mb-2">{stat.metric}</div>
+                <div className="text-base md:text-sm text-slate-600">{stat.label}</div>
               </div>
             ))}
           </div>

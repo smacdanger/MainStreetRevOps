@@ -8,13 +8,13 @@ const BeyondLeadsSection: React.FC = () => {
         {/* Section Header */}
         <div className="text-center mb-12">
           <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-100 text-blue-800 mb-4">
-            Complete Automation Suite
+            Implementation Roadmap
           </span>
           <h2 className="text-3xl font-bold text-slate-900 mb-4">
-            Your Full Business Transformation Roadmap
+            Your Complete Business Integration Project
           </h2>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-            We don&apos;t just modernize one process — we systematically upgrade your entire operation from manual to automated, competitive advantage by competitive advantage.
+            We don&apos;t just fix one problem — we systematically connect your entire operation, turning disconnected tools into a unified revenue engine.
           </p>
         </div>
 
