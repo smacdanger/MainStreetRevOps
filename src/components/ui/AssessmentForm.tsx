@@ -101,6 +101,10 @@ interface FormData {
   leadHeadache: string;
   // Step 2b (branch)
   missedCallHandling?: string;
+  // New TCO-relevant fields
+  teamSize: string;
+  ownerHoursPerWeek: string;
+  manualHoursPerWeek: string;
 
   // Step 3
   leadTracking: string;
@@ -110,6 +114,9 @@ interface FormData {
   bookingLink: string;
   bookingLinkWhich?: string;
   firstImprovement: string;
+  // New TCO-relevant fields
+  currentToolCosts: string;
+  timeToFollowUp: string;
 
   // Step 4
   estimateMethod: string;
@@ -170,6 +177,9 @@ const AssessmentForm: React.FC = () => {
     afterHours: '',
     leadHeadache: '',
     missedCallHandling: '',
+    teamSize: '',
+    ownerHoursPerWeek: '',
+    manualHoursPerWeek: '',
     leadTracking: '',
     crmName: '',
     textFromBiz: '',
@@ -177,6 +187,8 @@ const AssessmentForm: React.FC = () => {
     bookingLink: '',
     bookingLinkWhich: '',
     firstImprovement: '',
+    currentToolCosts: '',
+    timeToFollowUp: '',
     estimateMethod: '',
     estimateApproval: '',
     avgJobSize: '',
@@ -241,19 +253,56 @@ const AssessmentForm: React.FC = () => {
     };
     const close_rate = closeRateMapping[formData.leadToJobRate] || 25;
 
+    // Parse team size
+    const teamSizeMapping: { [key: string]: number } = {
+      'Just me': 1,
+      '2-3 people': 2.5,
+      '4-6 people': 5,
+      '7-10 people': 8.5,
+      '10+ people': 15
+    };
+    const reps = teamSizeMapping[formData.teamSize] || 3;
+
+    // Parse owner hours per week
+    const ownerHoursMapping: { [key: string]: number } = {
+      '<10 hours': 5,
+      '10-20 hours': 15,
+      '20-40 hours': 30,
+      '40+ hours': 50
+    };
+    const owner_hours = ownerHoursMapping[formData.ownerHoursPerWeek] || 6;
+
+    // Parse manual work hours per week
+    const manualHoursMapping: { [key: string]: number } = {
+      '<5 hours': 3,
+      '5-10 hours': 8,
+      '10-20 hours': 15,
+      '20+ hours': 25
+    };
+    const manual_hours = manualHoursMapping[formData.manualHoursPerWeek] || 8;
+
+    // Parse current tool costs
+    const toolCostMapping: { [key: string]: number } = {
+      '<$100/month': 50,
+      '$100-$300/month': 200,
+      '$300-$500/month': 400,
+      '$500+ month': 750
+    };
+    const current_tool_cost = toolCostMapping[formData.currentToolCosts] || 200;
+
     return {
-      reps: 3, // Default for small business
-      CRM_user_cost: formData.leadTracking === 'CRM' ? 200 : 100,
-      Phone_cost: 150,
-      Accounting_cost: 100,
-      Other_cost: 75,
+      reps,
+      CRM_user_cost: formData.leadTracking === 'CRM' ? current_tool_cost * 0.4 : 50,
+      Phone_cost: current_tool_cost * 0.3,
+      Accounting_cost: current_tool_cost * 0.2,
+      Other_cost: current_tool_cost * 0.1,
       leads,
       job_value,
       close_rate,
-      rep_hours: 8,
-      owner_hours: 6,
-      rep_rate: 25,
-      owner_rate: 65,
+      rep_hours: manual_hours / reps,
+      owner_hours,
+      rep_rate: 25, // Still use reasonable default
+      owner_rate: 65, // Still use reasonable default
       CRM_change: true,
       Phone_change: true,
       Accounting_change: true
@@ -330,13 +379,14 @@ const AssessmentForm: React.FC = () => {
           const hasLeadSources = formData.leadSources && formData.leadSources.length > 0;
           const hasMissedCallHandling = !formData.leadSources.includes('Phone calls') || formData.missedCallHandling;
           return !!(hasLeadSources && formData.monthlyLeads && formData.responseSpeed && 
-                   formData.afterHours && formData.leadHeadache && hasMissedCallHandling);
+                   formData.afterHours && formData.leadHeadache && hasMissedCallHandling &&
+                   formData.teamSize && formData.ownerHoursPerWeek && formData.manualHoursPerWeek);
         case 2:
           const hasCrmName = formData.leadTracking !== 'CRM' || formData.crmName;
           const hasBookingLinkWhich = formData.bookingLink !== 'Yes' || formData.bookingLinkWhich;
           return !!(formData.leadTracking && hasCrmName && formData.textFromBiz && 
                    formData.autoTextHelp && formData.bookingLink && hasBookingLinkWhich && 
-                   formData.firstImprovement);
+                   formData.firstImprovement && formData.currentToolCosts && formData.timeToFollowUp);
         default:
           return true;
       }
@@ -367,6 +417,10 @@ const AssessmentForm: React.FC = () => {
         if (formData.leadSources.includes('Phone calls') && !formData.missedCallHandling) {
           newErrors.missedCallHandling = 'Required';
         }
+        // New required fields for step 2
+        if (!formData.teamSize) newErrors.teamSize = 'Required';
+        if (!formData.ownerHoursPerWeek) newErrors.ownerHoursPerWeek = 'Required';
+        if (!formData.manualHoursPerWeek) newErrors.manualHoursPerWeek = 'Required';
         break;
       case 2:
         if (!formData.leadTracking) newErrors.leadTracking = 'Required';
@@ -377,6 +431,9 @@ const AssessmentForm: React.FC = () => {
         // If bookingLink is Yes, require bookingLinkWhich
         if (formData.bookingLink === 'Yes' && !formData.bookingLinkWhich) newErrors.bookingLinkWhich = 'Required';
         if (!formData.firstImprovement) newErrors.firstImprovement = 'Required';
+        // New required fields for step 3
+        if (!formData.currentToolCosts) newErrors.currentToolCosts = 'Required';
+        if (!formData.timeToFollowUp) newErrors.timeToFollowUp = 'Required';
         break;
       // Steps 3+ are optional
       default:
@@ -746,6 +803,43 @@ const AssessmentForm: React.FC = () => {
               <input type="text" id="leadHeadache" name="leadHeadache" value={formData.leadHeadache} onChange={handleChange} className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 ${errors.leadHeadache ? 'border-red-500' : 'border-slate-300'}`} placeholder="Short answer" />
               {errors.leadHeadache && <p className="mt-1 text-sm text-red-600">{errors.leadHeadache}</p>}
             </div>
+            
+            {/* New TCO-relevant fields */}
+            <div>
+              <label className="block text-sm font-medium text-slate-900 mb-2">How many people work in your business? *</label>
+              <div className="flex flex-wrap gap-4">
+                {['Just me', '2-3 people', '4-6 people', '7-10 people', '10+ people'].map(opt => (
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
+                    <input type="radio" name="teamSize" value={opt} checked={formData.teamSize === opt} onChange={handleChange} className="mr-2" />{opt}
+                  </label>
+                ))}
+              </div>
+              {errors.teamSize && <p className="mt-1 text-sm text-red-600">{errors.teamSize}</p>}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-900 mb-2">How many hours per week do you (the owner) spend on lead management? *</label>
+              <div className="flex flex-wrap gap-4">
+                {['<10 hours', '10-20 hours', '20-40 hours', '40+ hours'].map(opt => (
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
+                    <input type="radio" name="ownerHoursPerWeek" value={opt} checked={formData.ownerHoursPerWeek === opt} onChange={handleChange} className="mr-2" />{opt}
+                  </label>
+                ))}
+              </div>
+              {errors.ownerHoursPerWeek && <p className="mt-1 text-sm text-red-600">{errors.ownerHoursPerWeek}</p>}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-900 mb-2">How many hours per week does your team spend on manual lead tasks (tracking, follow-up, scheduling)? *</label>
+              <div className="flex flex-wrap gap-4">
+                {['<5 hours', '5-10 hours', '10-20 hours', '20+ hours'].map(opt => (
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
+                    <input type="radio" name="manualHoursPerWeek" value={opt} checked={formData.manualHoursPerWeek === opt} onChange={handleChange} className="mr-2" />{opt}
+                  </label>
+                ))}
+              </div>
+              {errors.manualHoursPerWeek && <p className="mt-1 text-sm text-red-600">{errors.manualHoursPerWeek}</p>}
+            </div>
           </div>
         );
       case 2: // Step 3 — Follow-up & Scheduling
@@ -822,6 +916,31 @@ const AssessmentForm: React.FC = () => {
                 ))}
               </div>
               {errors.firstImprovement && <p className="mt-1 text-sm text-red-600">{errors.firstImprovement}</p>}
+            </div>
+
+            {/* New TCO-relevant fields */}
+            <div>
+              <label className="block text-sm font-medium text-slate-900 mb-2">What do you spend monthly on business software/tools (CRM, phone, etc.)? *</label>
+              <div className="flex flex-wrap gap-4">
+                {['<$100/month', '$100-$300/month', '$300-$500/month', '$500+ month'].map(opt => (
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
+                    <input type="radio" name="currentToolCosts" value={opt} checked={formData.currentToolCosts === opt} onChange={handleChange} className="mr-2" />{opt}
+                  </label>
+                ))}
+              </div>
+              {errors.currentToolCosts && <p className="mt-1 text-sm text-red-600">{errors.currentToolCosts}</p>}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-900 mb-2">How long does it typically take to follow up with a new lead? *</label>
+              <div className="flex flex-wrap gap-4">
+                {['Within 1 hour', 'Same day', '1-2 days', '3+ days', 'Inconsistent'].map(opt => (
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
+                    <input type="radio" name="timeToFollowUp" value={opt} checked={formData.timeToFollowUp === opt} onChange={handleChange} className="mr-2" />{opt}
+                  </label>
+                ))}
+              </div>
+              {errors.timeToFollowUp && <p className="mt-1 text-sm text-red-600">{errors.timeToFollowUp}</p>}
             </div>
           </div>
         );
