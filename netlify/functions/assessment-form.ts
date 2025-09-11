@@ -32,13 +32,11 @@ export const handler: Handler = async (event) => {
     // Parse the form data
     const data = JSON.parse(event.body || '{}');
     
-    // Validate required fields for assessment form
+    // Validate required fields for assessment form (matching AssessmentForm.tsx field names)
     const requiredFields = [
-      'name', 'email', 'phone', 'company', 'industry', 'website',
-      'leadSources', 'monthlyLeads', 'leadTracking', 'responseTime',
-      'followUpChallenge', 'salesHandler', 'conversionRate', 'invoicing',
-      'invoicingHeadache', 'trackJobCosts', 'currentTools', 'duplicateWork',
-      'topPriority', 'successLooks'
+      'yourName', 'bestEmail', 'bestPhone', 'companyName', 'tradeIndustry', 'consent',
+      'leadSources', 'monthlyLeads', 'responseSpeed', 'afterHours', 'leadHeadache',
+      'leadTracking', 'textFromBiz', 'autoTextHelp', 'bookingLink', 'firstImprovement'
     ];
     
     for (const field of requiredFields) {
@@ -51,9 +49,34 @@ export const handler: Handler = async (event) => {
       }
     }
 
+    // Additional validation for conditional fields
+    if (data.leadSources?.includes('Phone calls') && !data.missedCallHandling) {
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({ error: 'missedCallHandling is required when Phone calls is selected' }),
+      };
+    }
+
+    if (data.leadTracking === 'CRM' && !data.crmName) {
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({ error: 'crmName is required when CRM is selected' }),
+      };
+    }
+
+    if (data.bookingLink === 'Yes' && !data.bookingLinkWhich) {
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({ error: 'bookingLinkWhich is required when booking link is Yes' }),
+      };
+    }
+
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(data.email)) {
+    if (!emailRegex.test(data.bestEmail)) {
       return {
         statusCode: 400,
         headers,
