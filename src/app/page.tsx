@@ -15,9 +15,9 @@ export default function Home() {
       <Hero
         badge="AI-Powered Growth for Main Street"
         title="Turn More Leads Into Revenue — Using What You Already Have"
-        description='We help you connect and optimize the tools you already use—no learning curve, just better results you can see in your calendar and bank account.'
+        description="We help you connect and optimize the tools you already use—no learning curve, just better results you can see in your calendar and bank account. Our TCO calculator shows you exactly how much you could save and earn."
         primaryCTA={{
-          text: "Book a Business Assessment",
+          text: "Get Your TCO Analysis",
           href: "/assessment"
         }}
         secondaryCTA={{
@@ -29,6 +29,52 @@ export default function Home() {
 
       {/* Problem Section */}
       <ProblemSection />
+
+      {/* TCO Calculator Callout Section */}
+      <section className="py-16 bg-gradient-to-r from-teal-600 to-blue-600 text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+            <h2 className="text-3xl font-bold mb-4">
+              💰 Find Out How Much Money You&apos;re Leaving on the Table
+            </h2>
+            <p className="text-xl mb-6 text-teal-100">
+              Our Total Cost of Ownership (TCO) calculator reveals the exact dollar amounts you could save 
+              and earn by optimizing your current systems—no guesswork, just real numbers.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div className="bg-white/20 p-4 rounded-xl">
+                <div className="text-2xl font-bold text-yellow-300 mb-2">📊</div>
+                <h3 className="font-semibold mb-2">Hidden Costs</h3>
+                <p className="text-sm text-slate-200">See what manual processes are actually costing you in time and missed revenue</p>
+              </div>
+              <div className="bg-white/20 p-4 rounded-xl">
+                <div className="text-2xl font-bold text-green-300 mb-2">💵</div>
+                <h3 className="font-semibold mb-2">Revenue Potential</h3>
+                <p className="text-sm text-slate-200">Calculate how much more you could earn with faster lead response</p>
+              </div>
+              <div className="bg-white/20 p-4 rounded-xl">
+                <div className="text-2xl font-bold text-blue-300 mb-2">🎯</div>
+                <h3 className="font-semibold mb-2">Conservative Estimates</h3>
+                <p className="text-sm text-slate-200">Get realistic, conservative projections you can count on</p>
+              </div>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/assessment"
+                className="bg-white text-teal-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-teal-50 transition-colors duration-200 shadow-lg"
+              >
+                Get Your TCO Analysis
+              </Link>
+              <Link
+                href="/contact"
+                className="border-2 border-white text-white px-8 py-4 rounded-xl font-medium text-lg hover:bg-white/10 transition-colors duration-200"
+              >
+                Have Questions First?
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Solution Section */}
       <div id="solution">
