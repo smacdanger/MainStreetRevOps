@@ -177,19 +177,20 @@ export default function Assessment() {
             </h2>
             <div className="max-w-3xl mx-auto mb-6">
               <p className="text-slate-600 mb-4">
-                This form prepares us for your 60–90 minute discovery and assessment call. During our analysis, 
-                we&apos;ll show you exactly where you could make more money and save money using our Total Cost of 
-                Ownership (TCO) calculator. Within 1–2 weeks after that call, you&apos;ll receive your step-by-step 
-                Revenue Operations Roadmap with specific recommendations.
+                This form prepares us for your 60–90 minute discovery and assessment call. During our comprehensive 
+                analysis, we&apos;ll identify exactly where you could make more money and save money. We&apos;ll also use 
+                our TCO calculator as a reference tool to help frame the potential impact. Within 1–2 weeks after that 
+                call, you&apos;ll receive your step-by-step Revenue Operations Roadmap with specific recommendations.
               </p>
               <div className="bg-gradient-to-r from-teal-50 to-green-50 border border-teal-200 p-4 rounded-xl">
                 <p className="text-teal-800 text-sm mb-2">
-                  <strong>🎯 What You&apos;ll Discover:</strong> Our TCO calculator will reveal hidden costs in your 
-                  current lead management and show you specific dollar amounts you could save and earn.
+                  <strong>🎯 What You&apos;ll Discover:</strong> Our comprehensive analysis will reveal hidden costs in your 
+                  current lead management and show you specific dollar amounts you could save and earn. We&apos;ll use our TCO 
+                  calculator to help provide a frame of reference for the potential money being left on the table.
                 </p>
                 <p className="text-slate-600 text-xs">
                   <strong>Investment:</strong> The full assessment is a paid engagement ($500–$2,000) that includes 
-                  your discovery call, detailed TCO analysis, and custom roadmap with ROI projections.
+                  your discovery call, detailed analysis, and custom roadmap with ROI projections.
                 </p>
               </div>
             </div>

@@ -15,9 +15,9 @@ export default function Home() {
       <Hero
         badge="AI-Powered Growth for Main Street"
         title="Turn More Leads Into Revenue — Using What You Already Have"
-        description="We help you connect and optimize the tools you already use—no learning curve, just better results you can see in your calendar and bank account. Our TCO calculator shows you exactly how much you could save and earn."
+        description="We help you connect and optimize the tools you already use—no learning curve, just better results you can see in your calendar and bank account. Our TCO calculator helps show you exactly how much you could save and earn."
         primaryCTA={{
-          text: "Get Your TCO Analysis",
+          text: "Get Your Reference Analysis",
           href: "/assessment"
         }}
         secondaryCTA={{
@@ -38,8 +38,8 @@ export default function Home() {
               💰 Find Out How Much Money You&apos;re Leaving on the Table
             </h2>
             <p className="text-xl mb-6 text-teal-100">
-              Our Total Cost of Ownership (TCO) calculator reveals the exact dollar amounts you could save 
-              and earn by optimizing your current systems—no guesswork, just real numbers.
+              Our comprehensive revenue operations analysis identifies exactly where you&apos;re losing money. 
+              Our TCO calculator provides a helpful frame of reference to show the potential impact—no guesswork, just real numbers.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               <div className="bg-white/20 p-4 rounded-xl">
@@ -63,7 +63,7 @@ export default function Home() {
                 href="/assessment"
                 className="bg-white text-teal-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-teal-50 transition-colors duration-200 shadow-lg"
               >
-                Get Your TCO Analysis
+                Get Your Reference Analysis
               </Link>
               <Link
                 href="/contact"

@@ -562,10 +562,10 @@ const AssessmentForm: React.FC = () => {
       <div className="space-y-8">
         <div className="text-center">
           <h3 className="text-3xl font-bold text-slate-900 mb-4">
-            Your Instant TCO Analysis
+            Your TCO Reference Analysis
           </h3>
           <p className="text-lg text-slate-600 mb-6">
-            Based on your assessment responses, here&apos;s what you could save with optimized systems:
+            Based on your assessment responses, here&apos;s a reference framework showing potential savings with optimized systems:
           </p>
         </div>
 
@@ -615,30 +615,30 @@ const AssessmentForm: React.FC = () => {
 
         {/* Key Insights */}
         <div className="bg-gradient-to-br from-teal-50 to-cyan-50 p-6 rounded-xl border border-teal-200">
-          <h4 className="text-xl font-semibold text-slate-900 mb-4">What This Means for {formData.companyName || 'Your Business'}</h4>
+          <h4 className="text-xl font-semibold text-slate-900 mb-4">Reference Framework for {formData.companyName || 'Your Business'}</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <h5 className="font-medium text-slate-900 mb-2">💰 Total Monthly Impact:</h5>
+              <h5 className="font-medium text-slate-900 mb-2">💰 Potential Monthly Impact:</h5>
               <p className="text-slate-700">
-                {formatCurrency(tcoResults.Net_Savings + tcoResults.Revenue_Gained)} in combined savings and new revenue
+                {formatCurrency(tcoResults.Net_Savings + tcoResults.Revenue_Gained)} in combined savings and new revenue opportunity
               </p>
             </div>
             <div>
-              <h5 className="font-medium text-slate-900 mb-2">📈 Annual Potential:</h5>
+              <h5 className="font-medium text-slate-900 mb-2">📈 Annual Reference:</h5>
               <p className="text-slate-700">
-                {formatCurrency((tcoResults.Net_Savings + tcoResults.Revenue_Gained) * 12)} in total annual benefit
+                {formatCurrency((tcoResults.Net_Savings + tcoResults.Revenue_Gained) * 12)} in total annual opportunity
               </p>
             </div>
             <div>
-              <h5 className="font-medium text-slate-900 mb-2">⚡ Time Savings:</h5>
+              <h5 className="font-medium text-slate-900 mb-2">⚡ Efficiency Gains:</h5>
               <p className="text-slate-700">
                 ~50% reduction in manual lead management tasks
               </p>
             </div>
             <div>
-              <h5 className="font-medium text-slate-900 mb-2">📊 Lead Capture:</h5>
+              <h5 className="font-medium text-slate-900 mb-2">📊 Revenue Recovery:</h5>
               <p className="text-slate-700">
-                {formatCurrency(tcoResults.Revenue_Gained)} in previously missed opportunities
+                {formatCurrency(tcoResults.Revenue_Gained)} in potentially missed opportunities
               </p>
             </div>
           </div>
@@ -646,10 +646,10 @@ const AssessmentForm: React.FC = () => {
 
         {/* Call to Action */}
         <div className="text-center bg-slate-900 text-white p-8 rounded-xl">
-          <h4 className="text-2xl font-bold mb-4">Ready to Capture This Value?</h4>
+          <h4 className="text-2xl font-bold mb-4">Ready to Get a Comprehensive Analysis?</h4>
           <p className="text-slate-200 mb-6 max-w-2xl mx-auto">
-            Let&apos;s discuss how to implement these optimizations for your business. 
-            Continue your assessment to schedule a detailed consultation.
+            This reference framework gives you an idea of the potential impact. Let&apos;s discuss a comprehensive 
+            analysis and implementation plan tailored specifically to your business. Continue your assessment to schedule a detailed consultation.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
