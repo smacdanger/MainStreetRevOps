@@ -354,7 +354,6 @@ const AssessmentForm: React.FC = () => {
         if (!formData.bookingLink) newErrors.bookingLink = 'Required';
         if (formData.bookingLink === 'Yes' && !formData.bookingLinkWhich) newErrors.bookingLinkWhich = 'Required';
         if (!formData.currentToolCosts) newErrors.currentToolCosts = 'Required';
-        if (!formData.otherTools) newErrors.otherTools = 'Required';
         break;
       case 3:
         if (!formData.leadToProject) newErrors.leadToProject = 'Required';
@@ -372,11 +371,11 @@ const AssessmentForm: React.FC = () => {
       case 5:
         if (!formData.primaryPain) newErrors.primaryPain = 'Required';
         if (!formData.sixMonthSuccess) newErrors.sixMonthSuccess = 'Required';
-        if (!formData.constraints) newErrors.constraints = 'Required';
         if (!formData.moveSpeed) newErrors.moveSpeed = 'Required';
         break;
     }
     setErrors(newErrors);
+    console.log('Validation errors for step', stepIndex, ':', newErrors); // Debug log
     return Object.keys(newErrors).length === 0;
   };
 
@@ -943,13 +942,14 @@ const AssessmentForm: React.FC = () => {
           <div className="space-y-6">
             <div>
               <label className="block text-sm font-medium text-slate-900 mb-2">How do you invoice? *</label>
-              <select id="invoiceMethod" name="invoiceMethod" value={formData.invoiceMethod} onChange={handleChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300">
+              <select id="invoiceMethod" name="invoiceMethod" value={formData.invoiceMethod} onChange={handleChange} className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 ${errors.invoiceMethod ? 'border-red-500' : 'border-slate-300'}`}>
                 <option value="">Select...</option>
                 <option>QuickBooks</option>
                 <option>FreshBooks</option>
                 <option>Jobber / Housecall Pro / ServiceTitan</option>
                 <option>Other / Inconsistent</option>
               </select>
+              {errors.invoiceMethod && <p className="mt-1 text-sm text-red-600">{errors.invoiceMethod}</p>}
             </div>
             <div>
               <label className="block text-sm font-medium text-slate-900 mb-2">When do you usually send invoices? *</label>
@@ -960,6 +960,7 @@ const AssessmentForm: React.FC = () => {
                   </label>
                 ))}
               </div>
+              {errors.invoiceTiming && <p className="mt-1 text-sm text-red-600">{errors.invoiceTiming}</p>}
             </div>
             <div>
               <fieldset>
@@ -989,7 +990,8 @@ const AssessmentForm: React.FC = () => {
             </div>
             <div>
               <label htmlFor="billingHeadache" className="block text-sm font-medium text-slate-900 mb-2">What’s the #1 billing/payment headache right now? *</label>
-              <input type="text" id="billingHeadache" name="billingHeadache" value={formData.billingHeadache} onChange={handleChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300" placeholder="Short answer" />
+              <input type="text" id="billingHeadache" name="billingHeadache" value={formData.billingHeadache} onChange={handleChange} className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 ${errors.billingHeadache ? 'border-red-500' : 'border-slate-300'}`} placeholder="Short answer" />
+              {errors.billingHeadache && <p className="mt-1 text-sm text-red-600">{errors.billingHeadache}</p>}
             </div>
           </div>
         );
@@ -998,18 +1000,20 @@ const AssessmentForm: React.FC = () => {
           <div className="space-y-6">
             <div>
               <label htmlFor="primaryPain" className="block text-sm font-medium text-slate-900 mb-2">If we fixed ONE thing first and nailed it, what should it be? *</label>
-              <input type="text" id="primaryPain" name="primaryPain" value={formData.primaryPain} onChange={handleChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300" placeholder="Short answer" />
+              <input type="text" id="primaryPain" name="primaryPain" value={formData.primaryPain} onChange={handleChange} className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 ${errors.primaryPain ? 'border-red-500' : 'border-slate-300'}`} placeholder="Short answer" />
+              {errors.primaryPain && <p className="mt-1 text-sm text-red-600">{errors.primaryPain}</p>}
             </div>
             <div>
-              <label htmlFor="sixMonthSuccess" className="block text-sm font-medium text-slate-900 mb-2">In 6 months, what would “this was worth it” look like? *</label>
-              <input type="text" id="sixMonthSuccess" name="sixMonthSuccess" value={formData.sixMonthSuccess} onChange={handleChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300" placeholder="Short answer" />
+              <label htmlFor="sixMonthSuccess" className="block text-sm font-medium text-slate-900 mb-2">In 6 months, what would &ldquo;this was worth it&rdquo; look like? *</label>
+              <input type="text" id="sixMonthSuccess" name="sixMonthSuccess" value={formData.sixMonthSuccess} onChange={handleChange} className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 ${errors.sixMonthSuccess ? 'border-red-500' : 'border-slate-300'}`} placeholder="Short answer" />
+              {errors.sixMonthSuccess && <p className="mt-1 text-sm text-red-600">{errors.sixMonthSuccess}</p>}
             </div>
             <div>
-              <label htmlFor="constraints" className="block text-sm font-medium text-slate-900 mb-2">Any “do-not-do” requests or constraints?</label>
+              <label htmlFor="constraints" className="block text-sm font-medium text-slate-900 mb-2">Any &ldquo;do-not-do&rdquo; requests or constraints?</label>
               <input type="text" id="constraints" name="constraints" value={formData.constraints} onChange={handleChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300" placeholder="Short answer" />
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-900 mb-2">How fast do you want to move?</label>
+              <label className="block text-sm font-medium text-slate-900 mb-2">How fast do you want to move? *</label>
               <div className="flex flex-wrap gap-4">
                 {['Yesterday', 'This month', 'This quarter', 'Just exploring'].map(opt => (
                   <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
@@ -1017,6 +1021,7 @@ const AssessmentForm: React.FC = () => {
                   </label>
                 ))}
               </div>
+              {errors.moveSpeed && <p className="mt-1 text-sm text-red-600">{errors.moveSpeed}</p>}
             </div>
           </div>
         );
