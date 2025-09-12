@@ -36,7 +36,11 @@ export const handler: Handler = async (event) => {
     const requiredFields = [
       'yourName', 'bestEmail', 'bestPhone', 'companyName', 'tradeIndustry', 'consent',
       'leadSources', 'monthlyLeads', 'responseSpeed', 'afterHours', 'leadHeadache',
-      'leadTracking', 'textFromBiz', 'autoTextHelp', 'bookingLink', 'firstImprovement'
+      'teamSize', 'ownerHoursPerWeek', 'manualHoursPerWeek',
+      'leadTracking', 'websitePlatform', 'phoneSystem', 'textFromBiz', 'bookingLink', 'currentToolCosts', 'otherTools',
+      'leadToProject', 'quoteMethod', 'avgJobSize', 'processBottleneck', 'clientCommunication',
+      'invoiceMethod', 'invoiceTiming', 'paymentMethods', 'billingHeadache',
+      'primaryPain', 'sixMonthSuccess', 'constraints', 'moveSpeed'
     ];
     
     for (const field of requiredFields) {

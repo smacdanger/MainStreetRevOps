@@ -1131,14 +1131,22 @@ const AssessmentForm: React.FC = () => {
             </div>
 
             <div className="flex gap-2">
-              {/* Show Next button if not on last step */}
-              {currentStep < steps.length - 1 && (
+              {/* Show Next button if not on last step, Complete Assessment button if on last step */}
+              {currentStep < steps.length - 1 ? (
                 <button
                   type="button"
                   onClick={handleNext}
                   className="px-6 py-3 bg-teal-600 text-white rounded-lg font-medium hover:bg-teal-700 transition-colors"
                 >
                   Next
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={handleNext}
+                  className="px-8 py-4 bg-gradient-to-r from-teal-600 to-blue-600 text-white rounded-lg font-semibold text-lg hover:from-teal-700 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+                >
+                  Complete Assessment & View Results
                 </button>
               )}
             </div>
