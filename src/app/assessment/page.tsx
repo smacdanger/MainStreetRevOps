@@ -27,50 +27,66 @@ export default function Assessment() {
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
           <div className="mb-4">
             <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-teal-100 text-teal-800">
-              ✨ Includes Instant TCO Analysis
+              🧮 Instant TCO Analysis Included
             </span>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            See Exactly How Much You Could Save
+            Get Your Instant Revenue Leak Analysis
           </h1>
           <p className="text-xl md:text-2xl text-slate-200 mb-4">
-            Get Your Custom Revenue Operations Assessment + TCO Calculator
+            See Exactly How Much You're Losing + What You Could Save
           </p>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto mb-8">
-            This comprehensive questionnaire instantly calculates your current revenue leaks and shows you 
-            exactly how much you could save and earn with optimized systems.
+            This comprehensive assessment instantly calculates your current revenue leaks, hidden costs, 
+            and shows you exactly how much you could save with optimized systems. Get your personalized 
+            TCO analysis immediately upon completion.
           </p>
           
           {/* Value Proposition Highlights */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 p-4 rounded-xl">
               <div className="text-2xl mb-2">💰</div>
-              <div className="font-semibold text-teal-200">Instant TCO Analysis</div>
-              <div className="text-sm text-slate-300">See your potential savings immediately</div>
+              <div className="font-semibold text-teal-200">Instant Savings Calculator</div>
+              <div className="text-sm text-slate-300">See your potential monthly savings immediately</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 p-4 rounded-xl">
               <div className="text-2xl mb-2">📊</div>
               <div className="font-semibold text-blue-200">Revenue Leak Detection</div>
-              <div className="text-sm text-slate-300">Identify missed opportunities</div>
+              <div className="text-sm text-slate-300">Identify exactly where you're losing money</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 p-4 rounded-xl">
-              <div className="text-2xl mb-2">🚀</div>
-              <div className="font-semibold text-purple-200">Custom Roadmap</div>
-              <div className="text-sm text-slate-300">Step-by-step optimization plan</div>
+              <div className="text-2xl mb-2">📈</div>
+              <div className="font-semibold text-purple-200">ROI Projections</div>
+              <div className="text-sm text-slate-300">Custom ROI timeline with implementation costs</div>
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-teal-600/20 to-blue-600/20 border border-teal-400/30 p-6 rounded-xl max-w-2xl mx-auto backdrop-blur-sm">
+          <div className="bg-gradient-to-r from-teal-600/20 to-blue-600/20 border border-teal-400/30 p-6 rounded-xl max-w-3xl mx-auto backdrop-blur-sm">
             <p className="text-teal-200 text-lg font-semibold mb-2">
-              🎯 Free Instant Results + Optional Paid Deep-Dive
+              🎯 What You Get Instantly (Free) vs. Full Assessment (Paid)
             </p>
-            <p className="text-slate-300 text-sm mb-3">
-              Get your TCO analysis instantly. Full assessment with custom roadmap: $500–$2,000 
-              (varies by business complexity and revenue size).
-            </p>
-            <p className="text-xs text-slate-400">
-              Free consultation available for those exploring options.
-            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+              <div className="bg-green-600/20 border border-green-400/30 p-4 rounded-lg">
+                <h4 className="text-green-200 font-semibold mb-2">✅ FREE Instant Results:</h4>
+                <ul className="text-slate-300 space-y-1">
+                  <li>• TCO analysis with current vs. optimized costs</li>
+                  <li>• Monthly savings projection</li>
+                  <li>• Revenue leak identification</li>
+                  <li>• ROI calculator with timeline</li>
+                  <li>• Visual breakdown charts</li>
+                </ul>
+              </div>
+              <div className="bg-blue-600/20 border border-blue-400/30 p-4 rounded-lg">
+                <h4 className="text-blue-200 font-semibold mb-2">🚀 Full Assessment ($500-$2,000):</h4>
+                <ul className="text-slate-300 space-y-1">
+                  <li>• Everything in free analysis</li>
+                  <li>• 60-90 min strategy consultation</li>
+                  <li>• Custom implementation roadmap</li>
+                  <li>• Step-by-step action plan</li>
+                  <li>• Priority recommendations</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </section>
