@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
@@ -37,7 +37,7 @@ export interface TCOResults {
   Optimized_Missed: number;
 }
 
-// Updated steps for the new 9-step assessment
+// Updated steps - all sections are now required
 const steps = [
   {
     id: 'who',
@@ -57,27 +57,27 @@ const steps = [
   {
     id: 'estimates',
     title: 'Estimates & Work Tracking',
-    description: 'How do you quote and win jobs? (Optional)',
+    description: 'How do you quote and win jobs?',
   },
   {
     id: 'money',
     title: 'Money Flow',
-    description: 'How do you invoice and get paid? (Optional)',
+    description: 'How do you invoice and get paid?',
   },
   {
     id: 'tools',
     title: 'Tools & Duplicated Work',
-    description: 'What software and systems do you use? (Optional)',
+    description: 'What software and systems do you use?',
   },
   {
     id: 'agency',
     title: 'Agency & Access',
-    description: 'Do you work with a marketing/web agency? (Optional)',
+    description: 'Do you work with a marketing/web agency?',
   },
   {
     id: 'goals',
     title: 'Goals, Constraints, Timeline',
-    description: 'What does success look like? (Optional)',
+    description: 'What does success look like?',
   },
 ];
 
@@ -116,7 +116,6 @@ interface FormData {
   firstImprovement: string;
   // New TCO-relevant fields
   currentToolCosts: string;
-  timeToFollowUp: string;
 
   // Step 4
   estimateMethod: string;
@@ -188,7 +187,6 @@ const AssessmentForm: React.FC = () => {
     bookingLinkWhich: '',
     firstImprovement: '',
     currentToolCosts: '',
-    timeToFollowUp: '',
     estimateMethod: '',
     estimateApproval: '',
     avgJobSize: '',
@@ -368,33 +366,6 @@ const AssessmentForm: React.FC = () => {
   const tcoInputs = generateTCOInputsFromAssessment();
   const tcoResults = calculateTCO(tcoInputs);
 
-  // Memoize validation results for required steps without setting errors
-  const isRequiredStepsValid = useMemo(() => {
-    const checkStep = (stepIndex: number): boolean => {
-      switch (stepIndex) {
-        case 0:
-          return !!(formData.yourName && formData.companyName && formData.bestEmail && 
-                   formData.bestPhone && formData.consent && formData.tradeIndustry);
-        case 1:
-          const hasLeadSources = formData.leadSources && formData.leadSources.length > 0;
-          const hasMissedCallHandling = !formData.leadSources.includes('Phone calls') || formData.missedCallHandling;
-          return !!(hasLeadSources && formData.monthlyLeads && formData.responseSpeed && 
-                   formData.afterHours && formData.leadHeadache && hasMissedCallHandling &&
-                   formData.teamSize && formData.ownerHoursPerWeek && formData.manualHoursPerWeek);
-        case 2:
-          const hasCrmName = formData.leadTracking !== 'CRM' || formData.crmName;
-          const hasBookingLinkWhich = formData.bookingLink !== 'Yes' || formData.bookingLinkWhich;
-          return !!(formData.leadTracking && hasCrmName && formData.textFromBiz && 
-                   formData.autoTextHelp && formData.bookingLink && hasBookingLinkWhich && 
-                   formData.firstImprovement && formData.currentToolCosts && formData.timeToFollowUp);
-        default:
-          return true;
-      }
-    };
-    
-    return checkStep(0) && checkStep(1) && checkStep(2);
-  }, [formData]);
-
   const validateStep = (stepIndex: number): boolean => {
     const newErrors: FormErrors = {};
     // Step-by-step validation
@@ -417,7 +388,7 @@ const AssessmentForm: React.FC = () => {
         if (formData.leadSources.includes('Phone calls') && !formData.missedCallHandling) {
           newErrors.missedCallHandling = 'Required';
         }
-        // New required fields for step 2
+        // TCO-relevant required fields
         if (!formData.teamSize) newErrors.teamSize = 'Required';
         if (!formData.ownerHoursPerWeek) newErrors.ownerHoursPerWeek = 'Required';
         if (!formData.manualHoursPerWeek) newErrors.manualHoursPerWeek = 'Required';
@@ -428,15 +399,46 @@ const AssessmentForm: React.FC = () => {
         if (!formData.textFromBiz) newErrors.textFromBiz = 'Required';
         if (!formData.autoTextHelp) newErrors.autoTextHelp = 'Required';
         if (!formData.bookingLink) newErrors.bookingLink = 'Required';
-        // If bookingLink is Yes, require bookingLinkWhich
         if (formData.bookingLink === 'Yes' && !formData.bookingLinkWhich) newErrors.bookingLinkWhich = 'Required';
         if (!formData.firstImprovement) newErrors.firstImprovement = 'Required';
-        // New required fields for step 3
         if (!formData.currentToolCosts) newErrors.currentToolCosts = 'Required';
-        if (!formData.timeToFollowUp) newErrors.timeToFollowUp = 'Required';
         break;
-      // Steps 3+ are optional
-      default:
+      case 3:
+        if (!formData.estimateMethod) newErrors.estimateMethod = 'Required';
+        if (!formData.estimateApproval) newErrors.estimateApproval = 'Required';
+        if (!formData.avgJobSize) newErrors.avgJobSize = 'Required';
+        if (!formData.leadToJobRate) newErrors.leadToJobRate = 'Required';
+        if (!formData.estimateBlocker) newErrors.estimateBlocker = 'Required';
+        break;
+      case 4:
+        if (!formData.invoiceMethod) newErrors.invoiceMethod = 'Required';
+        if (!formData.invoiceTiming) newErrors.invoiceTiming = 'Required';
+        if (!formData.paymentMethods || formData.paymentMethods.length === 0) newErrors.paymentMethods = 'Select at least one';
+        if (!formData.syncToQB) newErrors.syncToQB = 'Required';
+        if (!formData.billingHeadache) newErrors.billingHeadache = 'Required';
+        break;
+      case 5:
+        if (!formData.toolsUsed) newErrors.toolsUsed = 'Required';
+        if (!formData.websitePlatform) newErrors.websitePlatform = 'Required';
+        if (!formData.phoneSystem) newErrors.phoneSystem = 'Required';
+        if (!formData.calendar) newErrors.calendar = 'Required';
+        if (!formData.runningAds) newErrors.runningAds = 'Required';
+        if (!formData.duplicateWork) newErrors.duplicateWork = 'Required';
+        break;
+      case 6:
+        if (!formData.hasAgency) newErrors.hasAgency = 'Required';
+        if (formData.hasAgency === 'Yes') {
+          if (!formData.agencyHandles || formData.agencyHandles.length === 0) newErrors.agencyHandles = 'Select at least one';
+          if (!formData.agencyHappy) newErrors.agencyHappy = 'Required';
+          if (!formData.agencyAgreementEnd) newErrors.agencyAgreementEnd = 'Required';
+        }
+        break;
+      case 7:
+        if (!formData.oneFix) newErrors.oneFix = 'Required';
+        if (!formData.sixMonthSuccess) newErrors.sixMonthSuccess = 'Required';
+        if (!formData.constraints) newErrors.constraints = 'Required';
+        if (!formData.decisionMakers) newErrors.decisionMakers = 'Required';
+        if (!formData.moveSpeed) newErrors.moveSpeed = 'Required';
         break;
     }
     setErrors(newErrors);
@@ -445,18 +447,13 @@ const AssessmentForm: React.FC = () => {
 
   const handleNext = () => {
     if (validateStep(currentStep)) {
-      // After completing required steps (0, 1, 2), show TCO results
-      if (currentStep === 2 && !showTCOResults) {
+      // Only show TCO results after completing ALL sections (step 7)
+      if (currentStep === steps.length - 1 && !showTCOResults) {
         setShowTCOResults(true);
       } else {
         setCurrentStep(prev => Math.min(prev + 1, steps.length - 1));
       }
     }
-  };
-
-  const handleContinueFromTCO = () => {
-    setShowTCOResults(false);
-    setCurrentStep(prev => Math.min(prev + 1, steps.length - 1));
   };
 
   const handlePrev = () => {
@@ -651,25 +648,40 @@ const AssessmentForm: React.FC = () => {
 
         {/* Call to Action */}
         <div className="text-center bg-slate-900 text-white p-8 rounded-xl">
-          <h4 className="text-2xl font-bold mb-4">Ready to Capture This Value?</h4>
+          <h4 className="text-2xl font-bold mb-4">🎯 Your Assessment is Complete!</h4>
           <p className="text-slate-200 mb-6 max-w-2xl mx-auto">
-            Let&apos;s discuss how to implement these optimizations for your business. 
-            Continue your assessment to schedule a detailed consultation.
+            Thank you for completing the full assessment. Based on your responses, we&apos;ve identified significant opportunities to optimize your operations and capture more revenue.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={handleContinueFromTCO}
-              className="bg-teal-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-teal-700 transition-colors"
-            >
-              Continue Assessment
-            </button>
-            <button
-              onClick={handleSubmit}
-              className="bg-white text-slate-900 px-8 py-3 rounded-lg font-semibold hover:bg-slate-100 transition-colors"
-            >
-              Skip to Consultation Request
-            </button>
+          <div className="bg-teal-600/20 border border-teal-400/30 p-6 rounded-xl mb-6 backdrop-blur-sm">
+            <h5 className="text-teal-200 font-semibold mb-2">📞 What happens next?</h5>
+            <p className="text-teal-100 text-sm mb-3">
+              You should receive an <strong>email and text shortly</strong> with a link to schedule your consultation call. We&apos;ll use your assessment responses to create a custom implementation roadmap during our discussion.
+            </p>
+            <p className="text-teal-100 text-xs">
+              If you don&apos;t receive our message within 15 minutes, please check your spam folder or contact us directly at <strong>sean@mainstrevops.com</strong>
+            </p>
           </div>
+          <button
+            onClick={handleSubmit}
+            disabled={isSubmitting}
+            className={`px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 ${
+              isSubmitting
+                ? 'bg-slate-600 cursor-not-allowed'
+                : 'bg-teal-600 hover:bg-teal-700 shadow-lg hover:shadow-xl'
+            }`}
+          >
+            {isSubmitting ? (
+              <span className="flex items-center">
+                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Processing Assessment...
+              </span>
+            ) : (
+              'Complete Assessment & Schedule Call'
+            )}
+          </button>
         </div>
       </div>
     );
@@ -930,18 +942,6 @@ const AssessmentForm: React.FC = () => {
               </div>
               {errors.currentToolCosts && <p className="mt-1 text-sm text-red-600">{errors.currentToolCosts}</p>}
             </div>
-
-            <div>
-              <label className="block text-sm font-medium text-slate-900 mb-2">How long does it typically take to follow up with a new lead? *</label>
-              <div className="flex flex-wrap gap-4">
-                {['Within 1 hour', 'Same day', '1-2 days', '3+ days', 'Inconsistent'].map(opt => (
-                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
-                    <input type="radio" name="timeToFollowUp" value={opt} checked={formData.timeToFollowUp === opt} onChange={handleChange} className="mr-2" />{opt}
-                  </label>
-                ))}
-              </div>
-              {errors.timeToFollowUp && <p className="mt-1 text-sm text-red-600">{errors.timeToFollowUp}</p>}
-            </div>
           </div>
         );
       case 3: // Step 4 — Estimates & Work Tracking
@@ -1181,7 +1181,7 @@ const AssessmentForm: React.FC = () => {
   return (
     <div className="w-full max-w-4xl mx-auto">
       <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-xl text-blue-900 text-base">
-        <strong>Note:</strong> Only Sections 1–3 are required. You can submit the form after completing these, or continue for a more detailed assessment (recommended).
+        <strong>Complete Assessment Required:</strong> All 8 sections must be completed to receive your personalized TCO analysis and schedule your consultation call.
       </div>
       {/* Progress Bar */}
       <div className="mb-8">
@@ -1286,34 +1286,6 @@ const AssessmentForm: React.FC = () => {
           </div>
 
           <div className="flex gap-2">
-            {/* Show Submit button from Step 4 onward (currentStep >= 3) */}
-            {currentStep >= 3 && (
-              <motion.button
-                type="button"
-                onClick={handleSubmit}
-                disabled={isSubmitting || !isRequiredStepsValid}
-                whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
-                whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-                className={`px-8 py-3 rounded-lg font-semibold text-white transition-all duration-200 ${
-                  isSubmitting || !isRequiredStepsValid
-                    ? 'bg-slate-400 cursor-not-allowed'
-                    : 'bg-teal-600 hover:bg-teal-700 shadow-lg hover:shadow-xl'
-                }`}
-              >
-                {isSubmitting ? (
-                  <span className="flex items-center">
-                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    Submitting...
-                  </span>
-                ) : (
-                  'Submit Assessment'
-                )}
-              </motion.button>
-            )}
-
             {/* Show Next button if not on last step */}
             {currentStep < steps.length - 1 && (
               <button
