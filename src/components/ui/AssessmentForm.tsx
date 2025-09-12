@@ -37,7 +37,7 @@ export interface TCOResults {
   Optimized_Missed: number;
 }
 
-// Updated steps - all sections are now required
+// Updated steps - streamlined and focused on process optimization
 const steps = [
   {
     id: 'who',
@@ -46,111 +46,82 @@ const steps = [
   },
   {
     id: 'leads',
-    title: 'Leads (where money starts)',
-    description: 'How do new customers find you?',
+    title: 'Leads & Response',
+    description: 'How do new customers find you and how do you respond?',
   },
   {
-    id: 'followup',
-    title: 'Follow-up & Scheduling',
-    description: 'How do you track and book leads?',
+    id: 'systems',
+    title: 'Current Systems & Tools',
+    description: 'What tools and processes do you use today?',
   },
   {
-    id: 'estimates',
-    title: 'Estimates & Work Tracking',
-    description: 'How do you quote and win jobs?',
+    id: 'workflow',
+    title: 'Lead to Project Workflow',
+    description: 'How do leads become paying customers?',
   },
   {
     id: 'money',
-    title: 'Money Flow',
-    description: 'How do you invoice and get paid?',
-  },
-  {
-    id: 'tools',
-    title: 'Tools & Duplicated Work',
-    description: 'What software and systems do you use?',
-  },
-  {
-    id: 'agency',
-    title: 'Agency & Access',
-    description: 'Do you work with a marketing/web agency?',
+    title: 'Invoicing & Payments',
+    description: 'How do you bill and get paid?',
   },
   {
     id: 'goals',
-    title: 'Goals, Constraints, Timeline',
+    title: 'Goals & Timeline',
     description: 'What does success look like?',
   },
 ];
 
-// Updated form data structure for all steps
+// Streamlined form data structure - removed duplicates and refocused
 interface FormData {
-  // Step 1
+  // Step 1 - Who
   yourName: string;
   companyName: string;
   bestEmail: string;
   bestPhone: string;
-  consent: string; // Yes/No
+  consent: string;
   tradeIndustry: string;
   serviceArea: string;
   website: string;
 
-  // Step 2
+  // Step 2 - Leads & Response  
   leadSources: string[];
   monthlyLeads: string;
   responseSpeed: string;
   afterHours: string;
-  leadHeadache: string;
-  // Step 2b (branch)
   missedCallHandling?: string;
-  // New TCO-relevant fields
+  leadHeadache: string;
   teamSize: string;
   ownerHoursPerWeek: string;
   manualHoursPerWeek: string;
 
-  // Step 3
+  // Step 3 - Current Systems & Tools (consolidated all tool questions)
   leadTracking: string;
   crmName?: string;
+  websitePlatform: string;
+  phoneSystem: string;
   textFromBiz: string;
-  autoTextHelp: string;
   bookingLink: string;
   bookingLinkWhich?: string;
-  firstImprovement: string;
-  // New TCO-relevant fields
   currentToolCosts: string;
+  otherTools: string;
 
-  // Step 4
-  estimateMethod: string;
-  estimateApproval: string;
+  // Step 4 - Lead to Project Workflow (refocused from estimates to process)
+  leadToProject: string;
+  quoteMethod: string;
   avgJobSize: string;
-  leadToJobRate: string;
-  estimateBlocker: string;
+  processBottleneck: string;
+  clientCommunication: string;
 
-  // Step 5
+  // Step 5 - Invoicing & Payments (streamlined)
   invoiceMethod: string;
   invoiceTiming: string;
   paymentMethods: string[];
-  syncToQB: string;
   billingHeadache: string;
-  invoiceFile?: File | null;
 
-  // Step 6
-  toolsUsed: string;
-  websitePlatform: string;
-  phoneSystem: string;
-  calendar: string;
-  runningAds: string;
-  duplicateWork: string;
-
-  // Step 7
-  hasAgency: string;
-  agencyHandles?: string[];
-  agencyHappy?: string;
-  agencyAgreementEnd?: string;
-
-  // Step 8
-  oneFix: string;
+  // Step 6 - Goals & Timeline (simplified)
+  primaryPain: string;
   sixMonthSuccess: string;
   constraints: string;
-  decisionMakers: string;
   moveSpeed: string;
 }
 
@@ -174,44 +145,32 @@ const AssessmentForm: React.FC = () => {
     monthlyLeads: '',
     responseSpeed: '',
     afterHours: '',
-    leadHeadache: '',
     missedCallHandling: '',
+    leadHeadache: '',
     teamSize: '',
     ownerHoursPerWeek: '',
     manualHoursPerWeek: '',
     leadTracking: '',
     crmName: '',
+    websitePlatform: '',
+    phoneSystem: '',
     textFromBiz: '',
-    autoTextHelp: '',
     bookingLink: '',
     bookingLinkWhich: '',
-    firstImprovement: '',
     currentToolCosts: '',
-    estimateMethod: '',
-    estimateApproval: '',
+    otherTools: '',
+    leadToProject: '',
+    quoteMethod: '',
     avgJobSize: '',
-    leadToJobRate: '',
-    estimateBlocker: '',
+    processBottleneck: '',
+    clientCommunication: '',
     invoiceMethod: '',
     invoiceTiming: '',
     paymentMethods: [],
-    syncToQB: '',
     billingHeadache: '',
-    invoiceFile: null,
-    toolsUsed: '',
-    websitePlatform: '',
-    phoneSystem: '',
-    calendar: '',
-    runningAds: '',
-    duplicateWork: '',
-    hasAgency: '',
-    agencyHandles: [],
-    agencyHappy: '',
-    agencyAgreementEnd: '',
-    oneFix: '',
+    primaryPain: '',
     sixMonthSuccess: '',
     constraints: '',
-    decisionMakers: '',
     moveSpeed: '',
   });
 
@@ -241,15 +200,8 @@ const AssessmentForm: React.FC = () => {
     };
     const job_value = jobSizeMapping[formData.avgJobSize] || 5000;
 
-    // Parse close rate
-    const closeRateMapping: { [key: string]: number } = {
-      '<10%': 5,
-      '10–25%': 17,
-      '26–40%': 33,
-      '41–60%': 50,
-      '60%+': 70
-    };
-    const close_rate = closeRateMapping[formData.leadToJobRate] || 25;
+    // Use a default close rate since we removed the sales closing focus
+    const close_rate = 25; // Reasonable default for process optimization focus
 
     // Parse team size
     const teamSizeMapping: { [key: string]: number } = {
@@ -396,48 +348,31 @@ const AssessmentForm: React.FC = () => {
       case 2:
         if (!formData.leadTracking) newErrors.leadTracking = 'Required';
         if (formData.leadTracking === 'CRM' && !formData.crmName) newErrors.crmName = 'Required';
+        if (!formData.websitePlatform) newErrors.websitePlatform = 'Required';
+        if (!formData.phoneSystem) newErrors.phoneSystem = 'Required';
         if (!formData.textFromBiz) newErrors.textFromBiz = 'Required';
-        if (!formData.autoTextHelp) newErrors.autoTextHelp = 'Required';
         if (!formData.bookingLink) newErrors.bookingLink = 'Required';
         if (formData.bookingLink === 'Yes' && !formData.bookingLinkWhich) newErrors.bookingLinkWhich = 'Required';
-        if (!formData.firstImprovement) newErrors.firstImprovement = 'Required';
         if (!formData.currentToolCosts) newErrors.currentToolCosts = 'Required';
+        if (!formData.otherTools) newErrors.otherTools = 'Required';
         break;
       case 3:
-        if (!formData.estimateMethod) newErrors.estimateMethod = 'Required';
-        if (!formData.estimateApproval) newErrors.estimateApproval = 'Required';
+        if (!formData.leadToProject) newErrors.leadToProject = 'Required';
+        if (!formData.quoteMethod) newErrors.quoteMethod = 'Required';
         if (!formData.avgJobSize) newErrors.avgJobSize = 'Required';
-        if (!formData.leadToJobRate) newErrors.leadToJobRate = 'Required';
-        if (!formData.estimateBlocker) newErrors.estimateBlocker = 'Required';
+        if (!formData.processBottleneck) newErrors.processBottleneck = 'Required';
+        if (!formData.clientCommunication) newErrors.clientCommunication = 'Required';
         break;
       case 4:
         if (!formData.invoiceMethod) newErrors.invoiceMethod = 'Required';
         if (!formData.invoiceTiming) newErrors.invoiceTiming = 'Required';
         if (!formData.paymentMethods || formData.paymentMethods.length === 0) newErrors.paymentMethods = 'Select at least one';
-        if (!formData.syncToQB) newErrors.syncToQB = 'Required';
         if (!formData.billingHeadache) newErrors.billingHeadache = 'Required';
         break;
       case 5:
-        if (!formData.toolsUsed) newErrors.toolsUsed = 'Required';
-        if (!formData.websitePlatform) newErrors.websitePlatform = 'Required';
-        if (!formData.phoneSystem) newErrors.phoneSystem = 'Required';
-        if (!formData.calendar) newErrors.calendar = 'Required';
-        if (!formData.runningAds) newErrors.runningAds = 'Required';
-        if (!formData.duplicateWork) newErrors.duplicateWork = 'Required';
-        break;
-      case 6:
-        if (!formData.hasAgency) newErrors.hasAgency = 'Required';
-        if (formData.hasAgency === 'Yes') {
-          if (!formData.agencyHandles || formData.agencyHandles.length === 0) newErrors.agencyHandles = 'Select at least one';
-          if (!formData.agencyHappy) newErrors.agencyHappy = 'Required';
-          if (!formData.agencyAgreementEnd) newErrors.agencyAgreementEnd = 'Required';
-        }
-        break;
-      case 7:
-        if (!formData.oneFix) newErrors.oneFix = 'Required';
+        if (!formData.primaryPain) newErrors.primaryPain = 'Required';
         if (!formData.sixMonthSuccess) newErrors.sixMonthSuccess = 'Required';
         if (!formData.constraints) newErrors.constraints = 'Required';
-        if (!formData.decisionMakers) newErrors.decisionMakers = 'Required';
         if (!formData.moveSpeed) newErrors.moveSpeed = 'Required';
         break;
     }
@@ -447,7 +382,7 @@ const AssessmentForm: React.FC = () => {
 
   const handleNext = () => {
     if (validateStep(currentStep)) {
-      // Only show TCO results after completing ALL sections (step 7)
+      // Only show TCO results after completing ALL sections (step 5)
       if (currentStep === steps.length - 1 && !showTCOResults) {
         setShowTCOResults(true);
       } else {
@@ -523,10 +458,7 @@ const AssessmentForm: React.FC = () => {
     if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }));
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files && e.target.files[0];
-    setFormData(prev => ({ ...prev, invoiceFile: file }));
-  };
+  // Removed unused handleFileChange function since we're not using file uploads in the streamlined form
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -749,19 +681,34 @@ const AssessmentForm: React.FC = () => {
             </div>
           </div>
         );
-      case 1: // Step 2 — Leads
+      case 1: // Step 2 — Leads & Response
         return (
           <div className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-slate-900 mb-2">Where do new leads usually come from? * <span className="text-xs text-slate-500">(Select all that apply)</span></label>
-              <div className="flex flex-wrap gap-3">
-                {['Website form', 'Phone calls', 'Ads (Google/FB)', 'Referrals', 'Marketplaces (Angi/Thumbtack, etc.)', 'Walk-ins', 'Other'].map(opt => (
-                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
-                    <input type="checkbox" name="leadSources" value={opt} checked={formData.leadSources.includes(opt)} onChange={() => handleMultiSelect('leadSources', opt)} className="mr-2" />{opt}
-                  </label>
-                ))}
-              </div>
-              {errors.leadSources && <p className="mt-1 text-sm text-red-600">{errors.leadSources}</p>}
+              <fieldset>
+                <legend className="block text-sm font-medium text-slate-900 mb-2">Where do new leads usually come from? * <span className="text-xs text-slate-500">(Select all that apply)</span></legend>
+                <div className="flex flex-wrap gap-3" role="group" aria-labelledby="leadSources-legend">
+                  {['Website form', 'Phone calls', 'Ads (Google/FB)', 'Referrals', 'Marketplaces (Angi/Thumbtack, etc.)', 'Walk-ins', 'Other'].map((opt, index) => {
+                    const checkboxId = `leadSources-${index}`;
+                    return (
+                      <label key={opt} htmlFor={checkboxId} className="inline-flex items-center text-slate-900 font-medium cursor-pointer hover:bg-slate-50 p-2 rounded-lg transition-colors">
+                        <input 
+                          type="checkbox" 
+                          id={checkboxId}
+                          name="leadSources" 
+                          value={opt} 
+                          checked={formData.leadSources.includes(opt)} 
+                          onChange={() => handleMultiSelect('leadSources', opt)} 
+                          className="mr-2 w-4 h-4 text-teal-600 bg-white border-slate-300 rounded focus:ring-2 focus:ring-teal-500 focus:ring-offset-2" 
+                          aria-describedby={errors.leadSources ? "leadSources-error" : undefined}
+                        />
+                        <span className="select-none">{opt}</span>
+                      </label>
+                    );
+                  })}
+                </div>
+                {errors.leadSources && <p id="leadSources-error" className="mt-1 text-sm text-red-600" role="alert">{errors.leadSources}</p>}
+              </fieldset>
             </div>
             <div>
               <label className="block text-sm font-medium text-slate-900 mb-2">About how many new leads per month? *</label>
@@ -803,7 +750,8 @@ const AssessmentForm: React.FC = () => {
                 <div className="flex flex-wrap gap-4">
                   {['Goes to voicemail', 'Someone calls back', 'We text back', 'Nothing reliable yet'].map(opt => (
                     <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
-                      <input type="radio" name="missedCallHandling" value={opt} checked={formData.missedCallHandling === opt} onChange={handleChange} className="mr-2" />{opt}
+                      <input type="radio" name="missedCallHandling" value={opt} checked={formData.missedCallHandling === opt} onChange={handleChange} className="mr-2" />
+                      {opt}
                     </label>
                   ))}
                 </div>
@@ -854,7 +802,7 @@ const AssessmentForm: React.FC = () => {
             </div>
           </div>
         );
-      case 2: // Step 3 — Follow-up & Scheduling
+      case 2: // Step 3 — Current Systems & Tools
         return (
           <div className="space-y-6">
             <div>
@@ -878,6 +826,28 @@ const AssessmentForm: React.FC = () => {
               )}
             </div>
             <div>
+              <label className="block text-sm font-medium text-slate-900 mb-2">Website platform:</label>
+              <div className="flex flex-wrap gap-4">
+                {['WordPress', 'Squarespace', 'Wix', 'Custom', 'Don’t know'].map(opt => (
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
+                    <input type="radio" name="websitePlatform" value={opt} checked={formData.websitePlatform === opt} onChange={handleChange} className="mr-2" />{opt}
+                  </label>
+                ))}
+              </div>
+              {errors.websitePlatform && <p className="mt-1 text-sm text-red-600">{errors.websitePlatform}</p>}
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-900 mb-2">Phone system:</label>
+              <div className="flex flex-wrap gap-4">
+                {['Cell only', 'Grasshopper', 'RingCentral', 'Twilio', 'Other'].map(opt => (
+                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
+                    <input type="radio" name="phoneSystem" value={opt} checked={formData.phoneSystem === opt} onChange={handleChange} className="mr-2" />{opt}
+                  </label>
+                ))}
+              </div>
+              {errors.phoneSystem && <p className="mt-1 text-sm text-red-600">{errors.phoneSystem}</p>}
+            </div>
+            <div>
               <label className="block text-sm font-medium text-slate-900 mb-2">Do you text customers from a business number? *</label>
               <div className="flex gap-4">
                 {['Yes', 'No', 'Sometimes'].map(opt => (
@@ -887,17 +857,6 @@ const AssessmentForm: React.FC = () => {
                 ))}
               </div>
               {errors.textFromBiz && <p className="mt-1 text-sm text-red-600">{errors.textFromBiz}</p>}
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-900 mb-2">Would auto-texting “Got your message—here’s my calendar” help? *</label>
-              <div className="flex gap-4">
-                {['Yes', 'No', 'Not sure'].map(opt => (
-                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
-                    <input type="radio" name="autoTextHelp" value={opt} checked={formData.autoTextHelp === opt} onChange={handleChange} className="mr-2" />{opt}
-                  </label>
-                ))}
-              </div>
-              {errors.autoTextHelp && <p className="mt-1 text-sm text-red-600">{errors.autoTextHelp}</p>}
             </div>
             <div>
               <label className="block text-sm font-medium text-slate-900 mb-2">Do you use a booking link for estimates/appointments? *</label>
@@ -919,19 +878,6 @@ const AssessmentForm: React.FC = () => {
               )}
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-900 mb-2">If you had to pick one improvement first, which matters most? *</label>
-              <div className="flex flex-wrap gap-4">
-                {['Faster response', 'Automatic follow-up', 'Online booking', 'Better tracking', 'Not sure yet'].map(opt => (
-                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
-                    <input type="radio" name="firstImprovement" value={opt} checked={formData.firstImprovement === opt} onChange={handleChange} className="mr-2" />{opt}
-                  </label>
-                ))}
-              </div>
-              {errors.firstImprovement && <p className="mt-1 text-sm text-red-600">{errors.firstImprovement}</p>}
-            </div>
-
-            {/* New TCO-relevant fields */}
-            <div>
               <label className="block text-sm font-medium text-slate-900 mb-2">What do you spend monthly on business software/tools (CRM, phone, etc.)? *</label>
               <div className="flex flex-wrap gap-4">
                 {['<$100/month', '$100-$300/month', '$300-$500/month', '$500+ month'].map(opt => (
@@ -942,14 +888,23 @@ const AssessmentForm: React.FC = () => {
               </div>
               {errors.currentToolCosts && <p className="mt-1 text-sm text-red-600">{errors.currentToolCosts}</p>}
             </div>
+            <div>
+              <label htmlFor="otherTools" className="block text-sm font-medium text-slate-900 mb-2">Any other tools/software you use?</label>
+              <textarea id="otherTools" name="otherTools" value={formData.otherTools} onChange={handleChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300" rows={2} placeholder="List your tools/software" />
+            </div>
           </div>
         );
-      case 3: // Step 4 — Estimates & Work Tracking
+      case 3: // Step 4 — Lead to Project Workflow
         return (
           <div className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-slate-900 mb-2">How do you create estimates/quotes or track new jobs/projects today? *</label>
-              <select id="estimateMethod" name="estimateMethod" value={formData.estimateMethod} onChange={handleChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300">
+              <label className="block text-sm font-medium text-slate-900 mb-2">How do leads become paying customers? *</label>
+              <textarea id="leadToProject" name="leadToProject" value={formData.leadToProject} onChange={handleChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300" rows={2} placeholder="Describe your process" />
+              {errors.leadToProject && <p className="mt-1 text-sm text-red-600">{errors.leadToProject}</p>}
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-900 mb-2">How do you create quotes/estimates? *</label>
+              <select id="quoteMethod" name="quoteMethod" value={formData.quoteMethod} onChange={handleChange} className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 ${errors.quoteMethod ? 'border-red-500' : 'border-slate-300'}`}> 
                 <option value="">Select...</option>
                 <option>Spreadsheets (Excel/Google Sheets)</option>
                 <option>Word/PDF</option>
@@ -958,16 +913,7 @@ const AssessmentForm: React.FC = () => {
                 <option>Buildertrend / CoConstruct / Acculynx</option>
                 <option>Other</option>
               </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-900 mb-2">How are estimates usually approved? *</label>
-              <div className="flex flex-wrap gap-4">
-                {['E-signature', '“Text/email me yes”', 'In-person only', 'Mix of the above'].map(opt => (
-                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
-                    <input type="radio" name="estimateApproval" value={opt} checked={formData.estimateApproval === opt} onChange={handleChange} className="mr-2" />{opt}
-                  </label>
-                ))}
-              </div>
+              {errors.quoteMethod && <p className="mt-1 text-sm text-red-600">{errors.quoteMethod}</p>}
             </div>
             <div>
               <label className="block text-sm font-medium text-slate-900 mb-2">Average job/project size (rough guess)? *</label>
@@ -978,24 +924,21 @@ const AssessmentForm: React.FC = () => {
                   </label>
                 ))}
               </div>
+              {errors.avgJobSize && <p className="mt-1 text-sm text-red-600">{errors.avgJobSize}</p>}
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-900 mb-2">What % of leads usually turn into paying work? *</label>
-              <div className="flex flex-wrap gap-4">
-                {'<10%|10–25%|26–40%|41–60%|60%+'.split('|').map(opt => (
-                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
-                    <input type="radio" name="leadToJobRate" value={opt} checked={formData.leadToJobRate === opt} onChange={handleChange} className="mr-2" />{opt}
-                  </label>
-                ))}
-              </div>
+              <label htmlFor="processBottleneck" className="block text-sm font-medium text-slate-900 mb-2">Biggest bottleneck in your process? *</label>
+              <input type="text" id="processBottleneck" name="processBottleneck" value={formData.processBottleneck} onChange={handleChange} className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 ${errors.processBottleneck ? 'border-red-500' : 'border-slate-300'}`} placeholder="Short answer" />
+              {errors.processBottleneck && <p className="mt-1 text-sm text-red-600">{errors.processBottleneck}</p>}
             </div>
             <div>
-              <label htmlFor="estimateBlocker" className="block text-sm font-medium text-slate-900 mb-2">Biggest blocker between estimate and signed job/project? *</label>
-              <input type="text" id="estimateBlocker" name="estimateBlocker" value={formData.estimateBlocker} onChange={handleChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300" placeholder="Short answer" />
+              <label htmlFor="clientCommunication" className="block text-sm font-medium text-slate-900 mb-2">How do you communicate with clients during projects? *</label>
+              <input type="text" id="clientCommunication" name="clientCommunication" value={formData.clientCommunication} onChange={handleChange} className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 ${errors.clientCommunication ? 'border-red-500' : 'border-slate-300'}`} placeholder="Short answer" />
+              {errors.clientCommunication && <p className="mt-1 text-sm text-red-600">{errors.clientCommunication}</p>}
             </div>
           </div>
         );
-      case 4: // Step 5 — Money Flow
+      case 4: // Step 5 — Invoicing & Payments
         return (
           <div className="space-y-6">
             <div>
@@ -1019,137 +962,43 @@ const AssessmentForm: React.FC = () => {
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-900 mb-2">What payment methods do you accept? <span className="text-xs text-slate-500">(Select all that apply)</span></label>
-              <div className="flex flex-wrap gap-4">
-                {['ACH', 'Card', 'Check', 'Financing', 'Other'].map(opt => (
-                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
-                    <input type="checkbox" name="paymentMethods" value={opt} checked={formData.paymentMethods.includes(opt)} onChange={() => handleMultiSelect('paymentMethods', opt)} className="mr-2" />{opt}
-                  </label>
-                ))}
-              </div>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-900 mb-2">Do quotes or unapproved jobs sync into QuickBooks? *</label>
-              <div className="flex gap-4">
-                {['Yes', 'No', 'Not sure'].map(opt => (
-                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
-                    <input type="radio" name="syncToQB" value={opt} checked={formData.syncToQB === opt} onChange={handleChange} className="mr-2" />{opt}
-                  </label>
-                ))}
-              </div>
+              <fieldset>
+                <legend className="block text-sm font-medium text-slate-900 mb-2">What payment methods do you accept? <span className="text-xs text-slate-500">(Select all that apply)</span></legend>
+                <div className="flex flex-wrap gap-4" role="group" aria-labelledby="paymentMethods-legend">
+                  {['ACH', 'Card', 'Check', 'Financing', 'Other'].map((opt, index) => {
+                    const checkboxId = `paymentMethods-${index}`;
+                    return (
+                      <label key={opt} htmlFor={checkboxId} className="inline-flex items-center text-slate-900 font-medium cursor-pointer hover:bg-slate-50 p-2 rounded-lg transition-colors">
+                        <input 
+                          type="checkbox" 
+                          id={checkboxId}
+                          name="paymentMethods" 
+                          value={opt} 
+                          checked={formData.paymentMethods.includes(opt)} 
+                          onChange={() => handleMultiSelect('paymentMethods', opt)} 
+                          className="mr-2 w-4 h-4 text-teal-600 bg-white border-slate-300 rounded focus:ring-2 focus:ring-teal-500 focus:ring-offset-2" 
+                          aria-describedby={errors.paymentMethods ? "paymentMethods-error" : undefined}
+                        />
+                        <span className="select-none">{opt}</span>
+                      </label>
+                    );
+                  })}
+                </div>
+                {errors.paymentMethods && <p id="paymentMethods-error" className="mt-1 text-sm text-red-600" role="alert">{errors.paymentMethods}</p>}
+              </fieldset>
             </div>
             <div>
               <label htmlFor="billingHeadache" className="block text-sm font-medium text-slate-900 mb-2">What’s the #1 billing/payment headache right now? *</label>
               <input type="text" id="billingHeadache" name="billingHeadache" value={formData.billingHeadache} onChange={handleChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300" placeholder="Short answer" />
             </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-900 mb-2">(Optional) Want to share an example invoice or estimate?</label>
-              <input type="file" id="invoiceFile" name="invoiceFile" onChange={handleFileChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300" />
-            </div>
           </div>
         );
-      case 5: // Step 6 — Tools & Duplicated Work
+      case 5: // Step 6 — Goals & Timeline
         return (
           <div className="space-y-6">
             <div>
-              <label htmlFor="toolsUsed" className="block text-sm font-medium text-slate-900 mb-2">What tools/software do you use to keep track of customers, jobs, or money? *</label>
-              <textarea id="toolsUsed" name="toolsUsed" value={formData.toolsUsed} onChange={handleChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300" rows={2} placeholder="List your tools/software" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-900 mb-2">Website platform:</label>
-              <div className="flex flex-wrap gap-4">
-                {['WordPress', 'Squarespace', 'Wix', 'Custom', 'Don’t know'].map(opt => (
-                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
-                    <input type="radio" name="websitePlatform" value={opt} checked={formData.websitePlatform === opt} onChange={handleChange} className="mr-2" />{opt}
-                  </label>
-                ))}
-              </div>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-900 mb-2">Phone system:</label>
-              <div className="flex flex-wrap gap-4">
-                {['Cell only', 'Grasshopper', 'RingCentral', 'Twilio', 'Other'].map(opt => (
-                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
-                    <input type="radio" name="phoneSystem" value={opt} checked={formData.phoneSystem === opt} onChange={handleChange} className="mr-2" />{opt}
-                  </label>
-                ))}
-              </div>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-900 mb-2">Calendar:</label>
-              <div className="flex flex-wrap gap-4">
-                {['Google', 'Microsoft', 'Paper', 'Other'].map(opt => (
-                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
-                    <input type="radio" name="calendar" value={opt} checked={formData.calendar === opt} onChange={handleChange} className="mr-2" />{opt}
-                  </label>
-                ))}
-              </div>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-900 mb-2">Are you running marketing/ads right now?</label>
-              <div className="flex flex-wrap gap-4">
-                {['None', 'Google Ads', 'Facebook/Instagram', 'SEO agency', 'Lead marketplaces'].map(opt => (
-                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
-                    <input type="radio" name="runningAds" value={opt} checked={formData.runningAds === opt} onChange={handleChange} className="mr-2" />{opt}
-                  </label>
-                ))}
-              </div>
-            </div>
-            <div>
-              <label htmlFor="duplicateWork" className="block text-sm font-medium text-slate-900 mb-2">Where do you feel you’re doing the same work twice?</label>
-              <input type="text" id="duplicateWork" name="duplicateWork" value={formData.duplicateWork} onChange={handleChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300" placeholder="Short answer" />
-            </div>
-          </div>
-        );
-      case 6: // Step 7 — Agency & Access
-        return (
-          <div className="space-y-6">
-            <div>
-              <label className="block text-sm font-medium text-slate-900 mb-2">Do you work with a marketing/web agency today? *</label>
-              <div className="flex gap-4">
-                {['Yes', 'No', 'Unsure'].map(opt => (
-                  <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
-                    <input type="radio" name="hasAgency" value={opt} checked={formData.hasAgency === opt} onChange={handleChange} className="mr-2" />{opt}
-                  </label>
-                ))}
-              </div>
-            </div>
-            {formData.hasAgency === 'Yes' && (
-              <>
-                <div>
-                  <label className="block text-sm font-medium text-slate-900 mb-2">What do they handle? <span className="text-xs text-slate-500">(Select all that apply)</span></label>
-                  <div className="flex flex-wrap gap-4">
-                    {['Website', 'SEO', 'Ads', 'All of it'].map(opt => (
-                      <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
-                        <input type="checkbox" name="agencyHandles" value={opt} checked={formData.agencyHandles?.includes(opt)} onChange={() => handleMultiSelect('agencyHandles', opt)} className="mr-2" />{opt}
-                      </label>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-900 mb-2">Are you happy with the results?</label>
-                  <div className="flex flex-wrap gap-4">
-                    {['Yes', 'Mixed', 'Not really'].map(opt => (
-                      <label key={opt} className="inline-flex items-center text-slate-900 font-medium">
-                        <input type="radio" name="agencyHappy" value={opt} checked={formData.agencyHappy === opt} onChange={handleChange} className="mr-2" />{opt}
-                      </label>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <label htmlFor="agencyAgreementEnd" className="block text-sm font-medium text-slate-900 mb-2">When does your agreement end? <span className="text-xs text-slate-500">(date or “month-to-month”)</span></label>
-                  <input type="text" id="agencyAgreementEnd" name="agencyAgreementEnd" value={formData.agencyAgreementEnd} onChange={handleChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300" placeholder="e.g. 2025-12-31 or month-to-month" />
-                </div>
-              </>
-            )}
-          </div>
-        );
-      case 7: // Step 8 — Goals, Constraints, Timeline
-        return (
-          <div className="space-y-6">
-            <div>
-              <label htmlFor="oneFix" className="block text-sm font-medium text-slate-900 mb-2">If we fixed ONE thing first and nailed it, what should it be? *</label>
-              <input type="text" id="oneFix" name="oneFix" value={formData.oneFix} onChange={handleChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300" placeholder="Short answer" />
+              <label htmlFor="primaryPain" className="block text-sm font-medium text-slate-900 mb-2">If we fixed ONE thing first and nailed it, what should it be? *</label>
+              <input type="text" id="primaryPain" name="primaryPain" value={formData.primaryPain} onChange={handleChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300" placeholder="Short answer" />
             </div>
             <div>
               <label htmlFor="sixMonthSuccess" className="block text-sm font-medium text-slate-900 mb-2">In 6 months, what would “this was worth it” look like? *</label>
@@ -1158,10 +1007,6 @@ const AssessmentForm: React.FC = () => {
             <div>
               <label htmlFor="constraints" className="block text-sm font-medium text-slate-900 mb-2">Any “do-not-do” requests or constraints?</label>
               <input type="text" id="constraints" name="constraints" value={formData.constraints} onChange={handleChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300" placeholder="Short answer" />
-            </div>
-            <div>
-              <label htmlFor="decisionMakers" className="block text-sm font-medium text-slate-900 mb-2">Decision-makers for this project (names/roles)</label>
-              <input type="text" id="decisionMakers" name="decisionMakers" value={formData.decisionMakers} onChange={handleChange} className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 border-slate-300" placeholder="Short answer" />
             </div>
             <div>
               <label className="block text-sm font-medium text-slate-900 mb-2">How fast do you want to move?</label>
@@ -1181,7 +1026,7 @@ const AssessmentForm: React.FC = () => {
   return (
     <div className="w-full max-w-4xl mx-auto">
       <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-xl text-blue-900 text-base">
-        <strong>Complete Assessment Required:</strong> All 8 sections must be completed to receive your personalized TCO analysis and schedule your consultation call.
+        <strong>Complete Assessment Required:</strong> All 6 sections must be completed to receive your personalized TCO analysis and schedule your consultation call.
       </div>
       {/* Progress Bar */}
       <div className="mb-8">
@@ -1266,38 +1111,38 @@ const AssessmentForm: React.FC = () => {
         {/* Navigation Buttons - Hide when showing TCO results */}
         {!showTCOResults && (
           <div className="flex justify-between items-center mt-8 pt-6 border-t border-slate-200">
-          <button
-            type="button"
-            onClick={handlePrev}
-            disabled={currentStep === 0}
-            className={`px-6 py-3 rounded-lg font-medium transition-colors ${
-              currentStep === 0
-                ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
-                : 'bg-slate-200 text-slate-700 hover:bg-slate-300'
-            }`}
-          >
-            Previous
-          </button>
+            <button
+              type="button"
+              onClick={handlePrev}
+              disabled={currentStep === 0}
+              className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+                currentStep === 0
+                  ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
+                  : 'bg-slate-200 text-slate-700 hover:bg-slate-300'
+              }`}
+            >
+              Previous
+            </button>
 
-          <div className="text-center">
-            <p className="text-sm text-slate-600">
-              {currentStep + 1} of {steps.length} sections
-            </p>
-          </div>
+            <div className="text-center">
+              <p className="text-sm text-slate-600">
+                {currentStep + 1} of {steps.length} sections
+              </p>
+            </div>
 
-          <div className="flex gap-2">
-            {/* Show Next button if not on last step */}
-            {currentStep < steps.length - 1 && (
-              <button
-                type="button"
-                onClick={handleNext}
-                className="px-6 py-3 bg-teal-600 text-white rounded-lg font-medium hover:bg-teal-700 transition-colors"
-              >
-                Next
-              </button>
-            )}
+            <div className="flex gap-2">
+              {/* Show Next button if not on last step */}
+              {currentStep < steps.length - 1 && (
+                <button
+                  type="button"
+                  onClick={handleNext}
+                  className="px-6 py-3 bg-teal-600 text-white rounded-lg font-medium hover:bg-teal-700 transition-colors"
+                >
+                  Next
+                </button>
+              )}
+            </div>
           </div>
-        </div>
         )}
 
         {/* Error Message */}

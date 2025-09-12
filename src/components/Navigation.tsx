@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -74,9 +75,14 @@ const Navigation = () => {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0 flex items-center group" aria-label="MainStreet RevOps home">
-              <span className="text-2xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent hover:scale-105 transition-transform duration-200">
-                MainStreet RevOps
-              </span>
+              <Image
+                src="/logo.jpg"
+                alt="MainStreet RevOps"
+                width={180}
+                height={40}
+                className="h-10 w-auto hover:scale-105 transition-transform duration-200"
+                priority
+              />
             </Link>
           </div>
 

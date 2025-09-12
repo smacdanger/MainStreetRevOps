@@ -34,7 +34,7 @@ export default function Assessment() {
             Get Your Instant Revenue Leak Analysis
           </h1>
           <p className="text-xl md:text-2xl text-slate-200 mb-4">
-            See Exactly How Much You're Losing + What You Could Save
+            See Exactly How Much You&apos;re Losing + What You Could Save
           </p>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto mb-8">
             This comprehensive assessment instantly calculates your current revenue leaks, hidden costs, 
@@ -52,7 +52,7 @@ export default function Assessment() {
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 p-4 rounded-xl">
               <div className="text-2xl mb-2">📊</div>
               <div className="font-semibold text-blue-200">Revenue Leak Detection</div>
-              <div className="text-sm text-slate-300">Identify exactly where you're losing money</div>
+              <div className="text-sm text-slate-300">Identify exactly where you&apos;re losing money</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 p-4 rounded-xl">
               <div className="text-2xl mb-2">📈</div>
