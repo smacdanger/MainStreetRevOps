@@ -260,10 +260,81 @@ const AssessmentForm: React.FC = () => {
   };
 
   const calculateTCO = (inputs: TCOInputs): TCOResults => {
-    // Constants for calculation
-    const Lost_Leads_Percent = 0.15;
-    const Labor_Savings_Percent = 0.50;
-    const Optimized_Lost_Leads_Percent = 0.05;
+    // Dynamic efficiency scoring based on current state
+    const getCurrentEfficiencyScore = (): number => {
+      let score = 0;
+      
+      // CRM sophistication (0-30 points)
+      if (formData.leadTracking === 'CRM') {
+        const crmName = formData.crmName?.toLowerCase() || '';
+        if (crmName.includes('hubspot') || crmName.includes('salesforce') || crmName.includes('pipedrive')) {
+          score += 25; // Advanced CRM
+        } else {
+          score += 15; // Basic CRM
+        }
+      } else if (formData.leadTracking === 'Spreadsheet') {
+        score += 5; // Some organization
+      }
+      // Nothing formal = 0 points
+      
+      // Response speed (0-25 points)
+      switch (formData.responseSpeed) {
+        case 'Within 1 hour': score += 25; break;
+        case 'Same day': score += 15; break;
+        case '1–2 days': score += 8; break;
+        case '3+ days': score += 3; break;
+        case 'Honestly, hit or miss': score += 0; break;
+      }
+      
+      // Automation indicators (0-20 points)
+      if (formData.bookingLink === 'Yes') score += 10;
+      if (formData.textFromBiz === 'Yes') score += 5;
+      if (formData.otherTools?.toLowerCase().includes('zapier') || 
+          formData.otherTools?.toLowerCase().includes('automation')) score += 10;
+      
+      // Process consistency (0-15 points)  
+      if (formData.invoiceTiming !== 'Inconsistent') score += 8;
+      if (formData.quoteMethod?.includes('QuickBooks') || 
+          formData.quoteMethod?.includes('Jobber') ||
+          formData.quoteMethod?.includes('ServiceTitan')) score += 7;
+      
+      // Tool spend indicates sophistication (0-10 points)
+      if (formData.currentToolCosts === '$300-$500/month' || 
+          formData.currentToolCosts === '$500+ month') score += 10;
+      else if (formData.currentToolCosts === '$100-$300/month') score += 5;
+      
+      return Math.min(score, 100); // Cap at 100
+    };
+    
+    const efficiencyScore = getCurrentEfficiencyScore();
+    
+    // Adjust assumptions based on current efficiency
+    let Lost_Leads_Percent: number;
+    let Labor_Savings_Percent: number;
+    let Optimized_Lost_Leads_Percent: number;
+    
+    if (efficiencyScore >= 80) {
+      // Already very efficient - minimal improvements possible
+      Lost_Leads_Percent = 0.05;
+      Labor_Savings_Percent = 0.15;
+      Optimized_Lost_Leads_Percent = 0.02;
+    } else if (efficiencyScore >= 60) {
+      // Moderately efficient - some room for improvement
+      Lost_Leads_Percent = 0.08;
+      Labor_Savings_Percent = 0.25;
+      Optimized_Lost_Leads_Percent = 0.03;
+    } else if (efficiencyScore >= 40) {
+      // Some systems in place - good improvement potential
+      Lost_Leads_Percent = 0.12;
+      Labor_Savings_Percent = 0.35;
+      Optimized_Lost_Leads_Percent = 0.04;
+    } else {
+      // Manual/chaotic - original assumptions apply
+      Lost_Leads_Percent = 0.15;
+      Labor_Savings_Percent = 0.50;
+      Optimized_Lost_Leads_Percent = 0.05;
+    }
+    
     const OpenAI_cost = Math.max(25, inputs.leads * 0.50);
 
     // Current TCO Calculation
@@ -278,27 +349,72 @@ const AssessmentForm: React.FC = () => {
     const Current_Missed = Missed_Revenue;
     const Current_TCO = Current_Fixed + Current_Hidden + Current_Missed;
 
-    // Optimized Fixed Costs
-    const Optimized_CRM = inputs.CRM_change ? (40 + 15 * inputs.reps) : inputs.CRM_user_cost;
-    const Optimized_Phone = inputs.Phone_change ? (25 + 8 * inputs.reps) : inputs.Phone_cost;
-    const Optimized_Accounting = inputs.Accounting_change ? 75 : inputs.Accounting_cost;
-    const Optimized_Other = 40 + (25 * inputs.reps) + OpenAI_cost;
-    const Optimized_Fixed = Optimized_CRM + Optimized_Phone + Optimized_Accounting + Optimized_Other;
+    // Adjust fixed costs based on current sophistication
+    const getOptimizedFixedCosts = () => {
+      let crmCost = inputs.CRM_user_cost;
+      let phoneCost = inputs.Phone_cost;
+      let accountingCost = inputs.Accounting_cost;
+      
+      // If they already have good tools, minimal cost change
+      if (efficiencyScore >= 70) {
+        crmCost = Math.max(crmCost, inputs.CRM_user_cost * 1.1); // Slight increase for premium features
+        phoneCost = Math.max(phoneCost, inputs.Phone_cost * 1.05);
+        accountingCost = Math.max(accountingCost, inputs.Accounting_cost);
+      } else {
+        // Standard optimization costs for less efficient setups
+        crmCost = inputs.CRM_change ? (40 + 15 * inputs.reps) : inputs.CRM_user_cost;
+        phoneCost = inputs.Phone_change ? (25 + 8 * inputs.reps) : inputs.Phone_cost;
+        accountingCost = inputs.Accounting_change ? 75 : inputs.Accounting_cost;
+      }
+      
+      const otherCost = efficiencyScore >= 70 ? 
+        inputs.Other_cost + OpenAI_cost : // Just add AI to existing stack
+        40 + (25 * inputs.reps) + OpenAI_cost; // Full automation suite
+      
+      return {
+        Optimized_CRM: crmCost,
+        Optimized_Phone: phoneCost,
+        Optimized_Accounting: accountingCost,
+        Optimized_Other: otherCost
+      };
+    };
+
+    // Optimized costs using dynamic logic
+    const optimizedCosts = getOptimizedFixedCosts();
+    const Optimized_Fixed = optimizedCosts.Optimized_CRM + optimizedCosts.Optimized_Phone + 
+                           optimizedCosts.Optimized_Accounting + optimizedCosts.Optimized_Other;
 
     // Optimized Variable Costs
     const Optimized_Hidden = Hidden_Labor * (1 - Labor_Savings_Percent);
     const Optimized_Missed = inputs.leads * inputs.job_value * Optimized_Lost_Leads_Percent;
     const Optimized_TCO = Optimized_Fixed + Optimized_Hidden + Optimized_Missed;
 
+    // Calculate ROI with realistic implementation costs
+    const Base_Implementation_Cost = efficiencyScore >= 70 ? 3000 : 8000; // Less work if already efficient
+    const Per_Rep_Cost = efficiencyScore >= 70 ? 500 : 1500;
+    const Implementation_Investment = Base_Implementation_Cost + (Per_Rep_Cost * inputs.reps);
+    
     // Comparison Metrics
     const Net_Savings = Current_TCO - Optimized_TCO;
     const Revenue_Gained = Missed_Revenue - Optimized_Missed;
-    
-    const Base_Implementation_Cost = 8000;
-    const Per_Rep_Cost = 1500;
-    const Implementation_Investment = Base_Implementation_Cost + (Per_Rep_Cost * inputs.reps);
     const Monthly_Benefit = Net_Savings + Revenue_Gained;
     const ROI = Implementation_Investment > 0 ? (Monthly_Benefit * 12 / Implementation_Investment) * 100 : 0;
+
+    // Debug logging for transparency
+    console.log('TCO Analysis Debug:', {
+      efficiencyScore,
+      Lost_Leads_Percent,
+      Labor_Savings_Percent,
+      Implementation_Investment,
+      Monthly_Benefit,
+      assessmentInputs: {
+        leadTracking: formData.leadTracking,
+        crmName: formData.crmName,
+        responseSpeed: formData.responseSpeed,
+        currentToolCosts: formData.currentToolCosts,
+        otherTools: formData.otherTools
+      }
+    });
 
     return {
       Current_TCO,
